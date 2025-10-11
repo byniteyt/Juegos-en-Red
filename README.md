@@ -85,15 +85,15 @@ Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el 
 
 ## Música
 
-El juego empleará una mezcla de estilos visuales: una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego y, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos.
+El juego empleará una mezcla de estilos musicales: por un lado, una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego. Por otro lado, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos. Acorde a la escena, se programará para que comience a sonar una melodía u otra.
 
 ## Objetivo 
 
-El objetivo del juego consiste en llegar al final de la calle, esquivando todos los obstáculos, y entrar a la casa de acogida antes que el otro jugador. Los jugadores podrán utilizar power ups para facilitar esta tarea.
+El objetivo del juego consiste en llegar al final de la calle, cruzando carreteras y esquivando todos los obstáculos, para así entrar a la casa de acogida antes que el otro jugador. Los jugadores podrán utilizar power ups para facilitar esta tarea. Se trata de ser más veloz que el otro jugador y estar atento a todos los inconvenientes de la vía.
 
 ## Controles 
 
-Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las teclas “A”, “W”, “D” y “S” o las teclas “←”, “↑”, “→” y “↓” para el movimiento del personaje.
+Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las teclas “A”, “W”, “D” y “S” o las teclas “←”, “↑”, “→” y “↓” para el movimiento del personaje. En principio, si el jugador se queda atrás, el juego se encargará de empujarle hacia delante para que avance. No podrá retroceder hacia una zona que ya no es visible por pantalla (ya que se le empuja hacia delante), pero en otras zonas puede retroceder cuando lo necesite. Sucede lo mismo si el jugador quiere ir hacia delante en una zona no visible todavía.
 
 ## Mecánicas
 
