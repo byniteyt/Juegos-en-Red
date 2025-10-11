@@ -37,7 +37,7 @@ Steam e Itch.io.
 
 ### Interfaces:
 
-\- Menú  
+\- Menús
 \- Selección de Personaje  
 \- Pantalla de Juego  
 \- Pantalla de Resultado
