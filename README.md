@@ -58,7 +58,7 @@ Selección personaje
 <img width="662" height="359" alt="image" src="https://github.com/user-attachments/assets/9920657d-edc5-4548-bc79-1f142be76735" />
 
 
-### Jugadores/Animales
+### Jugadores
 
 <img width="399" height="257" alt="image" src="https://github.com/user-attachments/assets/c8da9f2a-46c6-4ea0-be14-b8dff295a4fc" />
 
@@ -119,10 +119,9 @@ Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las
 
 Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de pantalla que definen el avance de la partido y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
 
+## Escenario
 
-## Escenario 
-
-Se trata de una calle que contiene tanto carretera como aceras, y al final del recorrido se encuentra la casa, donde el jugador debe llegar para ganar. Se incluyen zonas con hierba y árboles, además de vehículos como coches o motos, que el jugador deberá esquivar.
+El escenario en el que tiene lugar este videojuego es una calle común y corriente en la periferia de una ciudad, con aceras en ambos lados, una carretera en la que se desarrolla la acción de la partida, y la casa de acogida al final del todo. En la propia carretera aparecerán diversos obstáculos temáticos que los jugadores deberán esquivar, como pueden ser tapas de alcantarilla abiertas o vehículos de todo tipo circulando a altas velocidades. Como parte de la decoración del escenario habrá áreas con vegetación más abundante, lo cual incluye árboles y matorrales.
 
 ## Diagrama de flujo
 
