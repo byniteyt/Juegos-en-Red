@@ -111,14 +111,15 @@ Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las
 
 ## Mecánicas
 
-- **Jugador**: Movimiento hacia delante, hacia la derecha, hacia la izquierda y hacia atrás. Selección de personajes.
-- **Entorno**: paso de peatones y ciclistas por la acera y de coches por la carretera.
-- **Power ups**: aumento de velocidad, escudo de un sólo choque, lanzar bolas de pelo que paralizan o ralentizan temporalmente al enemigo…
+Este videojuego cuenta con varias mecánicas:
+
+- **Jugador**: tiene 4 posibles movimientos: hacia delante, hacia la derecha, hacia la izquierda y hacia atrás. También tendrá la opción de seleccionar al personaje que quiera manejar antes de empezar la partida. Además, podrá hacer uso de power ups cuando los recoja.
+- **Entorno**: el mapa se compone de pasos de peatones, carreteras y aceras. A lo largo del recorrido, aparecerán ciclistas por la acera y coches por la carretera que interrumpirán el paso de los jugadores, quienes tendrán que esquivarlos.
+- **Power ups**: habrá distintos power ups repartidos por el mapa. Cada uno dará un poder distinto: aumento de velocidad, escudo de un sólo choque y lanzar bolas de pelo que paralizan o ralentizan temporalmente al jugador enemigo.
 
 ## Físicas
 
 Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de pantalla que definen el avance de la partido y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
-
 
 ## Escenario 
 
