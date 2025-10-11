@@ -65,13 +65,12 @@ hacer logo 👍
 
 ## Descripción Visual 
 
-Paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores, además de las carreteras.
- 
+El juego tendrá una paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores. Estos colores han sido escogidos para ser adorables y agradables a la vista. 
 
 ## Uso de Cámara 
 
-Se hará uso de una cámara 2D, y se verá en modo cenital, más en concreto con una perspectiva top-down.  
-Se tomará de referencia las primeras versiones de Pokemon.
+Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokemon como referencia.  
+
 
  ![][image4]
 Pokemon Rubí / Zafiro
