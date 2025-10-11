@@ -23,15 +23,15 @@ Grupo: 4
 
 ### Género
 
-Juego de acción y simulación.
+Se trata de un juego de acción y simulación.
 
 ### Público Objetivo
 
-Todas las edades. Jugadores casuales.
+Está orientado para gente de todas las edades y, concretamente, para jugadores más casuales.
 
 ### Plataforma 
 
-Steam e Itch.io.
+Se publicará en las plataformas de Steam e Itch.io.
 
 ## Bocetos 
 
