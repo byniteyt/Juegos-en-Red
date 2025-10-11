@@ -27,7 +27,7 @@ Se trata de un juego de acción y simulación.
 
 ### Público Objetivo
 
-Está orientado para gente de todas las edades y, concretamente, para jugadores más casuales.
+Está orientado para gente de todas las edades y, concretamente, para jugadores más casuales. También buscamos apelar a los amantes de los animales, especialmente de los gatos.
 
 ### Plataforma 
 
@@ -80,8 +80,8 @@ El juego tendrá una paleta de tonos pasteles, formada principalmente por colore
 
 ## Uso de Cámara 
 
-Se hará uso de una cámara 2D, y se verá en modo cenital, más en concreto con una perspectiva top-down.  
-Se tomará de referencia las primeras versiones de Pokemon.
+Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokemon como referencia.  
+
 
  <img width="623" height="372" alt="image" src="https://github.com/user-attachments/assets/c84490ed-7dae-4af3-b20a-ae0dc6ec17ae" />
 
@@ -89,25 +89,25 @@ Pokemon Rubí / Zafiro
 
 ## Estilo Visual 
 
-El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado.
+El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado para las diferentes pantallas como el inicio o el menú de selección de personajes.
 
 <img width="364" height="524" alt="image" src="https://github.com/user-attachments/assets/8766cefb-0a9b-4d7a-9e55-db056da16129" />
 
 ## Inspiración 
 
-La idea principal y las mecánicas están basadas en el juego de Crossy Road. Todo el tema de la perspectiva está inspirado en juegos como los inicios de Pokemon.
+Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el estilo visual del proyecto. EL uso de la perspectiva está inspirado en juegos como los primeros de la franquicia de Pokemon (antes de sus juegos en 3D) tales como Pokémon Rubí, Pokémon Negro, etc...
 
 ## Música
 
-El juego empleará una mezcla de estilos visuales: una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego y, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos.
+El juego empleará una mezcla de estilos musicales: por un lado, una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego. Por otro lado, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos. Acorde a la escena, se programará para que comience a sonar una melodía u otra.
 
 ## Objetivo 
 
-El objetivo del juego consiste en llegar al final de la calle, esquivando todos los obstáculos, y entrar a la casa de acogida antes que el otro jugador. Los jugadores podrán utilizar power ups para facilitar esta tarea.
+El objetivo del juego consiste en llegar al final de la calle, cruzando carreteras y esquivando todos los obstáculos, para así entrar a la casa de acogida antes que el otro jugador. Los jugadores podrán utilizar power ups para facilitar esta tarea. Se trata de ser más veloz que el otro jugador y estar atento a todos los inconvenientes de la vía.
 
 ## Controles 
 
-Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las teclas “A”, “W”, “D” y “S” o las teclas “←”, “↑”, “→” y “↓” para el movimiento del personaje.
+Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las teclas “A”, “W”, “D” y “S” o las teclas “←”, “↑”, “→” y “↓” para el movimiento del personaje. En principio, si el jugador se queda atrás, el juego se encargará de empujarle hacia delante para que avance. No podrá retroceder hacia una zona que ya no es visible por pantalla (ya que se le empuja hacia delante), pero en otras zonas puede retroceder cuando lo necesite. Sucede lo mismo si el jugador quiere ir hacia delante en una zona no visible todavía.
 
 ## Mecánicas
 
@@ -117,9 +117,8 @@ Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las
 
 ## Físicas
 
-Colisiones al chocar con elementos: tapas de alcantarilla abiertas, baches en el asfalto, zonas con obras, y vehículos de todo tipo.
+Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de pantalla que definen el avance de la partido y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
 
-Si uno de los jugadores choca con el borde de la pantalla, éste es lanzado un poco hacia adelante lo que mantiene a dicho jugador en pantalla y ayuda a compensar la diferencia entre jugadores.
 
 ## Escenario 
 
@@ -143,10 +142,7 @@ Este trasfondo se explorará en cortas cinemáticas al más puro estilo de novel
 
 ## Marketing
 
-Para anunciar nuestro juego, se subirán actualizaciones y trailers a través de las redes sociales. 
-Kickstarter.
-Colaboraciones con youtubers que muestren a sus mascotas en sus videos, que hayan conseguido que su gato sea famoso, por ejemplo Rubius, AuronPlay, etc.
-También se crearía una tienda online donde se puedan comprar peluches de los personajes, además de merchandising como camisetas, tote bags…
+Para financiar este proyecto y empezar a tener una base de fans, utilizaremos la plataforma Kickstarter. Además, para anunciar nuestro juego se subirán actualizaciones, noticias y trailers a través de las redes sociales. También se realizarán colaboraciones con youtubers cuyas mascotas sean reconocidas, por ejemplo con Rubius, AuronPlay, etc., para aumentar la popularidad del juego. Para finalizar, se creará una tienda online donde se puedan comprar peluches de los personajes, además de merchandising como camisetas, tote bags, etc.
 
 ## Bibliografía
 
