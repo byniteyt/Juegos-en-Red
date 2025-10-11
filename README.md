@@ -103,9 +103,8 @@ Al ser un videojuego destinado a ser jugado en un PC, los controles serían: las
 
 ## Físicas
 
-Colisiones al chocar con elementos: tapas de alcantarilla abiertas, baches en el asfalto, zonas con obras, y vehículos de todo tipo.
+Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de pantalla que definen el avance de la partido y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
 
-Si uno de los jugadores choca con el borde de la pantalla, éste es lanzado un poco hacia adelante lo que mantiene a dicho jugador en pantalla y ayuda a compensar la diferencia entre jugadores.
 
 ## Escenario 
 
