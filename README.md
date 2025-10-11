@@ -142,4 +142,4 @@ También se crearía una tienda online donde se puedan comprar peluches de los p
 
 ## Bibliografía
 
-Nuestra mente
+Para la realización de este trabajo no hemos necesitado consultar o utilizar como referencia ninguna fuente.
