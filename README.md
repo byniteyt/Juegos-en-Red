@@ -56,7 +56,9 @@ Selección personaje
 
 <img width="316" height="380" alt="image" src="https://github.com/user-attachments/assets/e5b086f6-625f-4a39-bc08-b2a1e10d7e88" />
 
-<img width="662" height="359" alt="image" src="https://github.com/user-attachments/assets/9920657d-edc5-4548-bc79-1f142be76735" />
+
+![seleccion personaje](https://github.com/user-attachments/assets/065c390a-cc72-4fbd-9fee-6c0fa5e4867a)
+
 
 
 ### Jugadores
