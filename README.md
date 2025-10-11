@@ -49,35 +49,49 @@ boceto 3
 ### Pantallas
 
 Juego (se haría en vertical)  
-![][image1] 
+![Captura de pantalla 2025-10-11 122748](https://hackmd.io/_uploads/HJ3Ebnwaxg.png) 
+
 Selección personaje
 
-![][image2]
+<img width="316" height="380" alt="image" src="https://github.com/user-attachments/assets/e5b086f6-625f-4a39-bc08-b2a1e10d7e88" />
 
-### 
+<img width="662" height="359" alt="image" src="https://github.com/user-attachments/assets/9920657d-edc5-4548-bc79-1f142be76735" />
+
 
 ### Jugadores/Animales
 
+<img width="399" height="257" alt="image" src="https://github.com/user-attachments/assets/c8da9f2a-46c6-4ea0-be14-b8dff295a4fc" />
+
+<img width="420" height="262" alt="image" src="https://github.com/user-attachments/assets/7b0c1436-fa46-47ba-ad27-b04eae12b41a" />
+
+
+
 ## Logo 
 
-![][image3]
+<img width="415" height="462" alt="image" src="https://github.com/user-attachments/assets/8404ac34-5b12-4a56-84ee-15ef28464795" />
+
 hacer logo 👍
 
 ## Descripción Visual 
 
 El juego tendrá una paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores. Estos colores han sido escogidos para ser adorables y agradables a la vista. 
 
+<img width="468" height="696" alt="image" src="https://github.com/user-attachments/assets/4def1328-42de-4c49-a0f4-59ea994b34da" />
+
 ## Uso de Cámara 
 
 Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokemon como referencia.  
 
 
- ![][image4]
+ <img width="623" height="372" alt="image" src="https://github.com/user-attachments/assets/c84490ed-7dae-4af3-b20a-ae0dc6ec17ae" />
+
 Pokemon Rubí / Zafiro
 
 ## Estilo Visual 
 
 El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado para las diferentes pantallas como el inicio o el menú de selección de personajes.
+
+<img width="364" height="524" alt="image" src="https://github.com/user-attachments/assets/8766cefb-0a9b-4d7a-9e55-db056da16129" />
 
 ## Inspiración 
 
