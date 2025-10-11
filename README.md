@@ -65,8 +65,7 @@ hacer logo 👍
 
 ## Descripción Visual 
 
-Paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores, además de las carreteras.
- 
+El juego tendrá una paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores. Estos colores han sido escogidos para ser adorables y agradables a la vista. 
 
 ## Uso de Cámara 
 
