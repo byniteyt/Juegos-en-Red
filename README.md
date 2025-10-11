@@ -5,7 +5,7 @@
 
 # GDD
 
-# CHARMING CATS: gettahome
+# Charming Cats: Get-a-Home
 
 Grupo: 4
 
@@ -125,21 +125,17 @@ Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y p
 
 El escenario en el que tiene lugar este videojuego es una calle común y corriente en la periferia de una ciudad, con aceras en ambos lados, una carretera en la que se desarrolla la acción de la partida, y la casa de acogida al final del todo. En la propia carretera aparecerán diversos obstáculos temáticos que los jugadores deberán esquivar, como pueden ser tapas de alcantarilla abiertas o vehículos de todo tipo circulando a altas velocidades. Como parte de la decoración del escenario habrá áreas con vegetación más abundante, lo cual incluye árboles y matorrales.
 
-## Diagrama de flujo
+## Diagrama de Flujo
 
 ![Captura de pantalla 2025-10-11 112630](https://hackmd.io/_uploads/r1TAiivTex.png)
 
-## Historia del juego
+## Historia del Juego
 
-Sois dos animales abandonados y debéis llegar a la casa pero sólo hay hueco para uno de vosotros dos, por lo que debes esquivar los obstáculos y ser más rápidos que el otro para no quedarte en la calle.
+Un par de gatitos huérfanos encuentran la oportunidad perfecta para conseguir un nuevo hogar, pero en la casa de acogida sólo hay hueco para uno de ellos. Los dueños de la casa no tienen preferencia por ninguno de los gatos, así que a cuál terminen adoptando es cuestión de quién consiga abrirse camino y llegar antes hasta allí. ¿A cuál de los dos le sonreirá la fortuna?
 
-## Desarrollo de los personajes
+## Desarrollo de los Personajes
 
-Sois dos animales que habéis sido abandonados y tras meses en la calle encontráis una casa de adopción pero solo hay hueco para uno por lo que anteponeis el que os adopten antes que vuestra amistad. 
-
-Los gatos han sido amigos de toda la vida, y más después de ser abandonados en la calle. Sin embargo, ahora se ven forzados a competir entre ellos para sobrevivir. ¿Cuál será el desenlace de esta trágica historia?
-
-Este trasfondo se explorará en cortas cinemáticas al más puro estilo de novela gráfica entre nivel y nivel.
+Tras meses abandonados a su suerte en la calle, un par de gatitos huérfanos encuentran la oportunidad para conseguir un nuevo hogar. Pero hay un problema: en la casa de acogida sólo hay sitio para uno de ellos. Hasta ahora, los gatos siempre habían sobrevivido ayudándose entre sí y cuidando el uno del otro. Sin embargo, si querían una vida mejor deberían dejar a un lado su amistad. ¿Cuál será el desenlace de esta trágica historia? ¿Podrá alguno de los gatos realmente abandonar a su mejor amigo?
 
 ## Marketing
 
