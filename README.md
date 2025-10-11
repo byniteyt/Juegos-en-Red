@@ -27,7 +27,7 @@ Se trata de un juego de acción y simulación.
 
 ### Público Objetivo
 
-Está orientado para gente de todas las edades y, concretamente, para jugadores más casuales.
+Está orientado para gente de todas las edades y, concretamente, para jugadores más casuales. También buscamos apelar a los amantes de los animales, especialmente de los gatos.
 
 ### Plataforma 
 
@@ -130,10 +130,7 @@ Este trasfondo se explorará en cortas cinemáticas al más puro estilo de novel
 
 ## Marketing
 
-Para anunciar nuestro juego, se subirán actualizaciones y trailers a través de las redes sociales. 
-Kickstarter.
-Colaboraciones con youtubers que muestren a sus mascotas en sus videos, que hayan conseguido que su gato sea famoso, por ejemplo Rubius, AuronPlay, etc.
-También se crearía una tienda online donde se puedan comprar peluches de los personajes, además de merchandising como camisetas, tote bags…
+Para financiar este proyecto y empezar a tener una base de fans, utilizaremos la plataforma Kickstarter. Además, para anunciar nuestro juego se subirán actualizaciones, noticias y trailers a través de las redes sociales. También se realizarán colaboraciones con youtubers cuyas mascotas sean reconocidas, por ejemplo con Rubius, AuronPlay, etc., para aumentar la popularidad del juego. Para finalizar, se creará una tienda online donde se puedan comprar peluches de los personajes, además de merchandising como camisetas, tote bags, etc.
 
 ## Bibliografía
 
