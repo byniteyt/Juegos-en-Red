@@ -5,7 +5,7 @@
 
 # GDD
 
-# TÍTULO
+# CHARMING CATS: gettahome
 
 Grupo: 4
 
@@ -119,7 +119,7 @@ Se trata de una calle que contiene tanto carretera como aceras, y al final del r
 
 ## Diagrama de flujo
 
-![Captura de pantalla 2025-10-11 112630](https://hackmd.io/_uploads/S1VkqoDTgx.png)
+![Captura de pantalla 2025-10-11 112630](https://hackmd.io/_uploads/r1TAiivTex.png)
 
 ## Historia del juego
 
