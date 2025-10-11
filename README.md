@@ -78,7 +78,7 @@ Pokemon Rubí / Zafiro
 
 ## Estilo Visual 
 
-El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado.
+El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado para las diferentes pantallas como el inicio o el menú de selección de personajes.
 
 Juego \-\> pixelart
 Pantallas \-\> arte digital 2D adorable
@@ -87,7 +87,7 @@ Pantallas \-\> arte digital 2D adorable
 
 ## Inspiración 
 
-La idea principal y las mecánicas están basadas en el juego de Crossy Road. Todo el tema de la perspectiva está inspirado en juegos como los inicios de Pokemon.
+Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el estilo visual del proyecto. EL uso de la perspectiva está inspirado en juegos como los primeros de la franquicia de Pokemon (antes de sus juegos en 3D) tales como Pokémon Rubí, Pokémon Negro, etc...
 
 ## Música
 
