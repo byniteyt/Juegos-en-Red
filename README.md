@@ -80,11 +80,6 @@ Pokemon Rubí / Zafiro
 
 El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado.
 
-Juego \-\> pixelart
-Pantallas \-\> arte digital 2D adorable
-
-
-
 ## Inspiración 
 
 La idea principal y las mecánicas están basadas en el juego de Crossy Road. Todo el tema de la perspectiva está inspirado en juegos como los inicios de Pokemon.
@@ -135,7 +130,7 @@ Este trasfondo se explorará en cortas cinemáticas al más puro estilo de novel
 
 ## Marketing
 
-Redes sociales.
+Para anunciar nuestro juego, se subirán actualizaciones y trailers a través de las redes sociales. 
 Kickstarter.
 Colaboraciones con youtubers que muestren a sus mascotas en sus videos, que hayan conseguido que su gato sea famoso, por ejemplo Rubius, AuronPlay, etc.
 También se crearía una tienda online donde se puedan comprar peluches de los personajes, además de merchandising como camisetas, tote bags…
