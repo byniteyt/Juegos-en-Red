@@ -7,6 +7,7 @@
 
 # Charming Cats: Get-a-Home
 
+Nombre de equipo: Starlight team
 Grupo: 4
 
 | Autor | Correo de la Universidad | Cuenta de Github |
@@ -18,7 +19,7 @@ Grupo: 4
 | Alexia Fernández | a.fernandezmi.2023@alumnos.urjc.es |pixel-alex|
 
 ## Temática principal
-Charming Cats: Get-a-Home se trata de un juego multijugador para dos personas, donde los jugadores son dos gatos que compiten en una carrera para llegar a la casa de recogida antes que el otro jugador. Tendrán que ir esquivando obstáculos para evitar quedarse atrás y llegar a la meta.
+Charming Cats: Get-a-Home se trata de un juego multijugador para dos personas, donde los jugadores son dos gatos que compiten en una carrera para llegar a la casa de acogida antes que el otro jugador. Tendrán que ir esquivando obstáculos para evitar quedarse atrás y llegar a la meta.
 
 ## Especificaciones Básicas
 
