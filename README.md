@@ -58,12 +58,13 @@ boceto 3
 Juego (se haría en vertical)  
 ![Captura de pantalla 2025-10-11 122748](https://hackmd.io/_uploads/HJ3Ebnwaxg.png) 
 
-Selección personaje
-
 <img width="316" height="380" alt="image" src="https://github.com/user-attachments/assets/e5b086f6-625f-4a39-bc08-b2a1e10d7e88" />
 
+Referencias para el escenario
 
 ![seleccion personaje](https://github.com/user-attachments/assets/065c390a-cc72-4fbd-9fee-6c0fa5e4867a)
+
+Pantalla de selección de personaje
 
 
 
