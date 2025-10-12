@@ -9,6 +9,9 @@
 
 Nombre de equipo: Starlight team
 Grupo: 4
+Roles:
+- Artistas: Sara Pedrero, Sara Sanz, Sandra Abarca.
+- Programadores: Asier Martín, Alexia Fernández.
 
 | Autor | Correo de la Universidad | Cuenta de Github |
 | :---: | :---: | :---: |
