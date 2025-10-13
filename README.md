@@ -49,10 +49,6 @@ Se publicará en las plataformas de Steam e Itch.io.
 \- Pantalla de Juego  
 \- Pantalla de Resultado
 
-boceto 1  
-boceto 2  
-boceto 3
-
 ### Pantallas
 
 <img width="4096" height="2160" alt="Menú" src="https://github.com/user-attachments/assets/7f1a060b-d139-4146-b569-27d90e80ee71" />
@@ -60,13 +56,17 @@ boceto 3
 Pantalla de Menú 
 
 
-![Captura de pantalla 2025-10-11 122748](https://hackmd.io/_uploads/HJ3Ebnwaxg.png)
+<img width="4096" height="2160" alt="Pantalla de Juego" src="https://github.com/user-attachments/assets/43d109f5-07bc-4826-8bf3-39d833fb6351" />
 
-Pantalla de juego (se haría en vertical)  
+Pantalla de Juego
+
+<img width="4096" height="2160" alt="Pantalla de Resultado" src="https://github.com/user-attachments/assets/dc6ccb62-cdb1-4160-99ab-2d528f07b3ce" />
+
+Pantalla de Resultado
 
 ![seleccion personaje](https://github.com/user-attachments/assets/065c390a-cc72-4fbd-9fee-6c0fa5e4867a)
 
-Pantalla de selección de personaje
+Pantalla de Selección de Personaje
 
 
 
