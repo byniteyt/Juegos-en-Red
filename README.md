@@ -30,9 +30,6 @@ Roles:
 ## Índice
 - [Temática principal](#Temática-principal)
 - [Especificaciones Básicas](#Especificaciones-Básicas)
-  -[Género](#Género)
-  -[Público Objetivo](#Público-Objetivo)
-  -[Plataforma](#Plataforma)
 - [Bocetos](#Bocetos)
 - [Logo](#Logo)
 - [Descripción Visual](#Descripción-Visual)
