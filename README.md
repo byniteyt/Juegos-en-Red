@@ -100,12 +100,12 @@ El juego tendrá una paleta de tonos pasteles, formada principalmente por colore
 
 ## Uso de Cámara 
 
-Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokemon como referencia.  
+Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokémon como referencia.  
 
 
  <img width="623" height="372" alt="image" src="https://github.com/user-attachments/assets/c84490ed-7dae-4af3-b20a-ae0dc6ec17ae" />
 
-Pokemon Rubí / Zafiro
+Pokémon Rubí / Zafiro
 
 ## Estilo Visual 
 
@@ -115,7 +115,7 @@ El juego empleará una mezcla de estilos visuales muy distintivos: un estilo pí
 
 ## Inspiración 
 
-Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el estilo visual del proyecto. EL uso de la perspectiva está inspirado en juegos como los primeros de la franquicia de Pokemon (antes de sus juegos en 3D) tales como Pokémon Rubí, Pokémon Negro, etc...
+Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el estilo visual del proyecto. El uso de la perspectiva está inspirado en juegos como los primeros de la franquicia de Pokémon (antes de sus juegos en 3D) tales como Pokémon Rubí, Pokémon Negro, etc...
 
 ## Música
 
