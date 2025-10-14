@@ -29,7 +29,13 @@ Roles:
 
 ## Índice
 - [Temática principal](#Temática principal)
-- [Especificaciones Básicas](#Especificaciones Básicas)
+- [Especificaciones Básicas](#Especificaciones-Básicas)
+- [Conclusiones](#conclusiones)
+- [Conclusiones](#conclusiones)
+- [Conclusiones](#conclusiones)
+- [Conclusiones](#conclusiones)
+- [Conclusiones](#conclusiones)
+- [Conclusiones](#conclusiones)
 - [Logo](#Logo)
 - [Conclusiones](#conclusiones)
 
