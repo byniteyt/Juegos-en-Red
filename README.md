@@ -1,12 +1,5 @@
 # Juegos-en-Red
 
-
-
-
-# GDD
-
-# Charming Cats: Get-a-Home
-
 Nombre de equipo: Starlight team
 
 ![logo grupo](https://github.com/user-attachments/assets/e8184d15-c296-46d9-8f63-4fd3e9705c49)
@@ -26,6 +19,11 @@ Roles:
 | Sara Pedrero | s.pedrero.2023@alumnos.urjc.es |Kookoolookoo  |
 | Sara Sanz | s.sanzg.2023@alumnos.urjc.es |sarisstar |
 | Alexia Fernández | a.fernandezmi.2023@alumnos.urjc.es |pixel-alex|
+
+
+# GDD
+
+# Charming Cats: Get-a-Home
 
 ## Índice
 - [Temática principal](#Temática-principal)
