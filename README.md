@@ -9,7 +9,7 @@
 
 Nombre de equipo: Starlight team
 
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/c998d931-5fae-4e3b-aa56-3d0f7d4689c7" />
+![logo grupo](https://github.com/user-attachments/assets/e8184d15-c296-46d9-8f63-4fd3e9705c49)
 
 
 Grupo: 4
