@@ -9,11 +9,15 @@
 
 Nombre de equipo: Starlight team
 
+![logo grupo](https://github.com/user-attachments/assets/c998d931-5fae-4e3b-aa56-3d0f7d4689c7)
+
+
 Grupo: 4
 
 Roles:
 - Programadores: Asier Martín, Alexia Fernández.
 - Artistas: Sara Pedrero, Sara Sanz, Sandra Abarca.
+
 
 | Autor | Correo de la Universidad | Cuenta de Github |
 | :---: | :---: | :---: |
@@ -80,9 +84,8 @@ Pantalla de Selección de Personaje
 
 ## Logo 
 
-<img width="415" height="462" alt="image" src="https://github.com/user-attachments/assets/8404ac34-5b12-4a56-84ee-15ef28464795" />
+![logo juego](https://github.com/user-attachments/assets/6e96379f-b733-4a84-80a9-0f11175edf76)
 
-hacer logo 👍
 
 ## Descripción Visual 
 
