@@ -9,7 +9,7 @@
 
 Nombre de equipo: Starlight team
 
-<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/c998d931-5fae-4e3b-aa56-3d0f7d4689c7" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/c998d931-5fae-4e3b-aa56-3d0f7d4689c7" />
 
 
 Grupo: 4
@@ -84,8 +84,7 @@ Pantalla de Selección de Personaje
 
 ## Logo 
 
-![logo juego](https://github.com/user-attachments/assets/6e96379f-b733-4a84-80a9-0f11175edf76)
-
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/6e96379f-b733-4a84-80a9-0f11175edf76" />
 
 ## Descripción Visual 
 
