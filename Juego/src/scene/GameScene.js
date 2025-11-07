@@ -6,6 +6,10 @@ export class GameScene extends Phaser.Scene{
         super('GameScene')
     }
 
+    preload(){
+        this.load.image('juego', 'Assets/juego.jpg');
+    }
+
     init() {
         this.players = new Map();
         this.inputsMapping = [];
@@ -19,6 +23,7 @@ export class GameScene extends Phaser.Scene{
     }
 
     create() {
+        this.add.image(400, 300, 'juego');
         for (let i = 0; i < 17;i++){
             this.add.rectangle(400, i * 50 + 25, 10, 30, 0xffffff);
         }
