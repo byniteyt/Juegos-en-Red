@@ -1,4 +1,4 @@
-export class Paddle {
+export class Cat {
 
     constructor(scene, id, x, y, direction) {
         this.id = id;

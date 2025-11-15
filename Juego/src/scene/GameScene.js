@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { Paddle } from "../entities/Paddle.js";
+import { Cat } from "../entities/Cat.js";
 
 export class GameScene extends Phaser.Scene{
     constructor() {
@@ -25,7 +25,7 @@ export class GameScene extends Phaser.Scene{
     }
 
     create() {
-        this.add.image(400, 300, 'juego');
+        this.add.image(600, 350, 'juego').setOrigin(0.5);
         for (let i = 0; i < 17;i++){
             this.add.rectangle(400, i * 50 + 25, 10, 30, 0xffffff);
         }
@@ -56,8 +56,8 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpPLayers() {
-        const leftPaddle = new Paddle(this, 'player1', 50, 300,'gato1');
-        const rightPaddle = new Paddle(this, 'player2', 750, 300, 'gato2');
+        const leftPaddle = new Cat(this, 'player1', 50, 300,'gato1');
+        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
 

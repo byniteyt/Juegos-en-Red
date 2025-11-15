@@ -10,7 +10,7 @@ export class MenuScene extends Phaser.Scene {
     }
    
     create() {
-        this.add.image(400, 300, 'fondo');
+        this.add.image(600, 350, 'fondo');
         
         this.add.text(400,100, 'Charming Cats:\nGet-a-Home',
         {   fontSize: '64px',
