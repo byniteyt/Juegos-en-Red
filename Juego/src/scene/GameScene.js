@@ -7,7 +7,9 @@ export class GameScene extends Phaser.Scene{
     }
 
     preload(){
-        this.load.image('juego', 'Assets/juego.jpg');
+        this.load.image('juego', 'Assets/Game/juego.jpg');
+        this.load.image('gato1', 'Assets/Game/Gatos jugables/PJCats_gato alegre.png');
+        this.load.image('gato2', 'Assets/Game/Gatos jugables/PJCats_gato negro.png');
     }
 
     init() {
@@ -54,8 +56,8 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpPLayers() {
-        const leftPaddle = new Paddle(this, 'player1', 50, 300);
-        const rightPaddle = new Paddle(this, 'player2', 750, 300);
+        const leftPaddle = new Paddle(this, 'player1', 50, 300,'gato1');
+        const rightPaddle = new Paddle(this, 'player2', 750, 300, 'gato2');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
 
@@ -64,11 +66,15 @@ export class GameScene extends Phaser.Scene{
                 playerId: 'player1',
                 upKey: 'W',
                 downKey: 'S',
+                leftKey: 'A',
+                rightKey: 'D'
             }, 
             {
                 playerId: 'player2',
                 upKey: 'UP',
                 downKey: 'DOWN',
+                leftKey: 'LEFT',
+                rightKey: 'RIGHT'
             }
         ];
         this.inputsMapping = InputConfig;
@@ -77,6 +83,8 @@ export class GameScene extends Phaser.Scene{
                 playerId: config.playerId,
                 upKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.upKey]),
                 downKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.downKey]),
+                leftKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.leftKey]),
+                rightKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.rightKey]),
             }
         });
     }
@@ -113,13 +121,13 @@ export class GameScene extends Phaser.Scene{
     }
 
     createBounds() {
-        this.leftGoal = this.physics.add.sprite(0, 300, null);
+        this.leftGoal = this.physics.add.sprite(0, 700, null);
         this.leftGoal.setDisplaySize(10, 600);
         this.leftGoal.body.setSize(10, 600);
         this.leftGoal.setImmovable(false);
         this.leftGoal.setVisible(false);
 
-        this.rightGoal = this.physics.add.sprite(800, 300, null);
+        this.rightGoal = this.physics.add.sprite(1200, 700, null);
         this.rightGoal.setDisplaySize(10, 600);
         this.rightGoal.body.setSize(10, 600);
         this.rightGoal.setImmovable(false);
@@ -202,6 +210,14 @@ export class GameScene extends Phaser.Scene{
                 paddle.sprite.setVelocityY(paddle.baseSpeed);
             }
             else {paddle.sprite.setVelocityY(0);}
+
+            if (mapping.leftKeyObj.isDown){
+                paddle.sprite.setVelocityX(-paddle.baseSpeed);
+            }
+            else if (mapping.rightKeyObj.isDown){
+                paddle.sprite.setVelocityX(paddle.baseSpeed);
+            }
+            else {paddle.sprite.setVelocityX(0);}
 
         });
     }
