@@ -33,7 +33,7 @@ export class GameScene extends Phaser.Scene{
         // Score texts
         this.scoreLeft = this.add.text(100, 50, '0', {
             fontSize: '48px',
-            color: '#c67212ff'
+            color: '#2ba304ff'
         })
 
         this.scoreRight = this.add.text(700, 50, '0', {
