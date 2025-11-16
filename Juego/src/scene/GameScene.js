@@ -15,7 +15,6 @@ export class GameScene extends Phaser.Scene{
     init() {
         this.players = new Map();
         this.inputsMapping = [];
-        this.ball = null;
         this.isPaused = false;
         this.escWasDown = false;
     } 
@@ -26,9 +25,6 @@ export class GameScene extends Phaser.Scene{
 
     create() {
         this.add.image(600, 350, 'juego').setOrigin(0.5);
-        for (let i = 0; i < 17;i++){
-            this.add.rectangle(400, i * 50 + 25, 10, 30, 0xffffff);
-        }
 
         // Score texts
         this.scoreLeft = this.add.text(100, 50, '0', {
@@ -41,16 +37,12 @@ export class GameScene extends Phaser.Scene{
             color: '#a23062ff'
         })
         this.createBounds();
-        this.createBall();
-        this.launchBall();
         this.setUpPLayers();
 
-        this.players.forEach(paddle => {
+        /*this.players.forEach(paddle => {
             this.physics.add.collider(this.ball, paddle.sprite);
-        });
+        });*/
 
-        this.physics.add.overlap(this.ball, this.leftGoal, this.scoreRightGoal, null, this);
-        this.physics.add.overlap(this.ball, this.rightGoal, this.scoreLeftGoal, null, this);
 
         this.escKey= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     }
@@ -101,61 +93,9 @@ export class GameScene extends Phaser.Scene{
             this.scoreLeft.setText('2º');
         }
     }
-
     
-    
-    createBall() {
-        const graphics = this.add.graphics();
-        graphics.fillStyle(0xffffff);
-        graphics.fillCircle(8, 8, 8);
-        graphics.generateTexture('ball', 16, 16);
-        graphics.destroy();
+   
 
-        this.ball = this.physics.add.image(400, 300, 'ball');
-        this.ball.setCollideWorldBounds(true);
-        this.ball.setBounce(1);
-    }
-
-    launchBall() {
-        const angle = Phaser.Math.Between(-30, 30);
-        const speed = 600;
-        const direction = Math.random() < 0.5 ? 1 : -1; 
-
-        this.ball.setVelocity(
-            Math.cos(Phaser.Math.DegToRad(angle)) * speed * direction,
-            Math.sin(Phaser.Math.DegToRad(angle)) * speed
-        )
-    }
-        scoreRightGoal() {
-        const player2 = this.players.get('player2');
-        //player2.score += 1;
-        this.scoreRight.setText(player2.score.toString());
-        if (player2.score >=10){
-            this.endGame('player2');
-            return;
-        }
-        this.resetBall();
-    }
-
-    scoreLeftGoal() {
-        const player1 = this.players.get('player1');
-        //player1.score += 1;
-        this.scoreLeft.setText(player1.score.toString());
-        if (player1.score >=2){
-            this.endGame('player1');
-            return;
-        }
-        this.resetBall();
-        
-    }
-
-    resetBall() {
-        this.ball.setVelocity(0, 0);
-        this.ball.setPosition(400, 300);
-        this.time.delayedCall(1000, () => {
-            this.launchBall();
-        });
-    }
 
     createBounds() {
         this.leftGoal = this.physics.add.sprite(0, 700, null);
@@ -173,7 +113,6 @@ export class GameScene extends Phaser.Scene{
 
 
     endGame(winnerId){
-        this.ball.setVelocity(0,0);
         this.players.forEach(paddle=> {
             paddle.sprite.setVelocity(0,0);
         })
