@@ -38,7 +38,7 @@ export class GameScene extends Phaser.Scene{
 
         this.scoreRight = this.add.text(700, 50, '0', {
             fontSize: '48px',
-            color: '#9c0a4aff'
+            color: '#a23062ff'
         })
         this.createBounds();
         this.createBall();
