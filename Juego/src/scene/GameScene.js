@@ -38,9 +38,7 @@ export class GameScene extends Phaser.Scene{
         this.createBounds();
         this.setUpPLayers();
 
-        /*this.players.forEach(paddle => {
-            this.physics.add.collider(this.ball, paddle.sprite);
-        });*/
+        //this.physics.add.collider(this.ball, paddle.sprite);
 
 
         this.escKey= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -51,6 +49,7 @@ export class GameScene extends Phaser.Scene{
         const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
+        this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this);
 
         const InputConfig = [
             {
@@ -88,7 +87,7 @@ export class GameScene extends Phaser.Scene{
             this.scoreLeft.setText('1º');
         }
         if (j1.sprite.y>j2.sprite.y){
-            this.scoreRight.setText(this.background.y.toString());
+            this.scoreRight.setText('1º');
             this.scoreLeft.setText('2º');
         }
     }
@@ -145,8 +144,21 @@ export class GameScene extends Phaser.Scene{
         }
     }
 
+    collisionVelocity(){
+        this.players.forEach(paddle=> {
+            paddle.collision = 3;
+            paddle.activeSpeed = paddle.baseSpeed/4;
+        })
+    }
+
     update(){
         const worldVel = this.background.y<2220? 1 :  0;
+        
+        this.players.forEach(paddle=> {
+            //if(paddle.sprite.body.blocked.left)
+            paddle.activeSpeed = (paddle.collision>0)? paddle.activeSpeed: paddle.baseSpeed;
+            paddle.collision -= 1;
+        })
         this.background.y += worldVel;
         if(this.escKey.isDown){
             this.tooglePause();
@@ -157,17 +169,17 @@ export class GameScene extends Phaser.Scene{
             let speedY = worldVel*145;
             paddle.y += worldVel;
             if (mapping.upKeyObj.isDown){
-                speedY += -paddle.baseSpeed;
+                speedY += -paddle.activeSpeed;
             }
             else if (mapping.downKeyObj.isDown){
-                speedY += paddle.baseSpeed;
+                speedY += paddle.activeSpeed;
             }
             paddle.sprite.setVelocityY(speedY);
             if (mapping.leftKeyObj.isDown){
-                speedX += -paddle.baseSpeed;
+                speedX += -paddle.activeSpeed;
             }
             else if (mapping.rightKeyObj.isDown){
-                speedX += paddle.baseSpeed;
+                speedX += paddle.activeSpeed;
             }
             paddle.sprite.setVelocityX(speedX);
         });

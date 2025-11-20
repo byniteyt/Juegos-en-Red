@@ -8,10 +8,13 @@ export class Cat {
         this.baseHeight = 100;
         this.baseWidth = 20;
         this.baseSpeed = 300;
+        this.activeSpeed = this.baseSpeed;
+        this.collision = 0;
+
 
 
         this.sprite = this.scene.physics.add.sprite(x, y, direction);
-        this.sprite.setImmovable(true);
+        this.sprite.setImmovable(false);
         this.sprite.setCollideWorldBounds(true);
         this.sprite.body.allowGravity = false;
     }
