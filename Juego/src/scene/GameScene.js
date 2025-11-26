@@ -26,12 +26,12 @@ export class GameScene extends Phaser.Scene{
     create() {
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
-        this.scoreLeft = this.add.text(100, 50, '0', {
+        this.scoreLeft = this.add.text(50, 50, '1º', {
             fontSize: '48px',
             color: '#2ba304ff'
         })
 
-        this.scoreRight = this.add.text(700, 50, '0', {
+        this.scoreRight = this.add.text(1100, 50, '2º', {
             fontSize: '48px',
             color: '#a23062ff'
         })
@@ -81,9 +81,9 @@ export class GameScene extends Phaser.Scene{
     }
 
     goalCondition(meta, pj){
-        if (this.background.y>=2220){
+        //if (this.background.y>=2220){
             this.endGame(pj);
-        }
+        //}
     }
     setPositions(){
         const j1 = this.players.get('player1');
@@ -112,7 +112,7 @@ export class GameScene extends Phaser.Scene{
             paddle.sprite.setVelocity(0,0);
         })
         this.physics.pause();
-        const winnerText = winnerId==='player1'?'Left Player Wins!!':'Right Player Wins!!';
+        const winnerText = winnerId==='player1'?'Gato Izquierdo gana!!':'Gato Izquierdo gana!!';
         this.add.text(400,250, winnerText, {
             fontSize:'64px',
             color: '#00ff00'
@@ -125,6 +125,7 @@ export class GameScene extends Phaser.Scene{
         .on('pointerover',()=>menu.setColor('#ff0000'))
         .on('pointerout',()=>menu.setColor('#00ff00'))
         .on('pointerdown', ()=>{this.scene.start('MenuScene')});
+        this.scene.start('ResultsScene');
         
     }
 
@@ -156,8 +157,6 @@ export class GameScene extends Phaser.Scene{
         const worldVel = this.background.y<2220? 1 :  0;
         
         this.players.forEach(paddle=> {
-            //if(paddle.sprite.body.blocked.left)
-            console.log(`${paddle.sprite.y}`);
             paddle.activeSpeed = (paddle.collision>0)? paddle.activeSpeed: paddle.baseSpeed;
             paddle.collision -= 1;
         })
