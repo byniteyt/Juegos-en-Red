@@ -6,10 +6,10 @@ export class ResultsScene extends Phaser.Scene {
     }
 
     preload() {
-
+        this.load.image('results', 'Assets/Results/Pantalla_de_Resultado.jpg');
     }
 
     create() {
-        
+        this.add.image(600, 350, 'results');
     }
 }

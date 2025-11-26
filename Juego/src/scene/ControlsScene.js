@@ -6,32 +6,41 @@ export class ControlsScene extends Phaser.Scene {
     }
 
     preload() {
-        // this.load.image('credits', 'Assets/MainMenu/inicio.jpg');
+        this.load.image('controls', 'Assets/Credits/Fondo_pantallas.jpg');
     }
 
     create() {
-        // this.add.image(600, 350, 'credits');
+        this.add.image(600, 350, 'controls');
 
-        this.add.text(400, 160, 'Controles', {
-            fontSize: '64px'
+        this.add.text(400, 160, 'Objetivo', {
+            fontSize: '64px',
+            color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        /*this.add.text(400, 300, 'Programación: Sandra Abarca, Alexia Fernández,%nAsier Martín, Sara Pedrero y Sara Sanz%n'
-            + 'Sprites gatos: Sandra Abarca y Sara Pedrero%n'
-            + 'Sprites enemigos: Asier Martín%n'
-            + 'Sprites power ups: Alexia Fernández%n'
-            + 'Arte de los menús: Alexia Fernández%n'
-            + 'Logo del juego: Sara Sanz%n', {
-            fontSize: '24px'
-        }).setOrigin(0.5);*/
+        this.add.text(400, 250, '¡Competid para alcanzar la casa al final del mapa antes que el otro!\n'
+            + '¡¡Cuidado con los obstáculos!!', {
+            fontSize: '64px',
+            color: '#EDA3BB'
+        }).setOrigin(0.5);
+
+        this.add.text(400, 300, 'Controles', {
+            fontSize: '64px',
+            color: '#EDA3BB'
+        }).setOrigin(0.5);
+
+        this.add.text(400, 350, 'Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa\n'
+            + 'Jugamos 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa', {
+            fontSize: '64px',
+            color: '#EDA3BB'
+        }).setOrigin(0.5);
 
         const startBtn = this.add.text(400, 400, 'Empezar juego', {
             fontSize: '24px',
-            color: '#00ff00'
+            color: '#EDA3BB'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerover', () => startBtn.setStyle({ fill: '#00ff88'}))
-        .on('pointerout', () => startBtn.setStyle({ fill: '#00ff00'}))
+        .on('pointerover', () => startBtn.setStyle({ fill: '#F4DFE6'}))
+        .on('pointerout', () => startBtn.setStyle({ fill: '#EDA3BB'}))
         .on('pointerdown', () => { this.scene.start('GameScene');
         });
     }
