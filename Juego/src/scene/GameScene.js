@@ -36,15 +36,16 @@ export class GameScene extends Phaser.Scene{
             color: '#9c0a4aff'
         })
         this.createBounds();
-        this.setUpPLayers();
-
-        //this.physics.add.collider(this.ball, paddle.sprite);
+        this.setUpPlayers();
+        this.players.forEach(paddle=> {
+            this.physics.add.overlap(this.goal, paddle.sprite, this.goalCondition,null,this);
+        })
 
 
         this.escKey= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     }
 
-    setUpPLayers() {
+    setUpPlayers() {
         const leftPaddle = new Cat(this, 'player1', 50, 300,'gato1');
         const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2');
         this.players.set('player1', leftPaddle);
@@ -79,6 +80,11 @@ export class GameScene extends Phaser.Scene{
         });
     }
 
+    goalCondition(meta, pj){
+        if (this.background.y>=2220){
+            this.endGame(pj);
+        }
+    }
     setPositions(){
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
@@ -93,20 +99,15 @@ export class GameScene extends Phaser.Scene{
     }
 
     createBounds() {
-        this.leftGoal = this.physics.add.sprite(0, 700, null);
-        this.leftGoal.setDisplaySize(10, 600);
-        this.leftGoal.body.setSize(10, 600);
-        this.leftGoal.setImmovable(false);
-        this.leftGoal.setVisible(false);
-
-        this.rightGoal = this.physics.add.sprite(1200, 700, null);
-        this.rightGoal.setDisplaySize(10, 600);
-        this.rightGoal.body.setSize(10, 600);
-        this.rightGoal.setImmovable(false);
-        this.rightGoal.setVisible(false);
+        this.goal = this.physics.add.sprite(0, 0, null);
+        this.goal.setDisplaySize(1200, 20);
+        this.goal.body.setSize(1200, 20);
+        this.goal.setImmovable(false);
+        this.goal.setVisible(false);
     }
 
-    endGame(winnerId){
+    endGame(winner){
+        const winnerId = winner.id;
         this.players.forEach(paddle=> {
             paddle.sprite.setVelocity(0,0);
         })
@@ -156,6 +157,7 @@ export class GameScene extends Phaser.Scene{
         
         this.players.forEach(paddle=> {
             //if(paddle.sprite.body.blocked.left)
+            console.log(`${paddle.sprite.y}`);
             paddle.activeSpeed = (paddle.collision>0)? paddle.activeSpeed: paddle.baseSpeed;
             paddle.collision -= 1;
         })
