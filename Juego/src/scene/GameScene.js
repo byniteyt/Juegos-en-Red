@@ -170,8 +170,8 @@ underScene(pj, limite){
         .on('pointerout',()=>menu.setColor('#00ff00'))
         .on('pointerdown', ()=>{this.scene.start('MenuScene')});
         //this.worldVel = 0;
-        this.scene.pause();
-        //this.scene.start('ResultsScene');
+        //this.scene.pause();
+        this.scene.start('ResultsScene');
         
     }
 
