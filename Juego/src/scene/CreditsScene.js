@@ -17,7 +17,7 @@ export class CreditsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        this.add.text(400, 300, 'Programación: Sandra Abarca, Alexia Fernández,%nAsier Martín, Sara Pedrero y Sara Sanz\n'
+        this.add.text(400, 300, 'Programación: Sandra Abarca, Alexia Fernández,\nAsier Martín, Sara Pedrero y Sara Sanz\n'
             + 'Sprites gatos: Sandra Abarca y Sara Pedrero\n'
             + 'Sprites enemigos: Asier Martín\n'
             + 'Sprites power ups: Alexia Fernández\n'
