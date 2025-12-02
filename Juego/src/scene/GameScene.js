@@ -318,9 +318,12 @@ export class GameScene extends Phaser.Scene{
                 speedX *= 1.3;
                 speedY *= 1.3;
                 paddle.sprintCharge.scaleX-=0.005;
-                if(!paddle.effect.isPlaying)
+                if(!paddle.effect.isPlaying&& paddle.sprintCharge.scaleX>0.01)
                     paddle.effect.play();
+                if(paddle.sprintCharge.scaleX<0.01)
+                    paddle.effect.stop();
             }
+
             else if(paddle.sprintCharge.scaleX<1) {
                 paddle.sprintCharge.scaleX+=0.0025;
                 paddle.effect.stop();
