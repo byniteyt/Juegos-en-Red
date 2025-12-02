@@ -6,7 +6,7 @@ export class ControlsScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('controls', 'Assets/Credits/Fondo_pantallas.jpg');
+        this.load.image('controls', 'Assets/Credits/Fondo_pantallas.png');
     }
 
     create() {
