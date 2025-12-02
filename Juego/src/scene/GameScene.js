@@ -234,13 +234,6 @@ export class GameScene extends Phaser.Scene{
             color: '#00ff00'
         }).setOrigin(0.5);
 
-        const menu = this.add.text(400,350,'Return',{
-            fontSize:'32px',
-            color: '#00ff00'
-        }).setOrigin(0.5).setInteractive({useHandCursor:true})
-        .on('pointerover',()=>menu.setColor('#ff0000'))
-        .on('pointerout',()=>menu.setColor('#00ff00'))
-        .on('pointerdown', ()=>{this.scene.start('MenuScene')});
         this.scene.start('ResultsScene',{
             gato:winnerSprite,
             winText:winnerText
