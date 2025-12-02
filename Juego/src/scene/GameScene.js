@@ -227,7 +227,8 @@ export class GameScene extends Phaser.Scene{
             paddle.setVelocity(0,0);
         })
         this.physics.pause();
-        const winnerText = winnerId==='player1'?'Gato Izquierdo gana!!':'Gato Izquierdo gana!!';
+        const winnerSprite = winnerId==='player1'?  'gato1':'gato2';
+        const winnerText = winnerId==='player1'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
         this.add.text(400,250, winnerText, {
             fontSize:'64px',
             color: '#00ff00'
@@ -240,9 +241,10 @@ export class GameScene extends Phaser.Scene{
         .on('pointerover',()=>menu.setColor('#ff0000'))
         .on('pointerout',()=>menu.setColor('#00ff00'))
         .on('pointerdown', ()=>{this.scene.start('MenuScene')});
-        //this.worldVel = 0;
-        //this.scene.pause();
-        this.scene.start('ResultsScene');
+        this.scene.start('ResultsScene',{
+            gato:winnerSprite,
+            winText:winnerText
+        });
         
     }
 

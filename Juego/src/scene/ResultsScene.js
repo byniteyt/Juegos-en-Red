@@ -9,9 +9,14 @@ export class ResultsScene extends Phaser.Scene {
         this.load.image('results', 'Assets/Results/Pantalla_de_Resultado.png');
     }
 
-    create() {
+    create(traspaso) {
         this.add.image(600, 350, 'results');
-
+        this.add.text(400,100, `${traspaso.winText}`, {
+            fontSize:'64px',
+            color: '#550430ff'
+        }).setOrigin(0.5);
+        this.add.image(250, 400, traspaso.gato).setOrigin(0.5);
+        
         const mainMenuBtn = this.add.text(850, 130, 'Volver al menú inicial', {
             fontSize: '24px',
             color: '#EDA3BB'
@@ -21,5 +26,9 @@ export class ResultsScene extends Phaser.Scene {
         .on('pointerout', () => mainMenuBtn.setStyle({ fill: '#EDA3BB'}))
         .on('pointerdown', () => { this.scene.start('MenuScene');
         });
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> animaciones
     }
 }
