@@ -12,7 +12,7 @@ export class ResultsScene extends Phaser.Scene {
     create() {
         this.add.image(600, 350, 'results');
 
-        const mainMenuBtn = this.add.text(800, 200, 'Volver al menú inicial', {
+        const mainMenuBtn = this.add.text(850, 150, 'Volver al menú inicial', {
             fontSize: '24px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
