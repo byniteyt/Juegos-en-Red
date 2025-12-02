@@ -7,6 +7,7 @@ export class MenuScene extends Phaser.Scene {
 
     preload(){
         this.load.image('Logo', 'Assets/MainMenu/Final/Logo.png');
+        this.load.image('Shines', 'Assets/MainMenu/Final/Shines.png');
         this.load.image('Conf_Button', 'Assets/MainMenu/Final/Conf_Button.png');
         this.load.image('Conf_Shadow', 'Assets/MainMenu/Final/Conf_Shadow.png');
         this.load.image('Play_Button', 'Assets/MainMenu/Final/Play_Button.png');
@@ -33,7 +34,7 @@ export class MenuScene extends Phaser.Scene {
             this.logoTilting = true;
 
             this.tweens.add({
-                targets: logo,
+                targets: [logo, shines],
                 angle: 15 * this.logoTiltDirection,
                 duration: 1000,
                 yoyo: true,
@@ -51,6 +52,20 @@ export class MenuScene extends Phaser.Scene {
             delay: 5000,
             callback: tiltLogo,
             loop: true
+        });
+
+        const shines = this.add.image(600, 175, 'Shines')
+        .setOrigin(0.5)
+        .setScale(0.1875);
+
+        this.tweens.add({
+            targets: shines,
+            y: '+=2.5',
+            duration: 500,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut',
+            hold: 500,
         });
 
         /* Título del Juego */
