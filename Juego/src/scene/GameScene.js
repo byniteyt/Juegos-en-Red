@@ -10,6 +10,19 @@ export class GameScene extends Phaser.Scene{
 
     preload(){
         //this.load.audio('musicaFondo','Assets/Game/Audio/(ARCHIVO POR METER)')
+        this.load.spritesheet('catX1', 'Assets/Game/Animar/Gato1_horizontal.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+        this.load.spritesheet('catYDown1', 'Assets/Game/Animar/Gato1_baja.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+        this.load.spritesheet('catYUp1', 'Assets/Game/Animar/gatoSube.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+        this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
         this.load.image('juego', 'Assets/Game/juego.jpg');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
         this.load.image('gato1', 'Assets/Game/Gatos jugables/PJCats_gato alegre.png');
@@ -34,7 +47,7 @@ export class GameScene extends Phaser.Scene{
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
-        this.scoreLeft = this.add.text(50, 50, '1º', {
+        this.scoreLeft = this.add.text(30, 50, '1º', {
             fontSize: '48px',
             color: '#2ba304ff'
         })
@@ -43,17 +56,39 @@ export class GameScene extends Phaser.Scene{
             fontSize: '48px',
             color: '#a23062ff'
         })
-        // Creamos las barras de los sprints
+        // Creamos las barras de sprint y las animaciones del gato 1
         var graphics1 = this.add.graphics();
         graphics1.fillStyle(0x00ff00);
         graphics1.fillRect(0, 0, 400, 50);
         graphics1.generateTexture(`sprintPJ1`, 400, 50);
         graphics1.destroy();
 
-        this.sprintPJ1 = this.physics.add.sprite(60, 50, `sprintPJ1`).setOrigin(0);
+        this.sprintPJ1 = this.physics.add.sprite(90, 50, `sprintPJ1`).setOrigin(0);
         this.sprintPJ1.body.allowGravity = false;
         this.sprintPJ1.setImmovable(false);
 
+        this.anims.create({
+            key: 'cat1-walkX',
+            frames: this.anims.generateFrameNumbers('catX1', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat1-walkYDown',
+            frames: this.anims.generateFrameNumbers('catYDown1', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        
+        this.anims.create({
+            key: 'cat1-walkYUp',
+            frames: this.anims.generateFrameNumbers('catYUp1', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+
+
+        // Creamos las barras de sprint y las animaciones del gato 2
         var graphics = this.add.graphics();
         graphics.fillStyle(0x0000ff);
         graphics.fillRect(0, 0, 400, 50);
@@ -73,7 +108,7 @@ export class GameScene extends Phaser.Scene{
                 this.physics.add.overlap(obs,this.end, this.endWorld,null,this);
             })
             this.physics.add.overlap(this.goal, paddle, this.goalCondition,null,this);
-            this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
+            //this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
         })
 
 
@@ -81,12 +116,13 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpPlayers() {
-        const leftPaddle = new Cat(this, 'player1', 50, 300,'gato1', this.sprintPJ1);
-        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2);
+        const leftPaddle = new Cat(this, 'player1', 50, 300,'catX1', this.sprintPJ1,
+            'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
+        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2,'efectoSprint');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
-        //this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this)
+        this.physics.add.collider(leftPaddle, rightPaddle,this.collisionVelocity, null, this)
 
         const InputConfig = [
             {
@@ -186,6 +222,7 @@ export class GameScene extends Phaser.Scene{
     endGame(winner){
         const winnerId = winner.id;
         this.players.forEach(paddle=> {
+            paddle.effect.stop();
             paddle.setVelocity(0,0);
         })
         this.physics.pause();
@@ -253,25 +290,39 @@ export class GameScene extends Phaser.Scene{
             paddle.y += this.worldVel;
             if (mapping.upKeyObj.isDown){
                 speedY += -paddle.activeSpeed;
+                if(!paddle.movYUp.isPlaying)
+                    paddle.anims.play(paddle.movYUp, true);
             }
             else if (mapping.downKeyObj.isDown){
                 speedY += paddle.activeSpeed;
+                if(!paddle.movYDown.isPlaying)
+                    paddle.anims.play(paddle.movYDown, true);
             }
             
             if (mapping.leftKeyObj.isDown){
                 speedX += -paddle.activeSpeed;
+                paddle.flipX = false;         // Para voltear sprite
+                if(!paddle.movX.isPlaying)
+                    paddle.anims.play(paddle.movX, true);
             }
             else if (mapping.rightKeyObj.isDown){
                 speedX += paddle.activeSpeed;
+                paddle.flipX = true;         // Para voltear sprite
+                paddle.anims.play(paddle.movX, true);
             }
-            if (mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.01){
+            else if (speedY==this.worldVel){
+                paddle.anims.stop(paddle.movX);         // O el frame que prefieras
+            }
+            if (mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.005){
                 speedX *= 1.3;
                 speedY *= 1.3;
                 paddle.sprintCharge.scaleX-=0.005;
-                console.log("Se pulsa "+mapping.sprintObj);
+                if(!paddle.effect.isPlaying)
+                    paddle.effect.play();
             }
             else if(paddle.sprintCharge.scaleX<1) {
                 paddle.sprintCharge.scaleX+=0.0025;
+                paddle.effect.stop();
             }
             paddle.setVelocityY(speedY);
             paddle.setVelocityX(speedX);
