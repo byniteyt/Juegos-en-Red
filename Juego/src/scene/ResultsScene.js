@@ -11,5 +11,15 @@ export class ResultsScene extends Phaser.Scene {
 
     create() {
         this.add.image(600, 350, 'results');
+
+        const mainMenuBtn = this.add.text(400, 400, 'Volver al menú inicial', {
+            fontSize: '24px',
+            color: '#EDA3BB'
+        }).setOrigin(0.5)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerover', () => mainMenuBtn.setStyle({ fill: '#F4DFE6'}))
+        .on('pointerout', () => mainMenuBtn.setStyle({ fill: '#EDA3BB'}))
+        .on('pointerdown', () => { this.scene.start('MenuScene');
+        });
     }
 }
