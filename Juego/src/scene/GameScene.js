@@ -168,7 +168,7 @@ export class GameScene extends Phaser.Scene{
 
     goalCondition(meta, pj){
         if (this.background.y>=2220){
-            this.endGame(pj);
+            this.endGame();
         }
     }
 
@@ -220,15 +220,14 @@ export class GameScene extends Phaser.Scene{
         this.end.setVisible(false);
     }
 
-    endGame(winner){
-        const winnerId = winner.id;
+    endGame(){
         this.players.forEach(paddle=> {
             paddle.effect.stop();
             paddle.setVelocity(0,0);
         })
         this.physics.pause();
-        const winnerSprite = winnerId==='player1'?  'gato1':'gato2';
-        const winnerText = winnerId==='player1'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
+        const winnerSprite = this.scoreLeft.text==='1º'?  'gato1':'gato2';
+        const winnerText = this.scoreLeft.text==='1º'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
         this.add.text(400,250, winnerText, {
             fontSize:'64px',
             color: '#00ff00'
