@@ -17,14 +17,14 @@ export class ControlsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        this.add.text(400, 250, '¡Competid para alcanzar la casa al final del mapa antes que el otro!\n'
+        this.add.text(400, 225, '¡Competid para alcanzar la casa al final del mapa antes que el otro!\n'
             + '¡¡Cuidado con los obstáculos!!', {
             fontSize: '24px',
             color: '#EDA3BB'
         }).setOrigin(0.3);
 
-        this.add.text(400, 300, 'Controles:', {
-            fontSize: '24px',
+        this.add.text(400, 285, 'Controles:', {
+            fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.3);
 
