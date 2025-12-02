@@ -65,7 +65,7 @@ export class MenuScene extends Phaser.Scene {
             yoyo: true,
             repeat: -1,
             ease: 'Sine.inOut',
-            hold: 500,
+            hold: 250,
         });
 
         /* Título del Juego */
