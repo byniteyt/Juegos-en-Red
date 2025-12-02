@@ -28,6 +28,7 @@ Roles:
 ## Índice
 - [Temática principal](#Temática-principal)
 - [Especificaciones Básicas](#Especificaciones-Básicas)
+- [Actualizaciones](#Actualizaciones)
 - [Bocetos](#Bocetos)
 - [Descripción Visual](#Descripción-Visual)
 - [Uso de Cámara](#Uso-de-Cámara)
@@ -52,6 +53,9 @@ Charming Cats: Get-a-Home se trata de un juego multijugador para dos personas, d
 
 ## Especificaciones Básicas
 
+## Actualizaciones
+### 1.0
+En la primera versión del juego se ha añadido: el menú principal, el menú de selección de personajes, el primer nivel (con música) y el menú de pausa.
 ### Género
 
 Se trata de un juego de acción y simulación.
