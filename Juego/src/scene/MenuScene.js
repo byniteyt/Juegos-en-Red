@@ -11,9 +11,35 @@ export class MenuScene extends Phaser.Scene {
         this.load.image('Play', 'Assets/MainMenu/Play.png');
         this.load.image('Title', 'Assets/MainMenu/Title.png');
         this.load.image('Decoration', 'Assets/MainMenu/Decoration.png');
+<<<<<<< Updated upstream
+=======
+
+         if (!this.game.registry.has('musicLoaded')) {
+            this.load.audio('bgMusic', 'Assets/MainMenu/audio/musica_pixel.mp3');
+            this.game.registry.set('musicLoaded', true);
+        }
+
+>>>>>>> Stashed changes
     }
    
     create() {
+
+         if (!this.game.registry.has('bgMusic')) {
+            const music = this.sound.add('bgMusic', {
+                loop: true,
+                volume: 0.5 // Volumen inicial 50%
+            });
+            music.play();
+            this.game.registry.set('bgMusic', music);
+            this.game.registry.set('volume', 0.5); // Guardar volumen inicial
+        } else {
+            // Si ya existe, asegurar que esté sonando
+            const music = this.game.registry.get('bgMusic');
+            if (!music.isPlaying) {
+                music.play();
+            }
+        }
+
 
         /* Logo Animado */
 
