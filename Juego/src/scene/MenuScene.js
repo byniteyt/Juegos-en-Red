@@ -88,7 +88,7 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.35)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
-            this.scene.start('ControlsScene');
+            this.scene.start('SettingsScene');
         });
 
         const confShadow = this.add.image(95, 630, 'Conf_Shadow')

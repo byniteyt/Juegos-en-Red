@@ -5,6 +5,8 @@ import { GameScene } from './scene/GameScene.js';
 import { PauseScene } from './scene/PauseScene.js';
 import { ResultsScene } from './scene/ResultsScene.js';
 import { CreditsScene } from './scene/CreditsScene.js';
+import { SettingsScene } from './scene/SettingsScene.js'
+
 
 const config = {
     type: Phaser.AUTO,
@@ -14,12 +16,12 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: {y: 0},
+            gravity: {x: 0,y: 0},
             debug: true
         } 
     },
 
-    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene],
+    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }
