@@ -6,7 +6,6 @@ export class MenuScene extends Phaser.Scene {
     }
 
     preload(){
-<<<<<<< HEAD
         this.load.image('Logo', 'Assets/MainMenu/Final/Logo.png');
         this.load.image('Shines', 'Assets/MainMenu/Final/Shines.png');
         this.load.image('Cred_Button', 'Assets/MainMenu/Final/Cred_Button.png');
@@ -17,20 +16,12 @@ export class MenuScene extends Phaser.Scene {
 
         this.load.image('Title', 'Assets/MainMenu/Sketch/Title.png');
         this.load.image('Decoration', 'Assets/MainMenu/Sketch/Decoration.png');
-=======
-        this.load.image('Logo', 'Assets/MainMenu/Logo.png');
-        this.load.image('Conf', 'Assets/MainMenu/Conf.png');
-        this.load.image('Play', 'Assets/MainMenu/Play.png');
-        this.load.image('Title', 'Assets/MainMenu/Title.png');
-        this.load.image('Decoration', 'Assets/MainMenu/Decoration.png');
         this.load.audio('musica', 'Assets/MainMenu/audio/musica_pixel.mp3');
 
          if (!this.game.registry.has('musicLoaded')) {
             this.load.audio('bgMusic', 'Assets/MainMenu/audio/musica_pixel.mp3');
             this.game.registry.set('musicLoaded', true);
         }
-
->>>>>>> mi-rama
     }
    
     create() {
