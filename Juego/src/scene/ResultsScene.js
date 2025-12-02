@@ -26,9 +26,5 @@ export class ResultsScene extends Phaser.Scene {
         .on('pointerout', () => mainMenuBtn.setStyle({ fill: '#EDA3BB'}))
         .on('pointerdown', () => { this.scene.start('MenuScene');
         });
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> animaciones
     }
 }
