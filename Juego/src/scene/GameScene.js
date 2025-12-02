@@ -48,10 +48,10 @@ export class GameScene extends Phaser.Scene{
         this.setUpObstacles();
         this.players.forEach(paddle=> {
             this.obstaculos.forEach(obs=>{
-                this.physics.add.collider(paddle.sprite, obs.sprite,null, null, this);
-                this.physics.add.overlap(obs.sprite,this.end, this.endWorld,null,this);
+                this.physics.add.collider(paddle, obs,null, null, this);
+                this.physics.add.overlap(obs,this.end, this.endWorld,null,this);
             })
-            this.physics.add.overlap(this.goal, paddle.sprite, this.goalCondition,null,this);
+            this.physics.add.overlap(this.goal, paddle, this.goalCondition,null,this);
             this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
         })
 
@@ -133,11 +133,11 @@ export class GameScene extends Phaser.Scene{
     setPositions(){
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
-        if (j1.sprite.y<j2.sprite.y){
+        if (j1.y<j2.y){
             this.scoreRight.setText('2º');
             this.scoreLeft.setText('1º');
         }
-        if (j1.sprite.y>j2.sprite.y){
+        if (j1.y>j2.y){
             this.scoreRight.setText('1º');
             this.scoreLeft.setText('2º');
         }
@@ -162,7 +162,7 @@ export class GameScene extends Phaser.Scene{
     endGame(winner){
         const winnerId = winner.id;
         this.players.forEach(paddle=> {
-            paddle.sprite.setVelocity(0,0);
+            paddle.setVelocity(0,0);
         })
         this.physics.pause();
         const winnerText = winnerId==='player1'?'Gato Izquierdo gana!!':'Gato Izquierdo gana!!';
@@ -220,12 +220,12 @@ export class GameScene extends Phaser.Scene{
             this.tooglePause();
         }
         this.obstaculos.forEach(obstaculo=> {
-             obstaculo.sprite.y += this.worldVel; 
+             obstaculo.y += this.worldVel; 
         })
         this.inputsMapping.forEach(mapping => {
             const paddle = this.players.get(mapping.playerId);
             let speedX = 0;
-            let speedY = this.worldVel*145;
+            let speedY = this.worldVel;
             paddle.y += this.worldVel;
             if (mapping.upKeyObj.isDown){
                 speedY += -paddle.activeSpeed;
@@ -233,14 +233,14 @@ export class GameScene extends Phaser.Scene{
             else if (mapping.downKeyObj.isDown){
                 speedY += paddle.activeSpeed;
             }
-            paddle.sprite.setVelocityY(speedY);
+            paddle.setVelocityY(speedY);
             if (mapping.leftKeyObj.isDown){
                 speedX += -paddle.activeSpeed;
             }
             else if (mapping.rightKeyObj.isDown){
                 speedX += paddle.activeSpeed;
             }
-            paddle.sprite.setVelocityX(speedX);
+            paddle.setVelocityX(speedX);
         });
         this.setPositions();
     }
