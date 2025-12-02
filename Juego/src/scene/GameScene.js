@@ -43,6 +43,27 @@ export class GameScene extends Phaser.Scene{
             fontSize: '48px',
             color: '#a23062ff'
         })
+        // Creamos las barras de los sprints
+        var graphics1 = this.add.graphics();
+        graphics1.fillStyle(0x00ff00);
+        graphics1.fillRect(0, 0, 400, 50);
+        graphics1.generateTexture(`sprintPJ1`, 400, 50);
+        graphics1.destroy();
+
+        this.sprintPJ1 = this.physics.add.sprite(60, 50, `sprintPJ1`).setOrigin(0);
+        this.sprintPJ1.body.allowGravity = false;
+        this.sprintPJ1.setImmovable(false);
+
+        var graphics = this.add.graphics();
+        graphics.fillStyle(0x0000ff);
+        graphics.fillRect(0, 0, 400, 50);
+        graphics.generateTexture(`sprintPJ2`, 400, 50);
+        graphics.destroy();
+
+        this.sprintPJ2 = this.physics.add.sprite(700, 50, `sprintPJ2`).setOrigin(0);
+        this.sprintPJ2.body.allowGravity = false;
+        this.sprintPJ2.setImmovable(false);
+
         this.createBounds();
         this.setUpPlayers();
         this.setUpObstacles();
@@ -60,12 +81,12 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpPlayers() {
-        const leftPaddle = new Cat(this, 'player1', 50, 300,'gato1');
-        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2');
+        const leftPaddle = new Cat(this, 'player1', 50, 300,'gato1', this.sprintPJ1);
+        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2);
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
-        //this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this);
+        //this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this)
 
         const InputConfig = [
             {
@@ -73,14 +94,16 @@ export class GameScene extends Phaser.Scene{
                 upKey: 'W',
                 downKey: 'S',
                 leftKey: 'A',
-                rightKey: 'D'
+                rightKey: 'D',
+                sprint: 'SPACE'
             }, 
             {
                 playerId: 'player2',
                 upKey: 'UP',
                 downKey: 'DOWN',
                 leftKey: 'LEFT',
-                rightKey: 'RIGHT'
+                rightKey: 'RIGHT',
+                sprint: 'ENTER'
             }
         ];
         this.inputsMapping = InputConfig;
@@ -91,6 +114,7 @@ export class GameScene extends Phaser.Scene{
                 downKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.downKey]),
                 leftKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.leftKey]),
                 rightKeyObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.rightKey]),
+                sprintObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.sprint]),
             }
         });
     }
@@ -115,10 +139,10 @@ export class GameScene extends Phaser.Scene{
     underScene(pj, limite){
         if(this.worldVel>0){ // si es mayor significa que el mundo está en movimiento
             pj.disabled = pj.collision%2; // Cada frame se dibujará o no la imagen
-            console.log("choca");
+            //console.log("choca");
             pj.y -= 50;
             pj.collision += 100;
-            console.log(pj + " a collision de "+ pj.collision)
+            //console.log(pj + " a collision de "+ pj.collision)
         }
     }
 
@@ -210,7 +234,7 @@ export class GameScene extends Phaser.Scene{
 
     update(){
         this.worldVel = this.background.y<2220? 1 :  0;
-        
+
         this.players.forEach(paddle=> {
             paddle.activeSpeed = (paddle.collision>0)? paddle.activeSpeed: paddle.baseSpeed;
             paddle.collision -= 1;
@@ -233,13 +257,23 @@ export class GameScene extends Phaser.Scene{
             else if (mapping.downKeyObj.isDown){
                 speedY += paddle.activeSpeed;
             }
-            paddle.setVelocityY(speedY);
+            
             if (mapping.leftKeyObj.isDown){
                 speedX += -paddle.activeSpeed;
             }
             else if (mapping.rightKeyObj.isDown){
                 speedX += paddle.activeSpeed;
             }
+            if (mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.01){
+                speedX *= 1.3;
+                speedY *= 1.3;
+                paddle.sprintCharge.scaleX-=0.005;
+                console.log("Se pulsa "+mapping.sprintObj);
+            }
+            else if(paddle.sprintCharge.scaleX<1) {
+                paddle.sprintCharge.scaleX+=0.0025;
+            }
+            paddle.setVelocityY(speedY);
             paddle.setVelocityX(speedX);
         });
         this.setPositions();
