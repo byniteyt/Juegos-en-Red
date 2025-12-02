@@ -101,7 +101,7 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.35)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
-            this.scene.start('GameScene');
+            this.scene.start('ControlsScene');
         });
 
         const playShadow = this.add.image(1095, 630, 'Play_Shadow')
