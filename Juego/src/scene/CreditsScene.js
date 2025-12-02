@@ -17,17 +17,16 @@ export class CreditsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        this.add.text(400, 300, 'Programación: Sandra Abarca, Alexia Fernández,\nAsier Martín, Sara Pedrero y Sara Sanz\n'
+        this.add.text(400, 270, 'Programación: Sandra Abarca, Alexia Fernández,\nAsier Martín, Sara Pedrero y Sara Sanz\n'
             + 'Sprites gatos: Sandra Abarca y Sara Pedrero\n'
-            + 'Sprites enemigos: Asier Martín\n'
-            + 'Sprites power ups: Alexia Fernández\n'
+            + 'Sprites obstáculos: Asier Martín\n'
             + 'Arte de los menús: Alexia Fernández\n'
             + 'Logo del juego: Sara Sanz\n', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.5);
+        }).setOrigin(0.3);
 
-        const mainMenuBtn = this.add.text(400, 400, 'Volver al menú inicial', {
+        const mainMenuBtn = this.add.text(400, 430, 'Volver al menú inicial', {
             fontSize: '24px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
