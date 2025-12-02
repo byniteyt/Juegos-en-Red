@@ -64,12 +64,7 @@ export class MenuScene extends Phaser.Scene {
             duration: 500,
             yoyo: true,
             repeat: -1,
-<<<<<<< Updated upstream
-            ease: 'Sine.inOut',
-            hold: 250,
-=======
             ease: 'Sine.inOut'
->>>>>>> Stashed changes
         });
 
         /* Título del Juego */
@@ -106,7 +101,7 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.35)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
-            this.scene.start('GameScene');
+            this.scene.start('ControlsScene');
         });
 
         const playShadow = this.add.image(1095, 630, 'Play_Shadow')
