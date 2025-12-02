@@ -67,7 +67,7 @@ Se publicará en las plataformas de Steam e Itch.io.
 
 ## Actualizaciones
 ### Versión 1.0
-En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina), menú de ajustes y el menú de pausa. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia.
+En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina, condición de victoria), el menú de ajustes, el menú de créditos, el menú de pausa y la pantalla de resultados, así como un pantalla en donde se explican los controles del juego. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia.
 
 ## Bocetos 
 
