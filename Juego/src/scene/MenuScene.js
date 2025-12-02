@@ -64,8 +64,12 @@ export class MenuScene extends Phaser.Scene {
             duration: 500,
             yoyo: true,
             repeat: -1,
+<<<<<<< Updated upstream
             ease: 'Sine.inOut',
             hold: 250,
+=======
+            ease: 'Sine.inOut'
+>>>>>>> Stashed changes
         });
 
         /* Título del Juego */
