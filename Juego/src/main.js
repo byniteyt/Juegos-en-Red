@@ -6,10 +6,6 @@ import { PauseScene } from './scene/PauseScene.js';
 import { ResultsScene } from './scene/ResultsScene.js';
 import { CreditsScene } from './scene/CreditsScene.js';
 import { SettingsScene } from './scene/SettingsScene.js';
-<<<<<<< Updated upstream
-=======
-import { ControlsScene } from './scene/ControlsScene.js';
->>>>>>> Stashed changes
 
 
 const config = {
@@ -25,7 +21,7 @@ const config = {
         } 
     },
 
-    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene],
+    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }
