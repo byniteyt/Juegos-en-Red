@@ -8,6 +8,7 @@ export class MenuScene extends Phaser.Scene {
     preload(){
         this.load.image('Logo', 'Assets/MainMenu/Final/Logo.png');
         this.load.image('Shines', 'Assets/MainMenu/Final/Shines.png');
+        this.load.image('Cred_Button', 'Assets/MainMenu/Final/Cred_Button.png');
         this.load.image('Conf_Button', 'Assets/MainMenu/Final/Conf_Button.png');
         this.load.image('Conf_Shadow', 'Assets/MainMenu/Final/Conf_Shadow.png');
         this.load.image('Play_Button', 'Assets/MainMenu/Final/Play_Button.png');
@@ -94,6 +95,15 @@ export class MenuScene extends Phaser.Scene {
         .setDepth(0)
         .setOrigin(0.5)
         .setScale(0.35);
+
+        const credButton = this.add.image(1110, 75, 'Cred_Button')
+        .setDepth(1)
+        .setOrigin(0.5)
+        .setScale(0.35)
+        .setInteractive({useHandCursor: true})
+        .on('pointerdown', () =>{
+            this.scene.start('CreditsScene');
+        });
 
         const playButton = this.add.image(1100, 625, 'Play_Button')
         .setDepth(1)
