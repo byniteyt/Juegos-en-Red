@@ -66,8 +66,8 @@ Se publicará en las plataformas de Steam e Itch.io.
 ### Género
 
 ## Actualizaciones
-### 1.0
-En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina), menú de ajustes y el menú de pausa. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia
+### Versión 1.0
+En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina), menú de ajustes y el menú de pausa. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia.
 
 ## Bocetos 
 
