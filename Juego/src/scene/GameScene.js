@@ -52,7 +52,7 @@ export class GameScene extends Phaser.Scene{
                 this.physics.add.overlap(obs.sprite,this.end, this.endWorld,null,this);
             })
             this.physics.add.overlap(this.goal, paddle.sprite, this.goalCondition,null,this);
-            this.physics.add.overlap( paddle.sprite, this.end, this.underScene,null,this);
+            this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
         })
 
 
@@ -64,7 +64,7 @@ export class GameScene extends Phaser.Scene{
         const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
-        this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,null, null, this);
+        this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
         //this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this);
 
         const InputConfig = [
@@ -104,24 +104,32 @@ export class GameScene extends Phaser.Scene{
         }
         
     }
+
     goalCondition(meta, pj){
         if (this.background.y>=2220){
             this.endGame(pj);
         }
     }
-underScene(pj, limite){
-    if(pj.collision >0){ // si es mayor significa que está colisionando con una caja
-        pj.disabled = pj.collision%2; // Cada frame se dibujará o no la imagen
+
+    // Se llama cuando el jugador toca el borde inferior
+    underScene(pj, limite){
+        if(this.worldVel>0){ // si es mayor significa que el mundo está en movimiento
+            pj.disabled = pj.collision%2; // Cada frame se dibujará o no la imagen
+            console.log("choca");
+            pj.y -= 50;
+            pj.collision += 100;
+            console.log(pj + " a collision de "+ pj.collision)
+        }
     }
-}
 
     endWorld(obstaculo, fin){
             obstaculo.y = -70 - Math.random()*10; // Hacemos que suba de nuevo arriba
 
             obstaculo.x = Math.random()*(Math.abs(this.espacio-50)) + (obstaculo.x/this.espacio)*this.espacio; // Reubicamos en una posicion aleatoria
-            //"(obstaculo.x/this.espacio)*this.espacio" asegura que se vuelav asituar en su region asignada sin pasarse a otras
+            //"(obstaculo.x/this.espacio)*this.espacio" asegura que se vuelva asituar en su region asignada sin pasarse a otras
             //console.log(obstaculo.sprite.x);
     }
+
     setPositions(){
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
@@ -148,6 +156,7 @@ underScene(pj, limite){
         this.end.setDisplaySize(1200, 20);
         this.end.body.setSize(1200, 20);
         this.end.setImmovable(false);
+        this.end.setVisible(false);
     }
 
     endGame(winner){
@@ -202,10 +211,10 @@ underScene(pj, limite){
     update(){
         this.worldVel = this.background.y<2220? 1 :  0;
         
-        /*this.players.forEach(paddle=> {
+        this.players.forEach(paddle=> {
             paddle.activeSpeed = (paddle.collision>0)? paddle.activeSpeed: paddle.baseSpeed;
             paddle.collision -= 1;
-        })*/
+        })
         this.background.y += this.worldVel;
         if(this.escKey.isDown){
             this.tooglePause();
