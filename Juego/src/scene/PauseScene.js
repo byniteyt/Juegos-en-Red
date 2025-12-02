@@ -4,10 +4,10 @@ export class PauseScene extends Phaser.Scene{
         super('PauseScene');
     }
     create(data){
-        this.add.text(400,160,'Paused',{
+        this.add.text(400,160,'Pausado',{
             fontSize: '64px'
         }).setOrigin(0.5);
-        const resumeBtn = this.add.text(400,320, 'Resume',{
+        const resumeBtn = this.add.text(400,320, 'Reanudar',{
             fontSize:'60px'
         }).setOrigin(0.5).setInteractive({useHandCursor:true})
         .on('pointerover',()=>resumeBtn.setColor('#ff0000'))
@@ -17,7 +17,7 @@ export class PauseScene extends Phaser.Scene{
             this.scene.resume(data.originalScene);
             this.scene.get(data.originalScene).resume();
         });
-        const homeBtn = this.add.text(400,520, 'Home',{
+        const homeBtn = this.add.text(400,520, 'Menú inicial',{
             fontSize:'60px'
         }).setOrigin(0.5).setInteractive({useHandCursor:true})
         .on('pointerover',()=>homeBtn.setColor('#ff0000'))

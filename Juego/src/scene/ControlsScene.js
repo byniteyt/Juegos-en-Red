@@ -12,10 +12,10 @@ export class ControlsScene extends Phaser.Scene {
     create() {
         this.add.image(600, 350, 'controls');
 
-        this.add.text(400, 150, 'Objetivo', {
+        this.add.text(400, 140, 'Objetivo', {
             fontSize: '64px',
             color: '#EDA3BB'
-        }).setOrigin(0.5);
+        }).setOrigin(0.3);
 
         this.add.text(400, 225, '¡Competid para alcanzar la casa al final del mapa antes que el otro!\n'
             + '¡¡Cuidado con los obstáculos!!', {
@@ -36,12 +36,12 @@ export class ControlsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.3);
 
-        this.add.text(400, 425, 'Presiona la tecla de escape para pausar el juego.', {
+        this.add.text(400, 450, 'Presiona la tecla de escape para pausar el juego.', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.3);
+        }).setOrigin(0.4);
 
-        const startBtn = this.add.text(400, 475, 'Empezar juego', {
+        const startBtn = this.add.text(400, 500, 'Empezar juego', {
             fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
