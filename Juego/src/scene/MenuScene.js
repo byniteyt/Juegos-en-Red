@@ -69,7 +69,7 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.25)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
-            this.scene.start('ControlsScene');
+            this.scene.start('SettingsScene');
         });
 
         const playBtn = this.add.image(1100, 625, 'Play')
