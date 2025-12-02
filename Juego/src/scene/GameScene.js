@@ -34,7 +34,7 @@ export class GameScene extends Phaser.Scene{
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
-        this.scoreLeft = this.add.text(50, 50, '1º', {
+        this.scoreLeft = this.add.text(30, 50, '1º', {
             fontSize: '48px',
             color: '#2ba304ff'
         })
@@ -50,7 +50,7 @@ export class GameScene extends Phaser.Scene{
         graphics1.generateTexture(`sprintPJ1`, 400, 50);
         graphics1.destroy();
 
-        this.sprintPJ1 = this.physics.add.sprite(60, 50, `sprintPJ1`).setOrigin(0);
+        this.sprintPJ1 = this.physics.add.sprite(90, 50, `sprintPJ1`).setOrigin(0);
         this.sprintPJ1.body.allowGravity = false;
         this.sprintPJ1.setImmovable(false);
 
@@ -73,7 +73,7 @@ export class GameScene extends Phaser.Scene{
                 this.physics.add.overlap(obs,this.end, this.endWorld,null,this);
             })
             this.physics.add.overlap(this.goal, paddle, this.goalCondition,null,this);
-            this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
+            //this.physics.add.overlap( paddle, this.end, this.underScene,null,this);
         })
 
 
@@ -86,7 +86,7 @@ export class GameScene extends Phaser.Scene{
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
-        //this.physics.add.collider(leftPaddle.sprite, rightPaddle.sprite,this.collisionVelocity, null, this)
+        this.physics.add.collider(leftPaddle, rightPaddle,this.collisionVelocity, null, this)
 
         const InputConfig = [
             {
@@ -264,7 +264,7 @@ export class GameScene extends Phaser.Scene{
             else if (mapping.rightKeyObj.isDown){
                 speedX += paddle.activeSpeed;
             }
-            if (mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.01){
+            if (mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.005){
                 speedX *= 1.3;
                 speedY *= 1.3;
                 paddle.sprintCharge.scaleX-=0.005;
