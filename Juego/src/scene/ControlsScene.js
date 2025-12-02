@@ -21,12 +21,12 @@ export class ControlsScene extends Phaser.Scene {
             + '¡¡Cuidado con los obstáculos!!', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.8);
+        }).setOrigin(0.2);
 
         this.add.text(400, 300, 'Controles:', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.8);
+        }).setOrigin(0.2);
 
         this.add.text(400, 325, '- Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa.\n'
             + '  Utiliza la tecla ESPACIO para acelerar.\n'
@@ -34,7 +34,7 @@ export class ControlsScene extends Phaser.Scene {
             + '  Utiliza la tecla ENTER apara acelerar.', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.8);
+        }).setOrigin(0.2);
 
         this.add.text(400, 350, 'Presiona la tecla de escape para pausar el juego.', {
             fontSize: '24px',
