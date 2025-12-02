@@ -23,13 +23,18 @@ export class ControlsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        this.add.text(400, 300, 'Controles', {
+        this.add.text(400, 300, 'Controles:', {
             fontSize: '64px',
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
-        this.add.text(400, 350, 'Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa\n'
-            + 'Jugamos 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa', {
+        this.add.text(400, 325, '- Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa.\n'
+            + '- Jugador 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa.', {
+            fontSize: '64px',
+            color: '#EDA3BB'
+        }).setOrigin(0.5);
+
+        this.add.text(400, 350, 'Presiona la tecla de escape para pausar el juego.', {
             fontSize: '64px',
             color: '#EDA3BB'
         }).setOrigin(0.5);
