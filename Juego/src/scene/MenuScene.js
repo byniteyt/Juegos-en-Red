@@ -6,26 +6,88 @@ export class MenuScene extends Phaser.Scene {
     }
 
     preload(){
-        this.load.image('fondo', 'Assets/MainMenu/inicio.jpg');
+        this.load.image('Logo', 'Assets/MainMenu/Logo.png');
+        this.load.image('Conf', 'Assets/MainMenu/Conf.png');
+        this.load.image('Play', 'Assets/MainMenu/Play.png');
+        this.load.image('Title', 'Assets/MainMenu/Title.png');
+        this.load.image('Decoration', 'Assets/MainMenu/Decoration.png');
     }
    
     create() {
-        this.add.image(600, 350, 'fondo');
-        
-        this.add.text(400,100, 'Charming Cats:\nGet-a-Home',
-        {   fontSize: '64px',
-            color: '#ffffffff'
-        }).setOrigin(0.5);
 
-        const localBtn = this.add.text(400, 300, 'Local Play', {
-            fontSize: '24px', color: '#1dd627ff'
-        }).setOrigin(0.5)
+        /* Logo Animado */
+
+        const logo = this.add.image(600, 200, 'Logo')
+        .setOrigin(0.5)
+        .setScale(0.25);
+
+        this.logoTilting = false;
+        this.logoTiltDirection = 1;
+
+        const tiltLogo = () => {
+            
+            if (this.logoTilting) return;  
+            this.logoTilting = true;
+
+            this.tweens.add({
+                targets: logo,
+                angle: 15 * this.logoTiltDirection,
+                duration: 1000,
+                yoyo: true,
+                ease: 'Sine.inOut',
+                hold: 500,
+                onComplete: () => {
+                    logo.angle = 0;
+                    this.logoTilting = false; 
+                    this.logoTiltDirection *= -1; 
+                },
+            });
+        };
+
+        this.time.addEvent({
+            delay: 5000,
+            callback: tiltLogo,
+            loop: true
+        });
+
+        /* Título del Juego */
+
+        this.add.image(600, 350, 'Title')
+        .setOrigin(0.5)
+        .setScale(0.35);
+
+        /* Decoración del Menú */
+
+        this.add.image(600, 525, 'Decoration')
+        .setOrigin(0.5)
+        .setScale(0.3);
+
+        /* Botones Interactivos */
+
+        const confBtn = this.add.image(100, 625, 'Conf')
+        .setOrigin(0.5)
+        .setScale(0.25)
         .setInteractive({useHandCursor: true})
-        .on('pointover', () => localBtn.setStyle({fill: '#e7b14dff'}))
-        .on('pointout', () => localBtn.setStyle({fill: '#1dd627ff'}))
+        .on('pointerdown', () =>{
+            this.scene.start('ControlsScene');
+        });
+
+        const playBtn = this.add.image(1100, 625, 'Play')
+        .setOrigin(0.5)
+        .setScale(0.25)
+        .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.scene.start('GameScene');
         });
 
+        this.tweens.add({
+            targets: [confBtn, playBtn],
+            scale: 0.275,
+            y: '-=10',
+            duration: 1000,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.inOut'
+        });
     }
 }
