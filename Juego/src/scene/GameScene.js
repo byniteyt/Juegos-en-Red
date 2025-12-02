@@ -118,7 +118,8 @@ export class GameScene extends Phaser.Scene{
     setUpPlayers() {
         const leftPaddle = new Cat(this, 'player1', 50, 300,'catX1', this.sprintPJ1,
             'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
-        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2,'efectoSprint');
+        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2,
+            'efectoSprint','gato2','gato2','gato2');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
