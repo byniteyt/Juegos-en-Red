@@ -5,7 +5,7 @@ import { GameScene } from './scene/GameScene.js';
 import { PauseScene } from './scene/PauseScene.js';
 import { ResultsScene } from './scene/ResultsScene.js';
 import { CreditsScene } from './scene/CreditsScene.js';
-import { SettingsScene } from './scene/SettingsScene.js'
+import { SettingsScene } from './scene/SettingsScene.js';
 
 
 const config = {
