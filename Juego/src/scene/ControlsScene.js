@@ -39,10 +39,10 @@ export class ControlsScene extends Phaser.Scene {
         this.add.text(400, 350, 'Presiona la tecla de escape para pausar el juego.', {
             fontSize: '24px',
             color: '#EDA3BB'
-        }).setOrigin(0.8);
+        }).setOrigin(0.3);
 
         const startBtn = this.add.text(400, 400, 'Empezar juego', {
-            fontSize: '24px',
+            fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
