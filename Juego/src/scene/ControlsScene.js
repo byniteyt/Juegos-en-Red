@@ -29,7 +29,9 @@ export class ControlsScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(400, 325, '- Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa.\n'
-            + '- Jugador 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa.', {
+            + '  Utiliza la tecla ESPACIO para acelerar.\n'
+            + '- Jugador 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa.\n'
+            + '  Utiliza la tecla ENTER apara acelerar.', {
             fontSize: '64px',
             color: '#EDA3BB'
         }).setOrigin(0.5);
