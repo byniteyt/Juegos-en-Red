@@ -58,7 +58,7 @@ export class GameScene extends Phaser.Scene{
         })
         // Creamos las barras de sprint y las animaciones del gato 1
         var graphics1 = this.add.graphics();
-        graphics1.fillStyle(0x00ff00);
+        graphics1.fillStyle(0x97A13B);
         graphics1.fillRect(0, 0, 400, 50);
         graphics1.generateTexture(`sprintPJ1`, 400, 50);
         graphics1.destroy();
@@ -90,7 +90,7 @@ export class GameScene extends Phaser.Scene{
 
         // Creamos las barras de sprint y las animaciones del gato 2
         var graphics = this.add.graphics();
-        graphics.fillStyle(0x0000ff);
+        graphics.fillStyle(0xEDA3BB);
         graphics.fillRect(0, 0, 400, 50);
         graphics.generateTexture(`sprintPJ2`, 400, 50);
         graphics.destroy();
