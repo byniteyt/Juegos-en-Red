@@ -39,13 +39,12 @@ export class MenuScene extends Phaser.Scene {
     this.game.registry.set('volume', 1.0);
 } else {
 
-    const music = this.game.registry.get('bgMusic');
+    var music = this.game.registry.get('bgMusic');
 
     if (!music.isPlaying) {
         music.play();
     }
 }
-
 
         /* Logo Animado */
 
@@ -138,6 +137,7 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.35)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
+            music.stop();
             this.scene.start('ControlsScene');
         });
 
