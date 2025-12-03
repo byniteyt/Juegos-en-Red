@@ -53,6 +53,8 @@ Charming Cats: Get-a-Home se trata de un juego multijugador para dos personas, d
 
 ## Especificaciones Básicas
 
+### Género
+
 Se trata de un juego de acción y simulación.
 
 ### Público Objetivo
@@ -62,8 +64,6 @@ Está orientado para gente de todas las edades y, concretamente, para jugadores 
 ### Plataforma 
 
 Se publicará en las plataformas de Steam e Itch.io.
-
-### Género
 
 ## Actualizaciones
 ### Versión 1.0
