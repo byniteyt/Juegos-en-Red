@@ -39,7 +39,7 @@ export class MenuScene extends Phaser.Scene {
     this.game.registry.set('volume', 1.0);
 } else {
 
-    var music = this.game.registry.get('bgMusic');
+    music = this.game.registry.get('bgMusic');
 
     if (!music.isPlaying) {
         music.play();
