@@ -28,7 +28,7 @@ export class MenuScene extends Phaser.Scene {
 
           if (!this.game.registry.has('bgMusic')) {
   
-    const music = this.sound.add('musica', {
+    var music = this.sound.add('musica', {
         loop: true,
         volume: 0.5
     });
