@@ -1,6 +1,8 @@
 import Phaser from "phaser";
 import { Cat } from "../entities/Cat.js";
 import { Obstaculo } from "../entities/Obstaculos.js";
+import { connectionManager } from '../services/ConnectionManager';
+import { ConnectionLostScene } from "./ConnectionLostScene.js";
 
 
 export class GameScene extends Phaser.Scene{
@@ -113,6 +115,17 @@ export class GameScene extends Phaser.Scene{
 
 
         this.escKey= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+
+        // Listener para cambios de conexión
+        this.connectionListener = (data) => {
+            if(!data.connected && this.scene.isActive())
+            this.onConectionLost();
+        };
+        connectionManager.addListener(this.connectionListener);
+    }
+    onConectionLost(){
+        this.scene.pause();
+        this.scene.launch('ConnectionLostScene', {previousScene: 'GameScene'})
     }
 
     setUpPlayers() {

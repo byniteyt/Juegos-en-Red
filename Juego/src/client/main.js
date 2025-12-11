@@ -7,6 +7,7 @@ import { ResultsScene } from './scene/ResultsScene.js';
 import { CreditsScene } from './scene/CreditsScene.js';
 import { SettingsScene } from './scene/SettingsScene.js';
 import { ControlsScene } from './scene/ControlsScene.js';
+import { ConnectionLostScene } from './scene/ConnectionLostScene.js';
 
 
 const config = {
@@ -22,7 +23,7 @@ const config = {
         } 
     },
 
-    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene],
+    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }
