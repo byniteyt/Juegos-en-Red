@@ -18,7 +18,7 @@ export class ConnectionLostScene extends Phaser.Scene {
 
     create() {
         // Fondo semi-transparente
-        this.add.rectangle(400, 300, 800, 600, 0x000000, 0.8);
+        this.add.rectangle(600, 350, 1200, 700, 0x000000, 0.8);
 
         // Título
         this.add.text(400, 200, 'CONEXIÓN PERDIDA', {

@@ -115,18 +115,18 @@ export class GameScene extends Phaser.Scene{
 
 
         this.escKey= this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-
-        // Listener para cambios de conexión
+/////////   LO COMENTADO ES PARTE DEL SERVIDOR, LO COMENTO PARA PODER USAR "npm run dev" SIN PROBLEMAS
+        /*// Listener para cambios de conexión
         this.connectionListener = (data) => {
             if(!data.connected && this.scene.isActive())
             this.onConectionLost();
         };
-        connectionManager.addListener(this.connectionListener);
+        connectionManager.addListener(this.connectionListener);*/
     }
-    onConectionLost(){
+    /*onConectionLost(){
         this.scene.pause();
         this.scene.launch('ConnectionLostScene', {previousScene: 'GameScene'})
-    }
+    }*/
 
     setUpPlayers() {
         const leftPaddle = new Cat(this, 'player1', 50, 300,'catX1', this.sprintPJ1,
