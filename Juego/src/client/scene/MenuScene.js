@@ -123,6 +123,7 @@ export class MenuScene extends Phaser.Scene {
         .setOrigin(0.5)
         .setScale(0.35);
 
+        // eslint-disable-next-line no-unused-vars
         const credButton = this.add.image(1110, 75, 'Cred_Button')
         .setDepth(1)
         .setOrigin(0.5)

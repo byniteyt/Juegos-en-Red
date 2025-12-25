@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import Phaser from "phaser";
 import { Cat } from "../entities/Cat.js";
 import { Obstaculo } from "../entities/Obstaculos.js";
-import { connectionManager } from '../services/ConnectionManager';
-import { ConnectionLostScene } from "./ConnectionLostScene.js";
+//import { ConnectionManager } from '../services/ConnectionManager';
+//import { ConnectionLostScene } from "./ConnectionLostScene.js";
 
 
 export class GameScene extends Phaser.Scene{
