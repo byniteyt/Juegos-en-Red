@@ -21,7 +21,20 @@ export class GameScene extends Phaser.Scene{
             frameWidth: 60,
             frameHeight: 60
         });
-        this.load.spritesheet('catYUp1', 'Assets/Game/Animar/gatoSube.png', {
+        this.load.spritesheet('catYUp1', 'Assets/Game/Animar/Gato1_Sube.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+
+        this.load.spritesheet('catX2', 'Assets/Game/Animar/Gato2_horizontal.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+        this.load.spritesheet('catYDown2', 'Assets/Game/Animar/Gato2_baja.png', {
+            frameWidth: 60,
+            frameHeight: 60
+        });
+        this.load.spritesheet('catYUp2', 'Assets/Game/Animar/Gato2_Sube.png', {
             frameWidth: 60,
             frameHeight: 60
         });
@@ -90,6 +103,26 @@ export class GameScene extends Phaser.Scene{
             repeat: -1      // Loop infinito mientras se mueve
         });
 
+        this.anims.create({
+            key: 'cat2-walkX',
+            frames: this.anims.generateFrameNumbers('catX2', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat2-walkYDown',
+            frames: this.anims.generateFrameNumbers('catYDown2', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        
+        this.anims.create({
+            key: 'cat2-walkYUp',
+            frames: this.anims.generateFrameNumbers('catYUp2', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+
 
         // Creamos las barras de sprint y las animaciones del gato 2
         var graphics = this.add.graphics();
@@ -132,8 +165,8 @@ export class GameScene extends Phaser.Scene{
     setUpPlayers() {
         const leftPaddle = new Cat(this, 'player1', 50, 300,'catX1', this.sprintPJ1,
             'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
-        const rightPaddle = new Cat(this, 'player2', 750, 300, 'gato2', this.sprintPJ2,
-            'efectoSprint','gato2','gato2','gato2');
+        const rightPaddle = new Cat(this, 'player2', 750, 300, 'catX2', this.sprintPJ2,
+            'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
