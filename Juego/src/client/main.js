@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 
 import { MenuScene } from './scene/MenuScene.js';
 import { GameScene } from './scene/GameScene.js';
+import { SelectCatScene } from './scene/SelectCatScene.js';
 import { PauseScene } from './scene/PauseScene.js';
 import { ResultsScene } from './scene/ResultsScene.js';
 import { CreditsScene } from './scene/CreditsScene.js';
@@ -24,7 +25,7 @@ const config = {
         } 
     },
 
-    scene: [MenuScene, GameScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
+    scene: [MenuScene, GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }

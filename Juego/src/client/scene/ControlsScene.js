@@ -41,14 +41,14 @@ export class ControlsScene extends Phaser.Scene {
             color: '#EDA3BB'
         }).setOrigin(0.4);
 
-        const startBtn = this.add.text(400, 500, 'Empezar juego', {
+        const startBtn = this.add.text(400, 500, 'Seleccionar gatos', {
             fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => startBtn.setStyle({ fill: '#F4DFE6'}))
         .on('pointerout', () => startBtn.setStyle({ fill: '#EDA3BB'}))
-        .on('pointerdown', () => { this.scene.start('GameScene');
+        .on('pointerdown', () => { this.scene.start('SelectCatScene');
         });
     }
 }
