@@ -220,6 +220,7 @@ export class SelectCatScene extends Phaser.Scene{
     }
     startGame(){
         if(this.catPJ2===null) return;
+        this.loadToGame();
         this.scene.start('GameScene',{
             pj1Sube: this.cat1_sube,
             pj1Lado: this.cat1_lado,

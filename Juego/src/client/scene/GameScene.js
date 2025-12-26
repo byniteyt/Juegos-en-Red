@@ -41,8 +41,6 @@ export class GameScene extends Phaser.Scene{
         this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
         this.load.image('juego', 'Assets/Game/juego.jpg');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
-        this.load.image('gato1', 'Assets/Game/Gatos jugables/PJCats_gato alegre.png');
-        this.load.image('gato2', 'Assets/Game/Gatos jugables/PJCats_gato negro.png');
     }
 
     init() {
@@ -59,7 +57,7 @@ export class GameScene extends Phaser.Scene{
         this.isPaused = false;
     }
 
-    create() {
+    create(traspaso) {
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
@@ -136,7 +134,7 @@ export class GameScene extends Phaser.Scene{
         this.sprintPJ2.setImmovable(false);
 
         this.createBounds();
-        this.setUpPlayers();
+        this.setUpPlayers(traspaso);
         this.setUpObstacles();
         this.players.forEach(paddle=> {
             this.obstaculos.forEach(obs=>{
@@ -162,11 +160,11 @@ export class GameScene extends Phaser.Scene{
         this.scene.launch('ConnectionLostScene', {previousScene: 'GameScene'})
     }*/
 
-    setUpPlayers() {
-        const leftPaddle = new Cat(this, 'player1', 50, 300,'catX1', this.sprintPJ1,
-            'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
-        const rightPaddle = new Cat(this, 'player2', 750, 300, 'catX2', this.sprintPJ2,
-            'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
+    setUpPlayers(traspaso) {
+        const leftPaddle = new Cat(this, 'player1', 50, 300,traspaso.pj1Sube, this.sprintPJ1,
+            'efectoSprint',traspaso.pj1Lado,traspaso.pj1Sube,traspaso.pj1Baja);
+        const rightPaddle = new Cat(this, 'player2', 750, 300, traspaso.pj2Sube, this.sprintPJ2,
+            'efectoSprint',traspaso.pj1Lado,traspaso.pj1Sube,traspaso.pj1Baja);
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
