@@ -138,6 +138,8 @@ export class SelectCatScene extends Phaser.Scene{
 
         this.updateCatTexture(catSprite, catId);
     }
+    
+    console.log(`Gato 1 = ${this.catPJ1}-   Gato2 = ${this.catPJ2}`);
 
     this.isPlayer1 = !this.isPlayer1;
 }
@@ -173,61 +175,12 @@ export class SelectCatScene extends Phaser.Scene{
         const catSprite = this[catId]; // this.gato1, this.gato2, etc
         this.updateCatTexture(catSprite, catId);
     }
-    loadToGame(){
-        this.load.spritesheet('cat1Up', `Assets/Game/Animar/${this.catPJ1}/Sube.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('cat1Lado', `Assets/Game/Animar/${this.catPJ1}/Lado.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('cat1Down', `Assets/Game/Animar/${this.catPJ1}/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('cat2Up', `Assets/Game/Animar/${this.catPJ2}/Sube.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('cat2Lado', `Assets/Game/Animar/${this.catPJ2}/Lado.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('cat2Down', `Assets/Game/Animar/${this.catPJ2}/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.cat1_lado = this.anims.create({
-            key: 'cat1-lado',
-            frames: this.anims.generateFrameNumbers('cat1Lado', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.cat1_sube = this.anims.create({
-            key: 'cat1-sube',
-            frames: this.anims.generateFrameNumbers('cat1Up', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.cat1_baja = this.anims.create({
-            key: 'cat1-baja',
-            frames: this.anims.generateFrameNumbers('cat1Down', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-
-        this.cat2_lado = this.anims.create({
-            key: 'cat2-lado',
-            frames: this.anims.generateFrameNumbers('cat2Lado', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.cat2_baja = this.anims.create({
-            key: 'cat2-baja',
-            frames: this.anims.generateFrameNumbers('cat2Down', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.cat2_sube = this.anims.create({
-            key: 'cat2-sube',
-            frames: this.anims.generateFrameNumbers('cat2Up', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-    }
+    
     startGame(){
         if(this.catPJ2===null) return;
-        this.loadToGame();
         this.scene.start('GameScene',{
-            pj1Sube: this.cat1_sube,
-            pj1Lado: this.cat1_lado,
-            pj1Baja: this.cat1_baja,
-            pj2Sube: this.cat2_sube,
-            pj2Lado: this.cat2_lado,
-            pj2Baja: this.cat2_baja,
+            pj1 : this.catPJ1,
+            pj2 : this.catPJ2
         });
     }
 

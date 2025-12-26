@@ -13,34 +13,36 @@ export class GameScene extends Phaser.Scene{
 
     preload(){
         //this.load.audio('musicaFondo','Assets/Game/Audio/(ARCHIVO POR METER)')
-        this.load.spritesheet('catX1', 'Assets/Game/Animar/Gato1_horizontal.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
-        this.load.spritesheet('catYDown1', 'Assets/Game/Animar/Gato1_baja.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
-        this.load.spritesheet('catYUp1', 'Assets/Game/Animar/Gato1_Sube.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
-
-        this.load.spritesheet('catX2', 'Assets/Game/Animar/Gato2_horizontal.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
-        this.load.spritesheet('catYDown2', 'Assets/Game/Animar/Gato2_baja.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
-        this.load.spritesheet('catYUp2', 'Assets/Game/Animar/Gato2_Sube.png', {
-            frameWidth: 60,
-            frameHeight: 60
-        });
+        
         this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
         this.load.image('juego', 'Assets/Game/juego.jpg');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
+        this.loadCats();
+    }
+    loadCats(){
+        this.load.spritesheet('gato1Up', `Assets/Game/Animar/gato1/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato1Lado', `Assets/Game/Animar/gato1/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato1Down', `Assets/Game/Animar/gato1/Baja.png`, {frameWidth: 60,frameHeight: 60});
+
+        this.load.spritesheet('gato2Up', `Assets/Game/Animar/gato2/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato2Lado', `Assets/Game/Animar/gato2/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato2Down', `Assets/Game/Animar/gato2/Baja.png`, {frameWidth: 60,frameHeight: 60});
+
+        this.load.spritesheet('gato3Up', `Assets/Game/Animar/gato3/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato3Lado', `Assets/Game/Animar/gato3/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato3Down', `Assets/Game/Animar/gato3/Baja.png`, {frameWidth: 60,frameHeight: 60});
+
+        this.load.spritesheet('gato4Up', `Assets/Game/Animar/gato4/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato4Lado', `Assets/Game/Animar/gato4/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato4Down', `Assets/Game/Animar/gato4/Baja.png`, {frameWidth: 60,frameHeight: 60});
+
+        this.load.spritesheet('gato5Up', `Assets/Game/Animar/gato5/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato5Lado', `Assets/Game/Animar/gato5/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato5Down', `Assets/Game/Animar/gato5/Baja.png`, {frameWidth: 60,frameHeight: 60});
+
+        this.load.spritesheet('gato6Up', `Assets/Game/Animar/gato6/Sube.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato6Lado', `Assets/Game/Animar/gato6/Lado.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato6Down', `Assets/Game/Animar/gato6/Baja.png`, {frameWidth: 60,frameHeight: 60});
     }
 
     init() {
@@ -81,47 +83,6 @@ export class GameScene extends Phaser.Scene{
         this.sprintPJ1.body.allowGravity = false;
         this.sprintPJ1.setImmovable(false);
 
-        this.anims.create({
-            key: 'cat1-walkX',
-            frames: this.anims.generateFrameNumbers('catX1', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.anims.create({
-            key: 'cat1-walkYDown',
-            frames: this.anims.generateFrameNumbers('catYDown1', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        
-        this.anims.create({
-            key: 'cat1-walkYUp',
-            frames: this.anims.generateFrameNumbers('catYUp1', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-
-        this.anims.create({
-            key: 'cat2-walkX',
-            frames: this.anims.generateFrameNumbers('catX2', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        this.anims.create({
-            key: 'cat2-walkYDown',
-            frames: this.anims.generateFrameNumbers('catYDown2', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-        
-        this.anims.create({
-            key: 'cat2-walkYUp',
-            frames: this.anims.generateFrameNumbers('catYUp2', { start: 0, end: 3 }),
-            frameRate: 6,   // Velocidad
-            repeat: -1      // Loop infinito mientras se mueve
-        });
-
-
         // Creamos las barras de sprint y las animaciones del gato 2
         var graphics = this.add.graphics();
         graphics.fillStyle(0xEDA3BB);
@@ -161,10 +122,50 @@ export class GameScene extends Phaser.Scene{
     }*/
 
     setUpPlayers(traspaso) {
-        const leftPaddle = new Cat(this, 'player1', 50, 300,traspaso.pj1Sube, this.sprintPJ1,
-            'efectoSprint',traspaso.pj1Lado,traspaso.pj1Sube,traspaso.pj1Baja);
-        const rightPaddle = new Cat(this, 'player2', 750, 300, traspaso.pj2Sube, this.sprintPJ2,
-            'efectoSprint',traspaso.pj1Lado,traspaso.pj1Sube,traspaso.pj1Baja);
+        this.anims.create({
+            key: 'cat1-walkX',
+            frames: this.anims.generateFrameNumbers(traspaso.pj1+'Lado', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat1-walkYDown',
+            frames: this.anims.generateFrameNumbers(traspaso.pj1+'Down', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        
+        this.anims.create({
+            key: 'cat1-walkYUp',
+            frames: this.anims.generateFrameNumbers(traspaso.pj1+'Up', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+
+        const leftPaddle = new Cat(this, 'player1', 50, 300,traspaso.pj1+'Up', this.sprintPJ1,
+            'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
+
+        this.anims.create({
+            key: 'cat2-walkX',
+            frames: this.anims.generateFrameNumbers(traspaso.pj2+'Lado', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat2-walkYDown',
+            frames: this.anims.generateFrameNumbers(traspaso.pj2+'Down', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        
+        this.anims.create({
+            key: 'cat2-walkYUp',
+            frames: this.anims.generateFrameNumbers(traspaso.pj2+'Up', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        const rightPaddle = new Cat(this, 'player2', 750, 300, traspaso.pj2+'Up', this.sprintPJ2,
+            'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
         this.physics.add.collider(leftPaddle, rightPaddle,null, null, this);
