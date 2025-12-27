@@ -92,16 +92,17 @@ export class SelectCatScene extends Phaser.Scene{
         };
 
         const startBtn = this.add.text(600, 400, 'Empezar juego', {
+
             fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerover', () => startBtn.setStyle({ fill: '#F4DFE6'}))
-        .on('pointerout', () => startBtn.setStyle({ fill: '#EDA3BB'}))
+        .on('pointerover', () => startBtn.setStyle({ fontFamily: 'MiFuente',fill: '#F4DFE6'}))
+        .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#EDA3BB'}))
         .on('pointerdown', () => { this.startGame();});
 
-        
         this.textoSelecciona = this.add.text(600, 225, 'Select Cat:', {
+
             fontSize: '55px',
             color: '#c83a62ff'
         }).setOrigin(0.5);

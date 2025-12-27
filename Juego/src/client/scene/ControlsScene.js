@@ -12,42 +12,59 @@ export class ControlsScene extends Phaser.Scene {
     create() {
         this.add.image(600, 350, 'controls');
 
-        this.add.text(400, 140, 'Objetivo', {
-            fontSize: '64px',
-            color: '#EDA3BB'
+        this.add.text(540,95, '¿CÓMO SE JUEGA?', {
+            fontFamily: 'MiFuente',
+            fontSize: '90px',
+            color: '#000000ff'
         }).setOrigin(0.3);
 
-        this.add.text(400, 225, '¡Competid para alcanzar la casa al final del mapa antes que el otro!\n'
+        this.add.text(300, 210, 'Controles', {
+            fontFamily: 'MiFuente',
+            fontSize: '50px',
+            color: '#000000ff'
+        }).setOrigin(0.3);
+
+        this.add.text(250, 280, ' Jugador 1: -utiliza las teclas "W A S D"\n               para desplazarte por el mapa.\n'
+            + '             -Utiliza la tecla ESPACIO para acelerar.' , {
+            fontFamily: 'MiFuente',
+            fontSize: '24px',
+            color: '#73c6ecff'
+        }).setOrigin(0.3);
+
+         this.add.text(250, 395, ' Jugador 2: -utiliza las teclas "↑←↓→"\n               para desplazarte por el mapa.\n'
+            + '             -Utiliza la tecla ENTER apara acelerar.', {
+            fontFamily: 'MiFuente',
+            fontSize: '24px',
+            color: '#e78746ff'
+        }).setOrigin(0.3);
+
+        this.add.text(800, 210, 'OBJETIVO', {
+            fontFamily: 'MiFuente',
+            fontSize: '50px',
+            color: '#000000ff'
+        }).setOrigin(0.3);
+
+        this.add.text(800, 290, '¡Competid para alcanzar la casa al final del mapa \n antes que el otro!\n\n'
             + '¡¡Cuidado con los obstáculos!!', {
+            fontFamily: 'MiFuente',    
             fontSize: '24px',
-            color: '#EDA3BB'
+            color: '#000000ff'
         }).setOrigin(0.3);
 
-        this.add.text(400, 285, 'Controles:', {
-            fontSize: '32px',
-            color: '#EDA3BB'
-        }).setOrigin(0.3);
-
-        this.add.text(400, 350, '- Jugador 1: utiliza las teclas "WASD" para desplazarte por el mapa.\n'
-            + '  Utiliza la tecla ESPACIO para acelerar.\n'
-            + '- Jugador 2: utiliza las teclas "↑←↓→" para desplazarte por el mapa.\n'
-            + '  Utiliza la tecla ENTER apara acelerar.', {
+        this.add.text(295, 490, 'Presionad la tecla de escape para pausar el juego.', {
+            fontFamily: 'MiFuente',
             fontSize: '24px',
-            color: '#EDA3BB'
-        }).setOrigin(0.3);
-
-        this.add.text(400, 450, 'Presiona la tecla de escape para pausar el juego.', {
-            fontSize: '24px',
-            color: '#EDA3BB'
+            color: '#000000ff'
         }).setOrigin(0.4);
 
-        const startBtn = this.add.text(400, 500, 'Seleccionar gatos', {
-            fontSize: '32px',
-            color: '#EDA3BB'
+        const startBtn = this.add.text(1050, 620, 'Seleccionar gatos', {
+            fontFamily: 'MiFuente',
+            fontSize: '40px',
+            color: '#458a43ff'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerover', () => startBtn.setStyle({ fill: '#F4DFE6'}))
-        .on('pointerout', () => startBtn.setStyle({ fill: '#EDA3BB'}))
+        .on('pointerover', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#dfaadcff'}))
+        .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#e05fdaff'}))
         .on('pointerdown', () => { this.scene.start('SelectCatScene');
         });
     }

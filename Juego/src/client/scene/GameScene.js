@@ -64,11 +64,13 @@ export class GameScene extends Phaser.Scene{
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
         this.scoreLeft = this.add.text(30, 50, '1º', {
+            fontFamily: 'MiFuente',
             fontSize: '48px',
             color: '#2ba304ff'
         })
 
         this.scoreRight = this.add.text(1100, 50, '2º', {
+            fontFamily: 'MiFuente',
             fontSize: '48px',
             color: '#a23062ff'
         })
@@ -275,6 +277,7 @@ export class GameScene extends Phaser.Scene{
         const winnerSprite = this.scoreLeft.text==='1º'?  'gato1':'gato2';
         const winnerText = this.scoreLeft.text==='1º'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
         this.add.text(400,250, winnerText, {
+            fontFamily: 'MiFuente',
             fontSize:'64px',
             color: '#00ff00'
         }).setOrigin(0.5);
