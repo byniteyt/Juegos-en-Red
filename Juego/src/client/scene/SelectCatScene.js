@@ -91,7 +91,7 @@ export class SelectCatScene extends Phaser.Scene{
             gato6: this.cat6
         };
 
-        const startBtn = this.add.text(400, 500, 'Empezar juego', {
+        const startBtn = this.add.text(600, 400, 'Empezar juego', {
             fontSize: '32px',
             color: '#EDA3BB'
         }).setOrigin(0.5)
@@ -101,14 +101,14 @@ export class SelectCatScene extends Phaser.Scene{
         .on('pointerdown', () => { this.startGame();});
 
         
-        this.scoreLeft = this.add.text(30, 50, '1º', {
-            fontSize: '48px',
-            color: '#2ba304ff'
-        })
-        
-        this.scoreLeft = this.add.text(600, 250, 'Select Cat:', {
+        this.textoSelecciona = this.add.text(600, 225, 'Select Cat:', {
             fontSize: '55px',
             color: '#c83a62ff'
+        }).setOrigin(0.5);
+
+        this.activePLayer = this.add.text(600, 275, 'PJ1', {
+            fontSize: '55px',
+            color: '#43c8e2'
         }).setOrigin(0.5);
     }
     update(){
@@ -124,7 +124,9 @@ export class SelectCatScene extends Phaser.Scene{
         if (previousCat && previousCat !== catId) {
             this.updateCatTexture(this.cats[previousCat], previousCat);
         }
-
+        this.activePLayer.text = 'PJ2';
+        this.activePLayer.setColor('#ff7831');
+        
         this.updateCatTexture(catSprite, catId);
     }
     else {
@@ -135,6 +137,8 @@ export class SelectCatScene extends Phaser.Scene{
         if (previousCat && previousCat !== catId) {
             this.updateCatTexture(this.cats[previousCat], previousCat);
         }
+        this.activePLayer.text = 'PJ1';
+        this.activePLayer.setColor('#43c8e2');
 
         this.updateCatTexture(catSprite, catId);
     }
