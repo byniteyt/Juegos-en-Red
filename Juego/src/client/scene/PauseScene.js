@@ -12,11 +12,13 @@ export class PauseScene extends Phaser.Scene{
         this.add.image(600, 350, 'pause');
 
         this.add.text(600,160,'Pausado',{
+            fontFamily: 'MiFuente',
             fontSize: '64px',
             color: '#EDA3BB'
         }).setOrigin(0.5);
 
         const resumeBtn = this.add.text(600,300, 'Reanudar',{
+            fontFamily: 'MiFuente',
             fontSize:'40px',
             color: '#EDA3BB'
         }).setOrigin(0.5).setInteractive({useHandCursor:true})
@@ -29,6 +31,7 @@ export class PauseScene extends Phaser.Scene{
         });
 
         const homeBtn = this.add.text(600,380, 'Menú inicial',{
+            fontFamily: 'MiFuente',
             fontSize:'40px',
             color: '#EDA3BB'
         }).setOrigin(0.5).setInteractive({useHandCursor:true})

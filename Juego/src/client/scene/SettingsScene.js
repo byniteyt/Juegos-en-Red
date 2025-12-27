@@ -13,30 +13,33 @@ export class SettingsScene extends Phaser.Scene {
     create() {
         this.add.image(600, 350, 'fondo');
 
-        this.add.text(600, 100, 'Ajustes', { 
-            fontSize: '64px',
-            color: '#EDA3BB'
+        this.add.text(600, 125, 'AJUSTES', { 
+            fontFamily: 'MiFuente',
+            fontSize: '90px',
+            color: '#2e7adfff'
         }).setOrigin(0.5);
 
-        const mainMenuBtn = this.add.text(600, 500, 'Volver al menú inicial', {
-            fontSize: '24px',
-            color: '#EDA3BB'
+        const mainMenuBtn = this.add.text(113, 640, '  Volver al \n menú inicial', {
+            fontFamily: 'MiFuente',
+            fontSize: '40px',
+            color: '#276d21ff'
         })
         .setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerover', () => mainMenuBtn.setStyle({ fill: '#F4DFE6'}))
-        .on('pointerout', () => mainMenuBtn.setStyle({ fill: '#EDA3BB'}))
+        .on('pointerover', () => mainMenuBtn.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
+        .on('pointerout', () => mainMenuBtn.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
         .on('pointerdown', () => this.scene.start('MenuScene'));
 
         // Obtener música global
         const music = this.game.registry.get('bgMusic');
 
-        const volumeText = this.add.text(600, 200, 
+        const volumeText = this.add.text(600, 320, 
             `Volumen: ${Math.round(music.volume * 100)}%\n\n` +
-            `Controles:\n↑ SUBIR volumen\n↓ BAJAR volumen`, 
+            `Controles:\n↑ SUBIR VOLUMEN\n↓ BAJAR VOLUMEN`, 
         {
-            fontSize: '24px',
-            color: '#EDA3BB',
+            fontFamily: 'MiFuente',
+            fontSize: '40px',
+            color: '#000000ff',
             align: 'center'
         }).setOrigin(0.5);
 
@@ -44,14 +47,14 @@ export class SettingsScene extends Phaser.Scene {
             let v = music.volume + 0.1;
             if (v > 1) v = 1;
             music.setVolume(v);
-            volumeText.setText(`Volumen: ${Math.round(v * 100)}%\n\nControles:\n↑ SUBIR\n↓ BAJAR`);
+            volumeText.setText(`Volumen: ${Math.round(v * 100)}%\n\nControles:\n↑ SUBIR VOLUMEN\n↓ BAJAR VOLUMEN`);
         });
 
         this.input.keyboard.on('keydown-DOWN', () => {
             let v = music.volume - 0.1;
             if (v < 0) v = 0;
             music.setVolume(v);
-            volumeText.setText(`Volumen: ${Math.round(v * 100)}%\n\nControles:\n↑ SUBIR\n↓ BAJAR`);
+            volumeText.setText(`Volumen: ${Math.round(v * 100)}%\n\nControles:\n↑ SUBIR VOLUMEN\n↓ BAJAR VOLUMEN`);
         });
     }
 }

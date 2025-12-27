@@ -168,6 +168,7 @@ export class MenuScene extends Phaser.Scene {
         });
         // Indicador de conexión al servidor
         this.connectionText = this.add.text(400, 500, 'Servidor: Comprobando...', {
+            fontFamily: 'MiFuente',
             fontSize: '18px',
             color: '#ffff00'
         }).setOrigin(0.5);

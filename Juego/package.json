@@ -20,6 +20,7 @@
   "description": "A pong game with Phaser3",
   "dependencies": {
     "express": "^5.2.1",
+    "fontfaceobserver": "^2.3.0",
     "phaser": "^3.90.0",
     "ws": "^8.18.3"
   },
