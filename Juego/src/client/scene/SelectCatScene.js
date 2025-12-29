@@ -52,32 +52,32 @@ export class SelectCatScene extends Phaser.Scene{
         this.isPlayer1 = true;
         this.catPJ1 = null;
         this.catPJ2 = null;
-        this.cat1 = this.add.image(300, 550, 'gato1-Vacio').setOrigin(0.5)
+        this.cat1 = this.add.image(300, 400, 'gato1-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat1,'gato1')
         });
-        this.cat2 = this.add.image(420, 550, 'gato2-Vacio').setOrigin(0.5)
+        this.cat2 = this.add.image(420, 400, 'gato2-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat2,'gato2')
         });
-        this.cat3 = this.add.image(540, 550, 'gato3-Vacio').setOrigin(0.5)
+        this.cat3 = this.add.image(540, 400, 'gato3-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat3,'gato3')
         });
-        this.cat4 = this.add.image(660, 550, 'gato4-Vacio').setOrigin(0.5)
+        this.cat4 = this.add.image(660, 400, 'gato4-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat4,'gato4')
         });
-        this.cat5 = this.add.image(780, 550, 'gato5-Vacio').setOrigin(0.5)
+        this.cat5 = this.add.image(780, 400, 'gato5-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat5,'gato5')
         });
-        this.cat6 = this.add.image(900, 550, 'gato6-Vacio').setOrigin(0.5)
+        this.cat6 = this.add.image(900, 400, 'gato6-Vacio').setOrigin(0.5)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.selectedCat(this.cat6,'gato6')
@@ -91,24 +91,25 @@ export class SelectCatScene extends Phaser.Scene{
             gato6: this.cat6
         };
 
-        const startBtn = this.add.text(600, 400, 'Empezar juego', {
-
-            fontSize: '32px',
-            color: '#EDA3BB'
+        const startBtn = this.add.text(600, 570, 'Empezar juego', {
+             fontFamily: 'MiFuente',
+            fontSize: '50px',
+            color: '#e05fdaff'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
-        .on('pointerover', () => startBtn.setStyle({ fontFamily: 'MiFuente',fill: '#F4DFE6'}))
-        .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#EDA3BB'}))
+        .on('pointerover', () => startBtn.setStyle({ fontFamily: 'MiFuente',fill: '#ecc5eaff'}))
+        .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#e05fdaff'}))
         .on('pointerdown', () => { this.startGame();});
 
-        this.textoSelecciona = this.add.text(600, 225, 'Select Cat:', {
-
-            fontSize: '55px',
-            color: '#c83a62ff'
+        this.textoSelecciona = this.add.text(600, 125, '¡Elegid vuestros gatos!', {
+            fontFamily: 'MiFuente',
+            fontSize: '90px',
+            color: '#000000ff'
         }).setOrigin(0.5);
 
-        this.activePLayer = this.add.text(600, 275, 'PJ1', {
-            fontSize: '55px',
+        this.activePLayer = this.add.text(600, 250, 'Jugador 1: ', {
+            fontFamily: 'MiFuente',
+            fontSize: '50px',
             color: '#43c8e2'
         }).setOrigin(0.5);
     }
@@ -125,8 +126,8 @@ export class SelectCatScene extends Phaser.Scene{
         if (previousCat && previousCat !== catId) {
             this.updateCatTexture(this.cats[previousCat], previousCat);
         }
-        this.activePLayer.text = 'PJ2';
-        this.activePLayer.setColor('#ff7831');
+        this.activePLayer.text = 'Jugador 2:';
+        this.activePLayer.setColor('#e78746ff');
         
         this.updateCatTexture(catSprite, catId);
     }
@@ -138,8 +139,8 @@ export class SelectCatScene extends Phaser.Scene{
         if (previousCat && previousCat !== catId) {
             this.updateCatTexture(this.cats[previousCat], previousCat);
         }
-        this.activePLayer.text = 'PJ1';
-        this.activePLayer.setColor('#43c8e2');
+        this.activePLayer.text = 'Jugador 1:';
+        this.activePLayer.setColor('#73c6ecff');
 
         this.updateCatTexture(catSprite, catId);
     }

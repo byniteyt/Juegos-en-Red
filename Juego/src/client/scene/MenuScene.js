@@ -167,10 +167,10 @@ export class MenuScene extends Phaser.Scene {
             delay: 150
         });
         // Indicador de conexión al servidor
-        this.connectionText = this.add.text(400, 500, 'Servidor: Comprobando...', {
+        this.connectionText = this.add.text(600, 430, 'Servidor: Comprobando...', {
             fontFamily: 'MiFuente',
-            fontSize: '18px',
-            color: '#ffff00'
+            fontSize: '24px',
+            color: '#dfb912ff'
         }).setOrigin(0.5);
 
         // Listener para cambios de conexión
@@ -189,10 +189,10 @@ export class MenuScene extends Phaser.Scene {
         try {
             if (data.connected) {
                 this.connectionText.setText(`Servidor: ${data.count} usuario(s) conectado(s)`);
-                this.connectionText.setColor('#00ff00');
+                this.connectionText.setColor('#307430ff');
             } else {
                 this.connectionText.setText('Servidor: Desconectado');
-                this.connectionText.setColor('#ff0000');
+                this.connectionText.setColor('#d63838ff');
             }
         } catch (error) {
             console.error('[MenuScene] Error updating connection display:', error);
