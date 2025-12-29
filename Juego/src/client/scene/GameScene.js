@@ -63,16 +63,16 @@ export class GameScene extends Phaser.Scene{
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
         // Score texts
-        this.scoreLeft = this.add.text(30, 50, '1º', {
+        this.scoreLeft = this.add.text(190, 100, '¡vamos!', {
             fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#2ba304ff'
+            color: '#000000ff'
         })
 
-        this.scoreRight = this.add.text(1100, 50, '2º', {
+        this.scoreRight = this.add.text(800, 100, '¡vamos!', {
             fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#a23062ff'
+            color: '#000000ff'
         })
         // Creamos las barras de sprint y las animaciones del gato 1
         var graphics1 = this.add.graphics();
@@ -243,12 +243,12 @@ export class GameScene extends Phaser.Scene{
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
         if (j1.y<j2.y){
-            this.scoreRight.setText('2º');
-            this.scoreLeft.setText('1º');
+            this.scoreRight.setText('¡Vas segundo!');
+            this.scoreLeft.setText('¡Vas primero!');
         }
         if (j1.y>j2.y){
-            this.scoreRight.setText('1º');
-            this.scoreLeft.setText('2º');
+            this.scoreRight.setText('¡Vas primero!');
+            this.scoreLeft.setText('¡Vas segundo!');
         }
     }
 
@@ -275,11 +275,11 @@ export class GameScene extends Phaser.Scene{
         })
         this.physics.pause();
         const winnerSprite = this.scoreLeft.text==='1º'?  'gato1':'gato2';
-        const winnerText = this.scoreLeft.text==='1º'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
+        const winnerText = this.scoreLeft.text==='1º'?'JUGADOR 1':'JUGADOR 2';
         this.add.text(400,250, winnerText, {
             fontFamily: 'MiFuente',
             fontSize:'64px',
-            color: '#00ff00'
+            color: '#000000ff'
         }).setOrigin(0.5);
 
         this.scene.start('ResultsScene',{

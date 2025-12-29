@@ -60,7 +60,7 @@ export class ControlsScene extends Phaser.Scene {
         const startBtn = this.add.text(1050, 620, 'Seleccionar gatos', {
             fontFamily: 'MiFuente',
             fontSize: '40px',
-            color: '#458a43ff'
+            color: '#e05fdaff'
         }).setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#dfaadcff'}))
