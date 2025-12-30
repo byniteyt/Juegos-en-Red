@@ -17,7 +17,6 @@ export class Cat extends Phaser.Physics.Arcade.Sprite {
         this.baseSpeed = 300;
         this.activeSpeed = this.baseSpeed;
         this.collision = 0;
-        this.force = false;
 
         this.setImmovable(false);
         this.setCollideWorldBounds(true);

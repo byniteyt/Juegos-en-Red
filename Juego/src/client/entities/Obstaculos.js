@@ -14,6 +14,7 @@ export class Obstaculo extends Phaser.Physics.Arcade.Sprite {
 
         this.setOrigin(0.5);
         this.setImmovable(true);
+        this.body.allowGravity = false;
 
         scene.add.existing(this);
     }
