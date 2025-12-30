@@ -17,6 +17,7 @@ export class GameScene extends Phaser.Scene{
         this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
         this.load.image('juego', 'Assets/Game/juego.jpg');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
+        this.load.image('caja_rota', 'Assets/Game/Obstaculos/Caja rota.png');
         this.loadCats();
     }
     loadCats(){
@@ -52,7 +53,8 @@ export class GameScene extends Phaser.Scene{
         this.isPaused = false;
         this.escWasDown = false;
         this.worldVel = 5;
-        this.cantidad = 8;
+        this.cantidadX = 8;
+        this.cantidadY = 50;
     } 
 
      resume(){
@@ -62,18 +64,19 @@ export class GameScene extends Phaser.Scene{
     create(traspaso) {
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
-        // Score texts
-        this.scoreLeft = this.add.text(190, 100, '¡vamos!', {
-            fontFamily: 'MiFuente',
-            fontSize: '48px',
-            color: '#000000ff'
-        })
 
-        this.scoreRight = this.add.text(800, 100, '¡vamos!', {
+        // Score texts
+        this.scoreLeft = this.add.text(30, 50, '1º', {
             fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#000000ff'
+            color: '#2ba304ff'
         })
+        this.scoreRight = this.add.text(1100, 50, '2º', {
+            fontFamily: 'MiFuente',
+            fontSize: '48px',
+            color: '#a23062ff'
+        })
+        
         // Creamos las barras de sprint y las animaciones del gato 1
         var graphics1 = this.add.graphics();
         graphics1.fillStyle(0x97A13B);
@@ -101,7 +104,7 @@ export class GameScene extends Phaser.Scene{
         this.setUpObstacles();
         this.players.forEach(paddle=> {
             this.obstaculos.forEach(obs=>{
-                this.physics.add.collider(paddle, obs,null, null, this);
+                this.physics.add.collider(paddle, obs,this.breakbox, null, this);
                 this.physics.add.overlap(obs,this.end, this.endWorld,null,this);
             })
             this.physics.add.overlap(this.goal, paddle, this.goalCondition,null,this);
@@ -205,12 +208,18 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpObstacles(){
-        this.espacio = 1200/this.cantidad;
-        for(var index = 0;index<this.cantidad;index++){
-            var x = Math.random()*(this.espacio-25) + index*this.espacio;
-            this.obstaculos.set('obs'+index,new Obstaculo(this, 'Caja'+index, x, 
-            Math.random()*300 + 500,'caja'));
+        this.espacio = 1200/this.cantidadX;
+        this.altura = 1200/this.cantidadY;
+        for(var posY = 0; posY <this.cantidadY; posY++){
+            for(var index = 0;index<this.cantidadX;index++){
+                var x = Math.random()*(this.espacio) + index*this.espacio;
+                var y = Math.random()*(this.altura) + 5*posY*this.altura;
+                this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
+                -y,'caja'));
+                /// 1400
+            }
         }
+        
         
     }
 
@@ -232,23 +241,36 @@ export class GameScene extends Phaser.Scene{
     }
 
     endWorld(obstaculo, fin){
-            obstaculo.y = -70 - Math.random()*10; // Hacemos que suba de nuevo arriba
+        this.obstaculos.delete(obstaculo.id);
 
-            obstaculo.x = Math.random()*(Math.abs(this.espacio-50)) + (obstaculo.x/this.espacio)*this.espacio; // Reubicamos en una posicion aleatoria
-            //"(obstaculo.x/this.espacio)*this.espacio" asegura que se vuelva asituar en su region asignada sin pasarse a otras
-            //console.log(obstaculo.sprite.x);
+        obstaculo.destroy();
+        if (obstaculo.isBroken) {
+            obstaculo.isBroken = false;
+            obstaculo.setTexture('caja');
+            obstaculo.body.checkCollision.none = false;
+        }
+    }
+
+    breakbox(player, box){
+        if(!player.force) return;
+        box.body.checkCollision.none = true;
+        this.obstaculos.delete(box.id);
+        box.setTexture('caja_rota');
+        this.time.delayedCall(1000, () => {
+                box.destroy();
+            });
     }
 
     setPositions(){
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
         if (j1.y<j2.y){
-            this.scoreRight.setText('¡Vas segundo!');
-            this.scoreLeft.setText('¡Vas primero!');
+            this.scoreRight.setText('2º');
+            this.scoreLeft.setText('1º');
         }
         if (j1.y>j2.y){
-            this.scoreRight.setText('¡Vas primero!');
-            this.scoreLeft.setText('¡Vas segundo!');
+            this.scoreRight.setText('1º');
+            this.scoreLeft.setText('2º');
         }
     }
 
@@ -275,11 +297,11 @@ export class GameScene extends Phaser.Scene{
         })
         this.physics.pause();
         const winnerSprite = this.scoreLeft.text==='1º'?  'gato1':'gato2';
-        const winnerText = this.scoreLeft.text==='1º'?'JUGADOR 1':'JUGADOR 2';
+        const winnerText = this.scoreLeft.text==='1º'?'Gato Izquierdo gana!!':'Gato Derecho gana!!';
         this.add.text(400,250, winnerText, {
             fontFamily: 'MiFuente',
             fontSize:'64px',
-            color: '#000000ff'
+            color: '#00ff00'
         }).setOrigin(0.5);
 
         this.scene.start('ResultsScene',{
@@ -334,12 +356,12 @@ export class GameScene extends Phaser.Scene{
             paddle.y += this.worldVel;
             if (mapping.upKeyObj.isDown){
                 speedY += -paddle.activeSpeed;
-                if(!paddle.movYUp.isPlaying)
+                if(!paddle.movYUp.isPlaying&&!paddle.movX.isPlaying)
                     paddle.anims.play(paddle.movYUp, true);
             }
             else if (mapping.downKeyObj.isDown){
                 speedY += paddle.activeSpeed;
-                if(!paddle.movYDown.isPlaying)
+                if(!paddle.movYDown.isPlaying&&!paddle.movX.isPlaying)
                     paddle.anims.play(paddle.movYDown, true);
             }
             
@@ -367,10 +389,11 @@ export class GameScene extends Phaser.Scene{
                     paddle.effect.stop();
             }
 
-            else if(paddle.sprintCharge.scaleX<1) {
+            else if(paddle.sprintCharge.scaleX<1) {  
                 paddle.sprintCharge.scaleX+=0.0025;
                 paddle.effect.stop();
             }
+            paddle.force = mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.01; 
             paddle.setVelocityY(speedY);
             paddle.setVelocityX(speedX);
         });
