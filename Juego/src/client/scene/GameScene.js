@@ -265,12 +265,12 @@ export class GameScene extends Phaser.Scene{
         const j1 = this.players.get('player1');
         const j2 = this.players.get('player2');
         if (j1.y<j2.y){
-            this.scoreRight.setText('¡Vas segundo!');
-            this.scoreLeft.setText('¡Vas primero!');
+            this.scoreRight.setText('2º');
+            this.scoreLeft.setText('1º');
         }
         if (j1.y>j2.y){
-            this.scoreRight.setText('¡Vas primero!');
-            this.scoreLeft.setText('¡Vas segundo!');
+            this.scoreRight.setText('1º');
+            this.scoreLeft.setText('2º');
         }
     }
 
