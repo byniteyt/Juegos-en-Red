@@ -21,7 +21,8 @@ export function createUserService() {
     if (existingUser) {
       throw new Error('El email ya está registrado');
     }
-
+    
+    console.log("Se ha creado un nuevo user de id Player_"+String(nextId));
     // 2. Crear objeto usuario con id único y createdAt
     const newUser = {
       id: 'Player_'+String(nextId),
