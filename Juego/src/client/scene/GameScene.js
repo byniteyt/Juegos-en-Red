@@ -15,7 +15,7 @@ export class GameScene extends Phaser.Scene{
         //this.load.audio('musicaFondo','Assets/Game/Audio/(ARCHIVO POR METER)')
         
         this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
-        this.load.image('juego', 'Assets/Game/juego.jpg');
+        this.load.image('Juegoo', 'Assets/Game/Juegoo.png');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
         this.load.image('caja_rota', 'Assets/Game/Obstaculos/Caja rota.png');
         this.loadCats();
@@ -69,17 +69,19 @@ export class GameScene extends Phaser.Scene{
 
     create(traspaso) {
         //this.sound.add('musicaFondo').play();
-        this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
 
-        this.setUpObstacles();
-        this.createBounds();
+        this.traspaso = traspaso; 
+        this.background = this.add.image(600, -350, 'Juegoo').setOrigin(0.5);
+
         // Score texts
-        this.scoreLeft = this.add.text(190, 100, '¡vamos!', {
+        this.scoreLeft = this.add.text(30,49, '¡ya!', {
             fontFamily: 'MiFuente',
             fontSize: '48px',
             color: '#000000ff'
         })
-        this.scoreRight = this.add.text(800, 100, '¡vamos!', {
+
+        this.scoreRight = this.add.text(1120, 49, '¡ya!', {
+
             fontFamily: 'MiFuente',
             fontSize: '48px',
              color: '#000000ff'
@@ -153,7 +155,7 @@ export class GameScene extends Phaser.Scene{
             repeat: -1      // Loop infinito mientras se mueve
         });
 
-        const leftPaddle = new Cat(this, 'player1', 50, 300,traspaso.pj1+'Up', this.sprintPJ1,
+        const leftPaddle = new Cat(this, 'player1', 370, 300,traspaso.pj1+'Up', this.sprintPJ1,
             'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
 
         this.anims.create({
@@ -175,7 +177,7 @@ export class GameScene extends Phaser.Scene{
             frameRate: 6,   // Velocidad
             repeat: -1      // Loop infinito mientras se mueve
         });
-        const rightPaddle = new Cat(this, 'player2', 750, 300, traspaso.pj2+'Up', this.sprintPJ2,
+        const rightPaddle = new Cat(this, 'player2', 780, 300, traspaso.pj2+'Up', this.sprintPJ2,
             'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
         this.players.set('player1', leftPaddle);
         this.players.set('player2', rightPaddle);
@@ -211,6 +213,11 @@ export class GameScene extends Phaser.Scene{
                 sprintObj: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes[config.sprint]),
             }
         });
+        this.physics.add.collider(leftPaddle, this.boundLeft);
+        this.physics.add.collider(leftPaddle, this.boundRight);
+
+        this.physics.add.collider(rightPaddle, this.boundLeft);
+        this.physics.add.collider(rightPaddle, this.boundRight);
     }
 
     setUpObstacles(){
@@ -293,26 +300,40 @@ export class GameScene extends Phaser.Scene{
         this.end.body.setSize(1200, 20);
         this.end.setImmovable(false);
         this.end.setVisible(false);
+
+       // LÍMITE IZQUIERDO
+        this.boundLeft = this.physics.add.sprite(160, 350, null);
+        this.boundLeft.setDisplaySize(20, 700);
+        this.boundLeft.body.setSize(20, 700);
+        this.boundLeft.setImmovable(true);
+        this.boundLeft.setVisible(false);
+
+        // LÍMITE DERECHO
+        this.boundRight = this.physics.add.sprite(1040, 350, null);
+        this.boundRight.setDisplaySize(20, 700);
+        this.boundRight.body.setSize(20, 700);
+        this.boundRight.setImmovable(true);
+        this.boundRight.setVisible(false);
     }
 
     endGame(){
         this.players.forEach(paddle=> {
-            paddle.effect.stop();
-            paddle.setVelocity(0,0);
-        })
-        this.physics.pause();
-        const winnerSprite = this.scoreLeft.text==='1º'?  'gato1':'gato2';
-       const winnerText = this.scoreLeft.text==='1º'?'JUGADOR 1':'JUGADOR 2';
-        this.add.text(400,250, winnerText, {
-            fontFamily: 'MiFuente',
-            fontSize:'64px',
-            color: '#000000ff'
-        }).setOrigin(0.5);
 
-        this.scene.start('ResultsScene',{   //
-            gato:winnerSprite,
-            winText:winnerText
-        });
+          paddle.effect.stop();
+          paddle.setVelocity(0,0);
+    });
+    this.physics.pause();
+
+    const p1IsWinner = this.scoreLeft.text === '1º';
+
+    const winnerText    = p1IsWinner ? 'JUGADOR 1' : 'JUGADOR 2';
+    const winnerGatoKey = p1IsWinner ? this.traspaso.pj1 : this.traspaso.pj2;
+
+    this.scene.start('ResultsScene', {
+        gato:    winnerGatoKey,  // 'gatoTipo1', 'gatoTipo2', ...
+        winText: winnerText
+    });
+
         
     }
 
