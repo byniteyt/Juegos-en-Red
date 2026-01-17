@@ -17,32 +17,39 @@ export class GameScene extends Phaser.Scene{
         this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
         this.load.image('Juegoo', 'Assets/Game/Juegoo.png');
         this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
+        this.load.image('caja_rota', 'Assets/Game/Obstaculos/Caja rota.png');
         this.loadCats();
     }
     loadCats(){
         this.load.spritesheet('gato1Up', `Assets/Game/Animar/gato1/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato1Lado', `Assets/Game/Animar/gato1/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato1Down', `Assets/Game/Animar/gato1/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato1', `Assets/Game/Animar/gato1.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato2Up', `Assets/Game/Animar/gato2/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato2Lado', `Assets/Game/Animar/gato2/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato2Down', `Assets/Game/Animar/gato2/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato2', `Assets/Game/Animar/gatoPasota.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato3Up', `Assets/Game/Animar/gato3/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato3Lado', `Assets/Game/Animar/gato3/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato3Down', `Assets/Game/Animar/gato3/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato3', `Assets/Game/Animar/gatoBola.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato4Up', `Assets/Game/Animar/gato4/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato4Lado', `Assets/Game/Animar/gato4/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato4Down', `Assets/Game/Animar/gato4/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato4', `Assets/Game/Animar/gatoPeludo.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato5Up', `Assets/Game/Animar/gato5/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato5Lado', `Assets/Game/Animar/gato5/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato5Down', `Assets/Game/Animar/gato5/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato5', `Assets/Game/Animar/gatoNegro.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato6Up', `Assets/Game/Animar/gato6/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato6Lado', `Assets/Game/Animar/gato6/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato6Down', `Assets/Game/Animar/gato6/Baja.png`, {frameWidth: 60,frameHeight: 60});
+        this.load.spritesheet('gato6', `Assets/Game/Animar/gatoAlegre.png`, {frameWidth: 60,frameHeight: 60});
     }
 
     init() {
@@ -52,7 +59,8 @@ export class GameScene extends Phaser.Scene{
         this.isPaused = false;
         this.escWasDown = false;
         this.worldVel = 5;
-        this.cantidad = 8;
+        this.cantidadX = 7;
+        this.cantidadY = 15;
     } 
 
      resume(){
@@ -61,8 +69,10 @@ export class GameScene extends Phaser.Scene{
 
     create(traspaso) {
         //this.sound.add('musicaFondo').play();
+
         this.traspaso = traspaso; 
         this.background = this.add.image(600, -350, 'Juegoo').setOrigin(0.5);
+
         // Score texts
         this.scoreLeft = this.add.text(30,49, '¡ya!', {
             fontFamily: 'MiFuente',
@@ -71,10 +81,12 @@ export class GameScene extends Phaser.Scene{
         })
 
         this.scoreRight = this.add.text(1120, 49, '¡ya!', {
+
             fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#000000ff'
+             color: '#000000ff'
         })
+        
         // Creamos las barras de sprint y las animaciones del gato 1
         var graphics1 = this.add.graphics();
         graphics1.fillStyle(0x97A13B);
@@ -97,12 +109,10 @@ export class GameScene extends Phaser.Scene{
         this.sprintPJ2.body.allowGravity = false;
         this.sprintPJ2.setImmovable(false);
 
-        this.createBounds();
         this.setUpPlayers(traspaso);
-        this.setUpObstacles();
         this.players.forEach(paddle=> {
             this.obstaculos.forEach(obs=>{
-                this.physics.add.collider(paddle, obs,null, null, this);
+                this.physics.add.collider(paddle, obs,this.breakbox, null, this);
                 this.physics.add.overlap(obs,this.end, this.endWorld,null,this);
             })
             this.physics.add.overlap(this.goal, paddle, this.goalCondition,null,this);
@@ -211,12 +221,17 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpObstacles(){
-        this.espacio = 1200/this.cantidad;
-        for(var index = 0;index<this.cantidad;index++){
-            var x = Math.random()*(this.espacio-25) + index*this.espacio;
-            this.obstaculos.set('obs'+index,new Obstaculo(this, 'Caja'+index, x, 
-            Math.random()*300 + 500,'caja'));
+        this.espacio = 1200/this.cantidadX;
+        this.altura = 2600/this.cantidadY;
+        for(var posY = 0; posY <this.cantidadY; posY++){
+            for(var index = 0;index<this.cantidadX;index++){
+                var x = Math.random()*(this.espacio) + index*this.espacio;
+                var y = Math.random()*(this.altura) + posY*this.altura;
+                this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
+                -y,'caja'));
+            }
         }
+        
         
     }
 
@@ -238,11 +253,24 @@ export class GameScene extends Phaser.Scene{
     }
 
     endWorld(obstaculo, fin){
-            obstaculo.y = -70 - Math.random()*10; // Hacemos que suba de nuevo arriba
+        this.obstaculos.delete(obstaculo.id);
 
-            obstaculo.x = Math.random()*(Math.abs(this.espacio-50)) + (obstaculo.x/this.espacio)*this.espacio; // Reubicamos en una posicion aleatoria
-            //"(obstaculo.x/this.espacio)*this.espacio" asegura que se vuelva asituar en su region asignada sin pasarse a otras
-            //console.log(obstaculo.sprite.x);
+        obstaculo.destroy();
+        if (obstaculo.isBroken) {
+            obstaculo.isBroken = false;
+            obstaculo.setTexture('caja');
+            obstaculo.body.checkCollision.none = false;
+        }
+    }
+
+    breakbox(player, box){
+        if(!player.force) return;
+        box.body.checkCollision.none = true;
+        this.obstaculos.delete(box.id);
+        box.setTexture('caja_rota');
+        this.time.delayedCall(1000, () => {
+                box.destroy();
+            });
     }
 
     setPositions(){
@@ -290,6 +318,7 @@ export class GameScene extends Phaser.Scene{
 
     endGame(){
         this.players.forEach(paddle=> {
+
           paddle.effect.stop();
           paddle.setVelocity(0,0);
     });
@@ -304,6 +333,7 @@ export class GameScene extends Phaser.Scene{
         gato:    winnerGatoKey,  // 'gatoTipo1', 'gatoTipo2', ...
         winText: winnerText
     });
+
         
     }
 
@@ -352,12 +382,12 @@ export class GameScene extends Phaser.Scene{
             paddle.y += this.worldVel;
             if (mapping.upKeyObj.isDown){
                 speedY += -paddle.activeSpeed;
-                if(!paddle.movYUp.isPlaying)
+                if(!paddle.movYUp.isPlaying&&!paddle.movX.isPlaying)
                     paddle.anims.play(paddle.movYUp, true);
             }
             else if (mapping.downKeyObj.isDown){
                 speedY += paddle.activeSpeed;
-                if(!paddle.movYDown.isPlaying)
+                if(!paddle.movYDown.isPlaying&&!paddle.movX.isPlaying)
                     paddle.anims.play(paddle.movYDown, true);
             }
             
@@ -385,10 +415,11 @@ export class GameScene extends Phaser.Scene{
                     paddle.effect.stop();
             }
 
-            else if(paddle.sprintCharge.scaleX<1) {
+            else if(paddle.sprintCharge.scaleX<1) {  
                 paddle.sprintCharge.scaleX+=0.0025;
                 paddle.effect.stop();
             }
+            paddle.force = mapping.sprintObj.isDown && paddle.sprintCharge.scaleX>0.01; 
             paddle.setVelocityY(speedY);
             paddle.setVelocityX(speedX);
         });

@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-jsdoc */
 /**
  * Servicio de gestión de usuarios usando closures
  * Este servicio mantiene el estado de los usuarios en memoria
@@ -11,8 +12,8 @@ export function createUserService() {
 
   /**
    * Crea un nuevo usuario
-   * @param {Object} userData - {email, name, avatar, level}
-   * @returns {Object} Usuario creado
+   * @param {object} userData - {email, name, avatar, level}
+   * @returns {object} Usuario creado
    */
   function createUser(userData) {
     // 1. Validar que el email no exista ya
@@ -23,7 +24,7 @@ export function createUserService() {
 
     // 2. Crear objeto usuario con id único y createdAt
     const newUser = {
-      id: String(nextId),
+      id: 'Player_'+String(nextId),
       email: userData.email,
       name: userData.name,
       avatar: userData.avatar || '',
@@ -48,13 +49,13 @@ export function createUserService() {
   function getAllUsers() {
     // TODO: Implementar
     // Retornar una copia del array de usuarios
-    throw new Error('getAllUsers() no implementado');
+    return [...users];
   }
 
   /**
    * Busca un usuario por ID
    * @param {string} id - ID del usuario
-   * @returns {Object|null} Usuario encontrado o null
+   * @returns {object|null} Usuario encontrado o null
    */
   function getUserById(id) {
     const user = users.find(u => u.id === id);
@@ -64,29 +65,39 @@ export function createUserService() {
   /**
    * Busca un usuario por email
    * @param {string} email - Email del usuario
-   * @returns {Object|null} Usuario encontrado o null
+   * @returns {object|null} Usuario encontrado o null
    */
   function getUserByEmail(email) {
     // TODO: Implementar
     // Buscar y retornar el usuario por email, o null si no existe
     // IMPORTANTE: Esta función será usada por el chat para verificar emails
-    throw new Error('getUserByEmail() no implementado');
+    let findUser = users.find(u => u.email === email);
+    if(findUser) return findUser;
+    else{
+      console.log("No existe usuario con el correo "+email);
+      return null;
+    } 
   }
 
   /**
    * Actualiza un usuario
    * @param {string} id - ID del usuario
-   * @param {Object} updates - Campos a actualizar
-   * @returns {Object|null} Usuario actualizado o null si no existe
+   * @param {object} updates - Campos a actualizar
+   * @returns {object|null} Usuario actualizado o null si no existe
    */
   function updateUser(id, updates) {
     // TODO: Implementar
     // 1. Buscar el usuario por id
+    let findUser = users.find(u => u.id === 'Player_'+id);
     // 2. Si no existe, retornar null
+    if(!findUser) return null;
     // 3. Actualizar solo los campos permitidos (name, avatar, level)
     // 4. NO permitir actualizar id, email, o createdAt
+    findUser.name = updates.name;
+    findUser.avatar = updates.avatar;
+    findUser.level = updates.level;
     // 5. Retornar el usuario actualizado
-    throw new Error('updateUser() no implementado');
+    return findUser;
   }
 
   /**
@@ -97,9 +108,13 @@ export function createUserService() {
   function deleteUser(id) {
     // TODO: Implementar
     // 1. Buscar el índice del usuario
+    let findUser = users.find(u => u.id === 'Player_'+id);
+    if(!findUser) return false;
+    let userIndex = users.indexOf(findUser);
     // 2. Si existe, eliminarlo del array
+    users.splice(userIndex,1);
     // 3. Retornar true si se eliminó, false si no existía
-    throw new Error('deleteUser() no implementado');
+    return true;
   }
 
   // Exponer la API pública del servicio
