@@ -63,11 +63,11 @@ export class GameScene extends Phaser.Scene{
 
     create(traspaso) {
         //this.sound.add('musicaFondo').play();
-         this.setUpObstacles();
+        
         this.createBounds();
         this.traspaso = traspaso; 
         this.background = this.add.image(600, -350, 'Juegoo').setOrigin(0.5);
-
+        this.setUpObstacles();
         // Score texts
         this.scoreLeft = this.add.text(30,49, '¡ya!', {
             fontFamily: 'MiFuente',
@@ -216,11 +216,11 @@ export class GameScene extends Phaser.Scene{
     }
 
     setUpObstacles(){
-        this.espacio = 1200/this.cantidadX;
+        this.espacio = 860/this.cantidadX;
         this.altura = 2600/this.cantidadY;
         for(var posY = 0; posY <this.cantidadY; posY++){
             for(var index = 0;index<this.cantidadX;index++){
-                var x = Math.random()*(this.espacio) + index*this.espacio;
+                var x = 160 + Math.random()*(this.espacio) + index*this.espacio;
                 var y = Math.random()*(this.altura) + posY*this.altura;
                 this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
                 -y,'caja'));
