@@ -184,10 +184,13 @@ export class SelectCatScene extends Phaser.Scene{
     
     startGame(){
         if(this.catPJ2===null) return;
-        this.scene.start('GameScene',{
-            pj1 : this.catPJ1,
-            pj2 : this.catPJ2
-        });
+  
+     this.scene.start('GameScene',{
+         pj1Type: this.catPJ1,  // 'gato1', 'gato2', 'gato3'...
+         pj2Type: this.catPJ2,  // 'gato1', 'gato2', 'gato3'...
+         pj1:     this.catPJ1,  // Para las animaciones
+         pj2:     this.catPJ2   // Para las animaciones
+         });
     }
 
 }
