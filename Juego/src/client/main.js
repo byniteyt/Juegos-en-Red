@@ -25,7 +25,7 @@ const config = {
             debug: false
         } 
     },
-    scene: [LoginScene, MenuScene, GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
+    scene: [MenuScene,LoginScene,  GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }

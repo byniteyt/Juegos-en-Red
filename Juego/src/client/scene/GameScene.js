@@ -24,32 +24,26 @@ export class GameScene extends Phaser.Scene{
         this.load.spritesheet('gato1Up', `Assets/Game/Animar/gato1/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato1Lado', `Assets/Game/Animar/gato1/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato1Down', `Assets/Game/Animar/gato1/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato1', `Assets/Game/Animar/gato1.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato2Up', `Assets/Game/Animar/gato2/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato2Lado', `Assets/Game/Animar/gato2/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato2Down', `Assets/Game/Animar/gato2/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato2', `Assets/Game/Animar/gatoPasota.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato3Up', `Assets/Game/Animar/gato3/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato3Lado', `Assets/Game/Animar/gato3/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato3Down', `Assets/Game/Animar/gato3/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato3', `Assets/Game/Animar/gatoBola.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato4Up', `Assets/Game/Animar/gato4/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato4Lado', `Assets/Game/Animar/gato4/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato4Down', `Assets/Game/Animar/gato4/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato4', `Assets/Game/Animar/gatoPeludo.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato5Up', `Assets/Game/Animar/gato5/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato5Lado', `Assets/Game/Animar/gato5/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato5Down', `Assets/Game/Animar/gato5/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato5', `Assets/Game/Animar/gatoNegro.png`, {frameWidth: 60,frameHeight: 60});
 
         this.load.spritesheet('gato6Up', `Assets/Game/Animar/gato6/Sube.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato6Lado', `Assets/Game/Animar/gato6/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato6Down', `Assets/Game/Animar/gato6/Baja.png`, {frameWidth: 60,frameHeight: 60});
-        this.load.spritesheet('gato6', `Assets/Game/Animar/gatoAlegre.png`, {frameWidth: 60,frameHeight: 60});
     }
 
     init() {
@@ -69,7 +63,8 @@ export class GameScene extends Phaser.Scene{
 
     create(traspaso) {
         //this.sound.add('musicaFondo').play();
-
+         this.setUpObstacles();
+        this.createBounds();
         this.traspaso = traspaso; 
         this.background = this.add.image(600, -350, 'Juegoo').setOrigin(0.5);
 
