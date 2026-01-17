@@ -49,11 +49,7 @@ export function createUserService() {
   function getAllUsers() {
     // TODO: Implementar
     // Retornar una copia del array de usuarios
-    let usersCopy = [];
-    users.forEach(element => {
-      usersCopy.push(element);
-    });
-    return usersCopy;
+    return [...users];
   }
 
   /**
@@ -92,7 +88,7 @@ export function createUserService() {
   function updateUser(id, updates) {
     // TODO: Implementar
     // 1. Buscar el usuario por id
-    let findUser = users.find(u => u.id === id);
+    let findUser = users.find(u => u.id === 'Player_'+id);
     // 2. Si no existe, retornar null
     if(!findUser) return null;
     // 3. Actualizar solo los campos permitidos (name, avatar, level)
@@ -112,7 +108,7 @@ export function createUserService() {
   function deleteUser(id) {
     // TODO: Implementar
     // 1. Buscar el índice del usuario
-    let findUser = users.find(u => u.id === id);
+    let findUser = users.find(u => u.id === 'Player_'+id);
     if(!findUser) return false;
     let userIndex = users.indexOf(findUser);
     // 2. Si existe, eliminarlo del array
