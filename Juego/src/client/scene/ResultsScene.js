@@ -7,12 +7,6 @@ export class ResultsScene extends Phaser.Scene {
 
     preload() {
         this.load.image('results', 'Assets/Results/Pantalla_de_Resultado.png');
-        this.load.image('gato1', 'Assets/Game/Adaptados/gato1.png');
-        this.load.image('gato2', 'Assets/Game/Adaptados/gatoPasota.png');
-        this.load.image('gato3', 'Assets/Game/Adaptados/gatoGordo.png');
-        this.load.image('gato4', 'Assets/Game/Adaptados/gatoPeludo.png');
-        this.load.image('gato5', 'Assets/Game/Adaptados/gatoNegro.png');
-        this.load.image('gato6', 'Assets/Game/Adaptados/gatoAlegre.png');
     }
 
     create(traspaso) {
@@ -22,7 +16,7 @@ export class ResultsScene extends Phaser.Scene {
             fontSize:'80px',
             color: '#000000ff'
         }).setOrigin(0.5);
-        this.add.image(310, 400, traspaso.gato).setOrigin(0.5).setScale(0.2);;
+        this.add.image(250, 400, traspaso.gato).setOrigin(0.5);
         
         const mainMenuBtn = this.add.text(857, 400, 'Volver al menú inicial', {
             fontFamily: 'MiFuente',
