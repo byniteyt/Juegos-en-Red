@@ -53,8 +53,8 @@ export class GameScene extends Phaser.Scene{
         this.isPaused = false;
         this.escWasDown = false;
         this.worldVel = 5;
-        this.cantidadX = 8;
-        this.cantidadY = 50;
+        this.cantidadX = 7;
+        this.cantidadY = 15;
     } 
 
      resume(){
@@ -65,6 +65,8 @@ export class GameScene extends Phaser.Scene{
         //this.sound.add('musicaFondo').play();
         this.background = this.add.image(600, -350, 'juego').setOrigin(0.5);
 
+        this.setUpObstacles();
+        this.createBounds();
         // Score texts
         this.scoreLeft = this.add.text(190, 100, '¡vamos!', {
             fontFamily: 'MiFuente',
@@ -99,9 +101,7 @@ export class GameScene extends Phaser.Scene{
         this.sprintPJ2.body.allowGravity = false;
         this.sprintPJ2.setImmovable(false);
 
-        this.createBounds();
         this.setUpPlayers(traspaso);
-        this.setUpObstacles();
         this.players.forEach(paddle=> {
             this.obstaculos.forEach(obs=>{
                 this.physics.add.collider(paddle, obs,this.breakbox, null, this);
@@ -209,14 +209,13 @@ export class GameScene extends Phaser.Scene{
 
     setUpObstacles(){
         this.espacio = 1200/this.cantidadX;
-        this.altura = 1200/this.cantidadY;
+        this.altura = 2600/this.cantidadY;
         for(var posY = 0; posY <this.cantidadY; posY++){
             for(var index = 0;index<this.cantidadX;index++){
                 var x = Math.random()*(this.espacio) + index*this.espacio;
-                var y = Math.random()*(this.altura) + 5*posY*this.altura;
+                var y = Math.random()*(this.altura) + posY*this.altura;
                 this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
                 -y,'caja'));
-                /// 1400
             }
         }
         
