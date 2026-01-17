@@ -10,6 +10,7 @@ import { CreditsScene } from './scene/CreditsScene.js';
 import { SettingsScene } from './scene/SettingsScene.js';
 import { ControlsScene } from './scene/ControlsScene.js';
 import { ConnectionLostScene } from './scene/ConnectionLostScene.js';
+import { LoginScene } from './scene/LoginScene.js';
 
 
 const config = {
@@ -24,8 +25,7 @@ const config = {
             debug: false
         } 
     },
-
-    scene: [MenuScene, GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
+    scene: [LoginScene, MenuScene, GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }

@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns-description */
+/* eslint-disable jsdoc/require-returns */
 /**
  * Service para gestionar las conexiones activas de usuarios
  */
