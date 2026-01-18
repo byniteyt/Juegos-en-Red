@@ -178,7 +178,16 @@ export class MenuScene extends Phaser.Scene {
             fontSize: '24px',
             color: '#dfb912ff'
         }).setOrigin(0.5);
-
+        const onlineBtn = this.add.text(400, 390, 'Online Multiplayer', {
+            fontSize: '24px',
+            color: '#00ff00',
+        }).setOrigin(0.5)
+        .setInteractive({useHandCursor: true})
+        .on('pointerover', () => onlineBtn.setColor('#00ff88'))
+        .on('pointerout', () => onlineBtn.setColor('#00ff00'))
+        .on('pointerdown', () => {
+            this.scene.start('LobbyScene');
+        });
         // Listener para cambios de conexión
         this.connectionListener = (data) => {
             this.updateConnectionDisplay(data);

@@ -11,6 +11,8 @@ import { SettingsScene } from './scene/SettingsScene.js';
 import { ControlsScene } from './scene/ControlsScene.js';
 import { ConnectionLostScene } from './scene/ConnectionLostScene.js';
 import { LoginScene } from './scene/LoginScene.js';
+import LobbyScene from './scene/LobbyScene.js';
+import { MultiplayerGameScene } from './scene/MultiplayerGameScene.js';
 
 
 const config = {
@@ -25,7 +27,7 @@ const config = {
             debug: false
         } 
     },
-    scene: [LoginScene,MenuScene,  GameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
+    scene: [MenuScene,LobbyScene, LoginScene, GameScene,MultiplayerGameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }
