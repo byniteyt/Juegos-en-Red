@@ -186,6 +186,7 @@ export class MenuScene extends Phaser.Scene {
         .on('pointerover', () => onlineBtn.setColor('#00ff88'))
         .on('pointerout', () => onlineBtn.setColor('#00ff00'))
         .on('pointerdown', () => {
+            music.stop();
             this.scene.start('LobbyScene');
         });
         // Listener para cambios de conexión

@@ -41,8 +41,10 @@ export function createGameRoomService() {
    * Handle paddle movement from a player
    * @param {WebSocket} ws - Player's WebSocket
    * @param {number} y - Paddle Y position
+   * @param {number} x - Paddle X position
+   * @param {number} scale - Scale Sprint bar
    */
-  function handlePaddleMove(ws, y) {
+  function handlePaddleMove(ws, y,x, scale) {
     const roomId = ws.roomId;
     if (!roomId) return;
 
@@ -55,7 +57,9 @@ export function createGameRoomService() {
     if (opponent.readyState === 1) { // WebSocket.OPEN
       opponent.send(JSON.stringify({
         type: 'paddleUpdate',
-        y
+        y,
+        x,
+        scale
       }));
     }
   }

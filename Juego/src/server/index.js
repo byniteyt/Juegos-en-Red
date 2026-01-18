@@ -143,7 +143,7 @@ wss.on('connection', (ws) => {
 
         case 'paddleMove':
           // @ts-ignore
-          gameRoomService.handlePaddleMove(ws, data.y);
+          gameRoomService.handlePaddleMove(ws, data.y, data.x, data.scale);
           break;
 
         case 'goal':
