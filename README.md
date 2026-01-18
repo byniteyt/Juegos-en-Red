@@ -72,7 +72,6 @@ En la primera versión del juego se ha añadido: el menú principal, la pantalla
 ### Versión 2.0
 En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño de juego, sprites finales de los gatos seleccionables por los jugadores, pantalla final mejorada.
 
-## Bocetos 
 
 ## Bocetos 
 
