@@ -109,7 +109,7 @@ Pantalla de Selección de Personaje
 
 <img width="399" height="257" alt="image" src="https://github.com/user-attachments/assets/c8da9f2a-46c6-4ea0-be14-b8dff295a4fc" />
 
-<img width="420" height="262" alt="image" src="https://github.com/user-attachments/assets/7b0c1436-fa46-47ba-ad27-b04eae12b41a" />
+
 
 
 
