@@ -72,6 +72,8 @@ En la primera versión del juego se ha añadido: el menú principal, la pantalla
 ### Versión 2.0
 En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño de juego, sprites finales de los gatos seleccionables por los jugadores, pantalla final mejorada.
 
+### Versión 3.0
+En la tercera versión del juego se ha añadido: Implementación de comunicación asíncrona WebSocket como la sincronización de movimiento de los jugadores en tiempo real y de eventos en el mapa, el manejo de inputs del teclado, detección de victoria y derrota
 
 ## Bocetos 
 
