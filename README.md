@@ -119,13 +119,13 @@ Pantalla de Selección de Personaje
 
 ## Descripción Visual 
 
-El juego tendrá una paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores. Estos colores han sido escogidos para ser adorables y agradables a la vista. 
+El juego tiene una paleta de tonos pasteles, formada principalmente por colores rosas y verdes para la hierba y las flores. Estos colores han sido escogidos para ser adorables y agradables a la vista. Se quiere señalar la estética adorable de los gatos. 
 
 <img width="468" height="696" alt="image" src="https://github.com/user-attachments/assets/4def1328-42de-4c49-a0f4-59ea994b34da" />
 
 ## Uso de Cámara 
 
-Se hará uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokémon como referencia.  
+Se hace uso de una cámara 2D, con vista en modo cenital, más en concreto con una perspectiva top-down tomada de los primeros videojuegos de Pokémon como referencia.  
 
 
  <img width="623" height="372" alt="image" src="https://github.com/user-attachments/assets/c84490ed-7dae-4af3-b20a-ae0dc6ec17ae" />
@@ -134,7 +134,7 @@ Pokémon Rubí / Zafiro
 
 ## Estilo Visual 
 
-El juego empleará una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado para las diferentes pantallas como el inicio o el menú de selección de personajes.
+El juego emplea una mezcla de estilos visuales muy distintivos: un estilo píxel art para la pantalla de juego y un estilo digital de alta resolución adorable y simplificado para las diferentes pantallas como el inicio o el menú de selección de personajes.
 
 <img width="364" height="524" alt="image" src="https://github.com/user-attachments/assets/8766cefb-0a9b-4d7a-9e55-db056da16129" />
 
@@ -144,11 +144,11 @@ Se ha tomado el juego de Crossy Road como inspiración para la jugabilidad y el 
 
 ## Música
 
-El juego empleará una mezcla de estilos musicales: por un lado, una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego. Por otro lado, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos. Acorde a la escena, se programará para que comience a sonar una melodía u otra.
+El juego usa una mezcla de estilos musicales: por un lado, una banda sonora intensa y animada, acorde al espíritu de la competición, con efectos de sonido chiptune para la pantalla de juego. Por otro lado, para el resto de pantallas, una banda sonora más tranquila y serena, cantada por gatitos. Acorde a la escena, se programará para que comience a sonar una melodía u otra.
 
 ## Efectos de Sonido
 
-El juego utilizará una biblioteca de efectos de sonido exagerados, al más puro estilo de las series de dibujos animados, para enfatizar claramente los diferentes sucesos del juego como puede ser al chocar contra uno de los múltiples obstáculos del escenario.
+El juego usa una biblioteca de efectos de sonido exagerados, al más puro estilo de las series de dibujos animados, para enfatizar claramente los diferentes sucesos del juego como puede ser al chocar contra uno de los múltiples obstáculos del escenario.
 
 ## Objetivo 
 
@@ -164,15 +164,15 @@ Este videojuego cuenta con varias mecánicas:
 
 - **Jugador**: tiene 4 posibles movimientos: hacia delante, hacia la derecha, hacia la izquierda y hacia atrás. También tendrá la opción de seleccionar al personaje que quiera manejar antes de empezar la partida. Además, podrá hacer uso de power ups cuando los recoja.
 - **Entorno**: el mapa se compone de pasos de peatones, carreteras y aceras. A lo largo del recorrido, aparecerán ciclistas por la acera y coches por la carretera que interrumpirán el paso de los jugadores, quienes tendrán que esquivarlos.
-- **Power ups**: habrá distintos power ups repartidos por el mapa. Cada uno dará un poder distinto: aumento de velocidad, escudo de un sólo choque y lanzar bolas de pelo que paralizan o ralentizan temporalmente al jugador enemigo.
+- **Power ups**: Cada jugador tiene una barra de estamina que puede utilizar para correr más rápido que el otro jugador. Esta barra de estamina se agota si se usa demasiado, pero con el tiempo se regenera.
 
 ## Físicas
 
-Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de pantalla que definen el avance de la partida y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
+Las físicas a tener en cuenta para este videojuego son sumamente sencillas, y podemos clasificarlas en dos categorías. Por un lado, las colisiones de los jugadores al chocar con elementos del escenario como pueden ser baches en el asfalto, tapas de alcantarilla abiertas, tramos de carretera clausurados por construcción, o vehículos de todo tipo circulando a altas velocidades. Por otro lado, las colisiones de los jugadores con los límites de las casas a los costados de la pantalla definen el avance de la partida y mantienen enfocada la experiencia de juego. El funcionamiento es el siguiente: si uno de los jugadores se queda muy atrás y choca con el borde la pantalla trasero, el jugador es lanzado un poco hacia adelante manteniéndolo en pantalla y ayudando a compensar la diferencia entre jugadores.
 
 ## Escenario
 
-El escenario en el que tiene lugar este videojuego es una calle común y corriente en la periferia de una ciudad, con aceras en ambos lados, una carretera en la que se desarrolla la acción de la partida, y la casa de acogida al final del todo. En la propia carretera aparecerán diversos obstáculos temáticos que los jugadores deberán esquivar. Como parte de la decoración del escenario habrá áreas con vegetación más abundante, lo cual incluye árboles y matorrales.
+El escenario en el que tiene lugar este videojuego es una calle común y corriente en la periferia de una ciudad, con aceras en ambos lados, una carretera en la que se desarrolla la acción de la partida, y la casa de acogida al final del todo. En la propia carretera aparecerán diversos obstáculos temáticos que los jugadores deberán esquivar.
 
 ## Diagrama de Flujo
 
