@@ -91,7 +91,7 @@ En la tercera versión del juego se ha añadido: Implementación de comunicació
 Pantalla de Menú 
 
 
-<img width="4096" height="2160" alt="Pantalla de Juego" src="https://github.com/user-attachments/assets/43d109f5-07bc-4826-8bf3-39d833fb6351" />
+<img width="4096" height="2160" alt="Pantalla de Juego" src="https://github.com/byniteyt/Juegos-en-Red/blob/main/gameplay1.png" />
 
 Pantalla de Juego
 
