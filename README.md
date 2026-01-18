@@ -70,10 +70,10 @@ Se publicará en las plataformas de Steam e Itch.io.
 En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina, condición de victoria), el menú de ajustes, el menú de créditos, el menú de pausa y la pantalla de resultados, así como una pantalla en donde se explican los controles del juego. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia.
 
 ### Versión 2.0
-En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño de juego, sprites finales de los gatos seleccionables por los jugadores, pantalla final mejorada.
+En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño de juego, sprites finales de los gatos seleccionables por los jugadores, pantalla final mejorada.<br> La pantalla de juego ahora tiene un fondo diferente y mejorado.<br> Al final de la partida el gato ganador sale en pantalla visualmente (en versiones anteriores solo salía si habia ganado el jugador 1 o el 2 en formato de texto).<br> Los sprites de los gatos jugadores han sido correctamente implementados (anteriormente solo había dos opciones de gato).
 
 ### Versión 3.0
-En la tercera versión del juego se ha añadido: Implementación de comunicación asíncrona WebSocket como la sincronización de movimiento de los jugadores en tiempo real y de eventos en el mapa, el manejo de inputs del teclado, detección de victoria y derrota
+En la tercera versión del juego se ha añadido: Implementación de comunicación asíncrona WebSocket como la sincronización de movimiento de los jugadores en tiempo real y de eventos en el mapa, el manejo de inputs del teclado, detección de victoria y derrota.<br> En esta versión jugadores desde distintos dispositivos pueden jugar de forma on-line al juego (anteriormente solo se podía jugar desde un dispositivo).
 
 ## Bocetos 
 
