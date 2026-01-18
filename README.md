@@ -69,6 +69,11 @@ Se publicará en las plataformas de Steam e Itch.io.
 ### Versión 1.0
 En la primera versión del juego se ha añadido: el menú principal, la pantalla de juego completamente jugable (con música, obstáculos, estamina, condición de victoria), el menú de ajustes, el menú de créditos, el menú de pausa y la pantalla de resultados, así como una pantalla en donde se explican los controles del juego. Como detalle, dentro del juego puedes ver por dónde va tu rival para elaborar tu estrategia.
 
+### Versión 2.0
+En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño de juego, sprites finales de los gatos seleccionables por los jugadores, pantalla final mejorada.
+
+## Bocetos 
+
 ## Bocetos 
 
 ### Interfaces:
