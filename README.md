@@ -86,7 +86,7 @@ En la tercera versión del juego se ha añadido: Implementación de comunicació
 
 ### Pantallas
 
-<img width="4096" height="2160" alt="Menú" src="https://github.com/user-attachments/assets/7f1a060b-d139-4146-b569-27d90e80ee71" />
+<img width="4096" height="2160" alt="Menú" src="ttps://github.com/byniteyt/Juegos-en-Red/blob/main/pantalla_inicio_nueva.png" />
 
 Pantalla de Menú 
 
@@ -95,11 +95,11 @@ Pantalla de Menú
 
 Pantalla de Juego
 
-<img width="4096" height="2160" alt="Pantalla de Resultado" src="https://github.com/user-attachments/assets/dc6ccb62-cdb1-4160-99ab-2d528f07b3ce" />
+<img width="4096" height="2160" alt="Pantalla de Resultado" src="https://github.com/byniteyt/Juegos-en-Red/blob/main/pantalla_final.png" />
 
 Pantalla de Resultado
 
-![seleccion personaje](https://github.com/user-attachments/assets/065c390a-cc72-4fbd-9fee-6c0fa5e4867a)
+![seleccion personaje](https://github.com/byniteyt/Juegos-en-Red/blob/main/seleccion_pj.png)
 
 Pantalla de Selección de Personaje
 
