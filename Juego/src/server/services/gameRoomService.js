@@ -61,7 +61,8 @@ export function createGameRoomService() {
         x,
         scale,
         pos1,
-        pos2
+        pos2,
+        
       }));
     }
   }
