@@ -212,6 +212,7 @@ export class GameScene extends Phaser.Scene{
                 var y = Math.random()*(this.altura) + posY*this.altura;
                 this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
                 -y,'caja'));
+                
             }
         }
         

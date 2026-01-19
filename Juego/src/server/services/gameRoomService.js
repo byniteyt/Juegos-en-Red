@@ -44,7 +44,7 @@ export function createGameRoomService() {
    * @param {number} x - Paddle X position
    * @param {number} scale - Scale Sprint bar
    */
-  function handlePaddleMove(ws, y,x, scale) {
+  function handlePaddleMove(ws, y,x, scale, pos1, pos2) {
     const roomId = ws.roomId;
     if (!roomId) return;
 
@@ -59,7 +59,10 @@ export function createGameRoomService() {
         type: 'paddleUpdate',
         y,
         x,
-        scale
+        scale,
+        pos1,
+        pos2,
+        
       }));
     }
   }

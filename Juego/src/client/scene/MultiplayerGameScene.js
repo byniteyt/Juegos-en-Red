@@ -1,5 +1,8 @@
 import Phaser from 'phaser';
 import { Cat } from '../entities/Cat';
+import { Obstaculo } from '../entities/Obstaculos';
+import { connectionManager} from '../services/ConnectionManager';
+//import { ConnectionLostScene } from "./ConnectionLostScene.js";
 
 /**
  * Multiplayer Game Scene - Online pong game
@@ -16,14 +19,15 @@ export class MultiplayerGameScene extends Phaser.Scene {
         this.ws = data.ws;
         this.playerRole = data.playerRole; // 'player1' or 'player2'
         this.roomId = data.roomId;
-        this.initialBall = data.initialBall;
-        this.ball = null;
         this.isPaused = false;
         this.gameEnded = false;
         this.localPaddle = null;
         this.remotePaddle = null;
         this.localScore = 0;
         this.remoteScore = 0;
+        this.cantidadX = 4;
+        this.cantidadY = 13;
+        this.obstaculos = new Map();
     }
 loadCats(){
         this.load.spritesheet('gato1Up', `Assets/Game/Animar/gato1/Sube.png`, {frameWidth: 60,frameHeight: 60});
@@ -50,28 +54,72 @@ loadCats(){
         this.load.spritesheet('gato6Lado', `Assets/Game/Animar/gato6/Lado.png`, {frameWidth: 60,frameHeight: 60});
         this.load.spritesheet('gato6Down', `Assets/Game/Animar/gato6/Baja.png`, {frameWidth: 60,frameHeight: 60});
     }
+    setUpObstacles(){
+            this.espacio = 860/this.cantidadX;
+            this.altura = 2600/this.cantidadY;
+            for(var posY = 0; posY <this.cantidadY; posY++){
+                for(var index = 0;index<this.cantidadX;index++){
+                    var x = 160 + Math.random()*(this.espacio) + index*this.espacio;
+                    var y = Math.random()*(this.altura) + posY*this.altura;
+                    this.obstaculos.set('obs'+index+'_'+posY,new Obstaculo(this, 'Caja'+index+'_'+posY, x, 
+                    -y,'caja'));
+                this.physics.add.collider(this.localPaddle, this.obstaculos.get('obs'+index+'_'+posY),this.breakbox, null, this);
+                this.physics.add.collider(this.remotePaddle, this.obstaculos.get('obs'+index+'_'+posY),this.breakbox, null, this);
+                this.physics.add.overlap(this.obstaculos.get('obs'+index+'_'+posY),this.end, this.endWorld,null,this);
+                }
 
+            }
+            
+            
+        }
+        endWorld(obstaculo, fin){
+        this.obstaculos.delete(obstaculo.id);
+
+        obstaculo.destroy();
+        if (obstaculo.isBroken) {
+            obstaculo.isBroken = false;
+            obstaculo.setTexture('caja');
+            obstaculo.body.checkCollision.none = false;
+        }
+    }
+    breakbox(player, box){
+        if(!player.force) return;
+        box.body.checkCollision.none = true;
+        this.obstaculos.delete(box.id);
+        box.setTexture('caja_rota');
+        this.time.delayedCall(1000, () => {
+                box.destroy();
+            });
+    }
     preload(){
+        this.load.audio('efectoSprint','Assets/Game/Audio/sprint.mp3')
+        this.load.image('Juegoo', 'Assets/Game/Juegoo.png');
+        this.load.image('caja', 'Assets/Game/Obstaculos/caja1.png');
+        this.load.image('caja_rota', 'Assets/Game/Obstaculos/Caja rota.png');
         this.loadCats();
     }
     create() {
-        this.add.rectangle(400, 300, 800, 600, 0x1a1a2e);
-
-        // Center discontinued line
-        for (let i = 0; i < 12; i++) {
-            this.add.rectangle(400, i * 50 + 25, 10, 30, 0x444444);
-        }
-
+        
+        this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.background = this.add.image(600, -350, 'Juegoo').setOrigin(0.5);
+        this.createBounds();
+        this.setUpPlayers();
+        this.setUpObstacles();
+            this.physics.add.overlap(this.goal, this.localPaddle, this.goalCondition,null,this);
+            this.physics.add.overlap(this.goal, this.remotePaddle, this.goalCondition,null,this);
         // Score texts
-        this.scoreLeft = this.add.text(100, 50, '0', {
+        this.scoreLeft = this.add.text(30,49, '¡ya!', {
+            fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#00ff00'
-        });
+            color: '#000000ff'
+        })
 
-        this.scoreRight = this.add.text(700, 50, '0', {
+        this.scoreRight = this.add.text(1120, 49, '¡ya!', {
+
+            fontFamily: 'MiFuente',
             fontSize: '48px',
-            color: '#00ff00'
-        });
+             color: '#000000ff'
+        })
 
         // Role indicator
         const roleText = this.playerRole === 'player1' ? 'You are Player 1 (Left)' : 'You are Player 2 (Right)';
@@ -80,39 +128,127 @@ loadCats(){
             color: '#ffff00'
         }).setOrigin(0.5);
 
-        this.createBounds();
-        this.createBall();
-        this.setUpPlayers();
-
-        // Add colliders
-        this.physics.add.collider(this.ball, this.localPaddle);
-        this.physics.add.collider(this.ball, this.remotePaddle);
-        this.physics.add.overlap(this.ball, this.leftGoal, this.scoreLeftGoal, null, this);
-        this.physics.add.overlap(this.ball, this.rightGoal, this.scoreRightGoal, null, this);
 
         // Set up WebSocket listeners
         this.setupWebSocketListeners();
 
         // Set up input - both players use arrow keys
         this.cursors = this.input.keyboard.createCursorKeys();
-
-        // Launch ball with server-provided initial state
-        this.ball.setVelocity(this.initialBall.vx, this.initialBall.vy);
+        // Listener para cambios de conexión
+        this.connectionListener = (data) => {
+            if(!data.connected && this.scene.isActive())
+            this.onConectionLost();
+        };
+        connectionManager.addListener(this.connectionListener);
+    }
+    onConectionLost(){
+        this.scene.pause();
+        this.scene.launch('ConnectionLostScene', {previousScene: 'GameScene'})
     }
 
     setUpPlayers() {
-        // Create paddles based on player role
+        // carga de assets de los gatos generales
+
+        // Creamos las barras de sprint del gato 2
+        var graphics1 = this.add.graphics();
+        graphics1.fillStyle(0x97A13B);
+        graphics1.fillRect(0, 0, 400, 50);
+        graphics1.generateTexture(`sprintPJ1`, 400, 50);
+        graphics1.destroy();
+        this.sprintPJ1 = this.physics.add.sprite(90, 50, `sprintPJ1`).setOrigin(0);
+        this.sprintPJ1.body.allowGravity = false;
+        this.sprintPJ1.setImmovable(false);
+        this.anims.create({
+            key: 'cat1-walkX',
+            frames: this.anims.generateFrameNumbers('gato1Lado', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat1-walkYDown',
+            frames: this.anims.generateFrameNumbers('gato1Down', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat1-walkYUp',
+            frames: this.anims.generateFrameNumbers('gato1Up', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+
+        // Creamos las barras de sprint del gato 2
+        var graphics = this.add.graphics();
+        graphics.fillStyle(0xEDA3BB);
+        graphics.fillRect(0, 0, 400, 50);
+        graphics.generateTexture(`sprintPJ2`, 400, 50);
+        graphics.destroy();
+        this.sprintPJ2 = this.physics.add.sprite(700, 50, `sprintPJ2`).setOrigin(0);
+        this.sprintPJ2.body.allowGravity = false;
+        this.sprintPJ2.setImmovable(false);
+        this.anims.create({
+            key: 'cat2-walkX',
+            frames: this.anims.generateFrameNumbers('gato2Lado', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat2-walkYDown',
+            frames: this.anims.generateFrameNumbers('gato2Down', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+        this.anims.create({
+            key: 'cat2-walkYUp',
+            frames: this.anims.generateFrameNumbers('gato1Up', { start: 0, end: 3 }),
+            frameRate: 6,   // Velocidad
+            repeat: -1      // Loop infinito mientras se mueve
+        });
+
+        // Asiganción de los jugadores    
         if (this.playerRole === 'player1') {
-            this.localPaddle = new Cat(this, 'player1', 370, 300,'gato1Up', null,
-            null,'gato1Up','gato1Up','gato1Up');
-            this.remotePaddle = new Cat(this, 'player1', 370, 300,'gato1Up', null,
-            null,'gato1Up','gato1Up','gato1Up');
+            this.localPaddle = new Cat(this, 'player1', 370, 300,'gato1Up', this.sprintPJ1,
+            'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
+            this.remotePaddle = new Cat(this, 'player2', 780, 300, 'gato2Up', this.sprintPJ2,
+            'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
         } else {
-            this.localPaddle = new Cat(this, 'player2', 750, 300);
-            this.remotePaddle = new Cat(this, 'player1', 50, 300);
+            this.localPaddle = new Cat(this, 'player2', 780, 300, 'gato2Up', this.sprintPJ2,
+            'efectoSprint','cat2-walkX','cat2-walkYUp','cat2-walkYDown');
+            this.remotePaddle = new Cat(this, 'player1', 370, 300,'gato1Up', this.sprintPJ1,
+            'efectoSprint','cat1-walkX','cat1-walkYUp','cat1-walkYDown');
+        }
+        
+        this.physics.add.collider(this.localPaddle, this.remotePaddle);
+    } 
+    setPositions(){
+        let j1 = this.localPaddle;
+        let j2 = this.remotePaddle;
+        if (this.playerRole === 'player1'){
+            if (j1.y<j2.y){
+                this.scoreRight.setText('2º');
+                this.scoreLeft.setText('1º');
+            }
+            if (j1.y>j2.y){
+                this.scoreRight.setText('1º');
+                this.scoreLeft.setText('2º');
+            }
+        }
+        else{
+            if (j1.y<j2.y){
+                this.scoreRight.setText('1º');
+                this.scoreLeft.setText('2º');
+            }
+            if (j1.y>j2.y){
+                this.scoreRight.setText('2º');
+                this.scoreLeft.setText('1º');
+            }
         }
     }
-
+    goalCondition(meta, pj){
+        if (this.background.y>=2220){
+            this.endGame();
+        }
+    }
     setupWebSocketListeners() {
         this.ws.onmessage = (event) => {
             try {
@@ -143,6 +279,11 @@ loadCats(){
             case 'paddleUpdate':
                 // Update opponent's paddle position
                 this.remotePaddle.y = data.y;
+                this.remotePaddle.x = data.x;
+                this.remotePaddle.sprintCharge.scaleX = data.scale;
+                this.scoreLeft.text = data.pos1;
+                this.scoreRight.text = data.pos2;
+
                 break;
 
             case 'scoreUpdate':
@@ -152,20 +293,13 @@ loadCats(){
 
                 this.scoreLeft.setText(data.player1Score.toString());
                 this.scoreRight.setText(data.player2Score.toString());
-
-                // Stop ball, server will relaunch it
-                this.ball.setVelocity(0, 0);
-                this.ball.setPosition(400, 300);
                 break;
 
             case 'ballRelaunch':
-                // Server is relaunching the ball with new velocity
-                this.ball.setPosition(data.ball.x, data.ball.y);
-                this.ball.setVelocity(data.ball.vx, data.ball.vy);
                 break;
 
             case 'gameOver':
-                this.endGame(data.winner, data.player1Score, data.player2Score);
+                this.endGame();
                 break;
 
             case 'playerDisconnected':
@@ -177,49 +311,26 @@ loadCats(){
         }
     }
 
-    scoreLeftGoal() {
-        if (this.gameEnded) return;
-
-        // Ball hit LEFT goal (x=0), so notify server
-        this.sendMessage({ type: 'goal', side: 'left' });
-    }
-
-    scoreRightGoal() {
-        if (this.gameEnded) return;
-
-        // Ball hit RIGHT goal (x=800), so notify server
-        this.sendMessage({ type: 'goal', side: 'right' });
-    }
-
-    endGame(winner, player1Score, player2Score) {
+    endGame() {
         this.gameEnded = true;
-        this.ball.setVelocity(0, 0);
         this.localPaddle.setVelocity(0, 0);
         this.remotePaddle.setVelocity(0, 0);
+        
         this.physics.pause();
 
-        const isWinner = (winner === 'player1' && this.playerRole === 'player1') ||
-                        (winner === 'player2' && this.playerRole === 'player2');
+        const p1IsWinner = this.scoreLeft.text === '1º';
+        const winnerText    = p1IsWinner ? 'JUGADOR 1' : 'JUGADOR 2';
+        const winnerGatoKey = p1IsWinner ? 'gato1' : 'gato2';
 
-        const winnerText = isWinner ? 'You Win!' : 'You Lose!';
-        const color = isWinner ? '#00ff00' : '#ff0000';
+        this.scene.start('ResultsScene', {
+        gato: winnerGatoKey,  // 'gatoTipo1', 'gatoTipo2', ...
+        winText: winnerText
+        });
 
-        this.add.text(400, 200, winnerText, {
-            fontSize: '64px',
-            color: color
-        }).setOrigin(0.5);
-
-        this.add.text(400, 280, `Final Score: ${player1Score} - ${player2Score}`, {
-            fontSize: '32px',
-            color: '#ffffff'
-        }).setOrigin(0.5);
-
-        this.createMenuButton();
     }
 
     handleDisconnection() {
         this.gameEnded = true;
-        this.ball.setVelocity(0, 0);
         this.localPaddle.setVelocity(0, 0);
         this.remotePaddle.setVelocity(0, 0);
         this.physics.pause();
@@ -248,30 +359,35 @@ loadCats(){
         });
     }
 
-    createBall() {
-        const graphics = this.add.graphics();
-        graphics.fillStyle(0xffffff);
-        graphics.fillCircle(8, 8, 8);
-        graphics.generateTexture('ball-multi', 16, 16);
-        graphics.destroy();
-
-        this.ball = this.physics.add.sprite(400, 300, 'ball-multi');
-        this.ball.setCollideWorldBounds(true);
-        this.ball.setBounce(1);
-    }
 
     createBounds() {
-        this.leftGoal = this.physics.add.sprite(0, 300, null);
-        this.leftGoal.setDisplaySize(10, 600);
-        this.leftGoal.body.setSize(10, 600);
-        this.leftGoal.setImmovable(true);
-        this.leftGoal.setVisible(false);
+        // Creamos la meta
+        this.goal = this.physics.add.sprite(0, 0, null);
+        this.goal.setDisplaySize(1200, 20);
+        this.goal.body.setSize(1200, 20);
+        this.goal.setImmovable(false);
+        this.goal.setVisible(false);
 
-        this.rightGoal = this.physics.add.sprite(800, 300, null);
-        this.rightGoal.setDisplaySize(10, 600);
-        this.rightGoal.body.setSize(10, 600);
-        this.rightGoal.setImmovable(true);
-        this.rightGoal.setVisible(false);
+        //Creamos el limite infreior para los obstáculos
+        this.end = this.physics.add.sprite(0, 700, null);
+        this.end.setDisplaySize(1200, 20);
+        this.end.body.setSize(1200, 20);
+        this.end.setImmovable(false);
+        this.end.setVisible(false);
+
+       // LÍMITE IZQUIERDO
+        this.boundLeft = this.physics.add.sprite(160, 350, null);
+        this.boundLeft.setDisplaySize(20, 700);
+        this.boundLeft.body.setSize(20, 700);
+        this.boundLeft.setImmovable(true);
+        this.boundLeft.setVisible(false);
+
+        // LÍMITE DERECHO
+        this.boundRight = this.physics.add.sprite(1040, 350, null);
+        this.boundRight.setDisplaySize(20, 700);
+        this.boundRight.body.setSize(20, 700);
+        this.boundRight.setImmovable(true);
+        this.boundRight.setVisible(false);
     }
 
     sendMessage(message) {
@@ -280,35 +396,72 @@ loadCats(){
         }
     }
 
-    update() {
-        if (this.gameEnded) return;
+    update(time, delta) {
+    if (this.gameEnded) return;
 
-        // Handle local paddle input - both players use arrow keys
-        let direction = null;
-        if (this.cursors.up.isDown) {
-            direction = 'up';
-        } else if (this.cursors.down.isDown) {
-            direction = 'down';
-        } else {
-            direction = 'stop';
+    this.worldVel = this.background.y<2220? delta/10 :  0;
+    this.obstaculos.forEach(obstaculo=> {
+             obstaculo.y += this.worldVel; 
+        })
+    this.background.y += this.worldVel;
+    let speedX = 1;
+    let speedY = 1;
+
+    // ===== SPRINT =====
+    if (this.spaceBar.isDown && this.localPaddle.sprintCharge.scaleX > 0) {
+
+        speedX = 1.3;
+        speedY = 1.3;
+
+        this.localPaddle.sprintCharge.scaleX -= 0.0005 * delta;
+
+        this.localPaddle.sprintCharge.scaleX = Math.max(
+            this.localPaddle.sprintCharge.scaleX,
+            0
+        );
+
+        if (!this.localPaddle.effect.isPlaying) {
+            this.localPaddle.effect.play();
         }
 
-        // Move local paddle
-        const speed = 300;
-        if (direction === 'up') {
-            this.localPaddle.setVelocityY(-speed);
-        } else if (direction === 'down') {
-            this.localPaddle.setVelocityY(speed);
-        } else {
-            this.localPaddle.setVelocityY(0);
+    } else {
+        // ===== RECARGA =====
+        if (this.localPaddle.sprintCharge.scaleX < 1) {
+            this.localPaddle.sprintCharge.scaleX += 0.00003 * delta;
         }
 
-        // Send paddle position to server
-        this.sendMessage({
-            type: 'paddleMove',
-            y: this.localPaddle.y
-        });
+        if (this.localPaddle.effect.isPlaying) {
+            this.localPaddle.effect.stop();
+        }
     }
+
+    // ===== MOVIMIENTO =====
+    const speed = 300;
+
+    this.localPaddle.setVelocity(
+        (this.cursors.left.isDown ? -1 : this.cursors.right.isDown ? 1 : 0) * speed * speedX,
+        (this.cursors.up.isDown ? -1 : this.cursors.down.isDown ? 1 : this.worldVel/4) * speed * speedY
+    );
+
+    this.setPositions();
+    // ===== SYNC SERVER =====
+    this.sendMessage({
+        type: 'paddleMove',
+        y: this.localPaddle.y,
+        x: this.localPaddle.x,
+        scale: this.localPaddle.sprintCharge.scaleX,
+        pos1:this.scoreLeft.text,
+        pos2:this.scoreRight.text
+    });
+    if ((
+    this.localPaddle.y <= this.goal.y+40 ||
+    this.remotePaddle.y <= this.goal.y+40)&& this.worldVel==0)
+ {
+    this.endGame();
+}
+
+}
+
 
     shutdown() {
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
