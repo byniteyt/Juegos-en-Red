@@ -4,7 +4,6 @@ export class LoginScene extends Phaser.Scene
 {
     preload ()
     {
-        this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
         this.load.html('nameform', 'Assets/Login/loginform.html');
     }
 
@@ -13,8 +12,6 @@ export class LoginScene extends Phaser.Scene
         const text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
 
         const element = this.add.dom(400, 600).createFromCache('nameform');
-
-        element.setPerspective(800);
 
         element.addListener('click');
 

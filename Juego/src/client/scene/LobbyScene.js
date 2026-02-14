@@ -2,7 +2,7 @@
  * Lobby Scene - Waiting for multiplayer matchmaking
  */
 import Phaser from 'phaser';
-export default class LobbyScene extends Phaser.Scene {
+export class LobbyScene extends Phaser.Scene {
   constructor() {
     super({ key: 'LobbyScene' });
     this.ws = null;
