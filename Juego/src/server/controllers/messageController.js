@@ -25,7 +25,36 @@ export function createMessageController(messageService) {
       // 3. Llamar a messageService.createMessage()
       // 4. Retornar 201 con el mensaje creado
       // 5. Si el email no existe, retornar 400 con error descriptivo
-      throw new Error('create() no implementado - TODO para estudiantes');
+
+      const { email, message } = req.body;
+
+      // 1. Validación de entrada:
+
+      if (!email || !message) {
+        return res.status(400).json({
+          error: 'email y message son obligatorios'
+        });
+      }
+
+      // 2. Crear mensaje:
+
+      let createdMessage;
+      try {
+        createdMessage = await messageService.createMessage({ email, message });
+      } catch (err) {
+        // Ejemplo: el servicio lanza error si el email no existe
+        if (err.code === 'EMAIL_NOT_FOUND') {
+          return res.status(400).json({
+            error: 'El email no existe'
+          });
+        }
+        throw err;
+      }
+
+      // 3. Respuesta correcta:
+      
+      return res.status(201).json(createdMessage);
+
     } catch (error) {
       next(error);
     }
@@ -43,7 +72,19 @@ export function createMessageController(messageService) {
       // 2. Si no hay 'since', revisar query param 'limit'
       //    - Llamar a messageService.getRecentMessages(limit)
       // 3. Retornar 200 con los mensajes
-      throw new Error('getMessages() no implementado - TODO para estudiantes');
+
+      const { since, limit } = req.query;
+
+      let messages;
+
+      if (since) {
+        messages = await messageService.getMessagesSince(Number(since));
+      } else {
+        messages = await messageService.getRecentMessages(Number(limit) || 50);
+      }
+
+      return res.status(200).json(messages);
+
     } catch (error) {
       next(error);
     }
