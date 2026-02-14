@@ -41,7 +41,6 @@ export function createUserController(userService) {
    */
   async function getAll(req, res, next) {
     try {
-      // TODO: Implementar
       // 1. Llamar a userService.getAllUsers()
       const users = userService.getAllUsers();
 
@@ -49,7 +48,7 @@ export function createUserController(userService) {
       res.status(200).json(users);
       
       //throw new Error('getAll() no implementado');
-      
+
     } catch (error) {
       next(error);
     }
@@ -85,13 +84,27 @@ export function createUserController(userService) {
    */
   async function update(req, res, next) {
     try {
-      // TODO: Implementar
       // 1. Extraer el id de req.params
+      const { id } = req.params;
+
       // 2. Extraer los campos a actualizar del body
+      const { email, name, avatar, level } = req.body;
+
       // 3. Llamar a userService.updateUser()
+      const user = userService.updateUser(id);
+
       // 4. Si no existe, retornar 404
+      if (!user) {
+        return res.status(404).json({
+          error: 'Usuario no encontrado'
+        });
+      }
+
       // 5. Si existe, retornar 200 con el usuario actualizado
-      throw new Error('update() no implementado');
+      res.status(200).json(user);
+
+      // throw new Error('update() no implementado');
+      
     } catch (error) {
       next(error);
     }
@@ -102,12 +115,24 @@ export function createUserController(userService) {
    */
   async function remove(req, res, next) {
     try {
-      // TODO: Implementar
       // 1. Extraer el id de req.params
+      const { id } = req.params;
+
       // 2. Llamar a userService.deleteUser()
+      const user = userService.deleteUser();
+
       // 3. Si no existía, retornar 404
+      if (!user) {
+        return res.status(404).json({
+          error: 'Usuario no encontrado'
+        });
+      }
+
       // 4. Si se eliminó, retornar 204 (No Content)
-      throw new Error('remove() no implementado');
+      res.status(204).json(user);
+
+      // throw new Error('remove() no implementado');
+
     } catch (error) {
       next(error);
     }
