@@ -5,13 +5,12 @@ export class LoginScene extends Phaser.Scene
     preload ()
     {
         this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
-        this.load.html('nameform', 'assets/text/loginform.html');
+        this.load.html('nameform', 'Assets/Login/loginform.html');
         this.load.image('pic', 'assets/pics/turkey-1985086.jpg');
     }
 
     create ()
     {
-        this.add.image(400, 300, 'pic');
 
         const text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
 
@@ -65,7 +64,7 @@ export class LoginScene extends Phaser.Scene
             ease: 'Power3'
         });
     }
-    
+
     /* Esto es la parte que tratamos de hacer por nuestra cuenta
     constructor() {
         super('LoginScene')
