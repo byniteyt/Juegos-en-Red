@@ -46,8 +46,6 @@ export function createUserController(userService) {
 
       // 2. Retornar 200 con el array de usuarios
       res.status(200).json(users);
-      
-      //throw new Error('getAll() no implementado');
 
     } catch (error) {
       next(error);
@@ -102,8 +100,6 @@ export function createUserController(userService) {
 
       // 5. Si existe, retornar 200 con el usuario actualizado
       res.status(200).json(user);
-
-      // throw new Error('update() no implementado');
       
     } catch (error) {
       next(error);
@@ -130,8 +126,6 @@ export function createUserController(userService) {
 
       // 4. Si se eliminó, retornar 204 (No Content)
       res.status(204).json(user);
-
-      // throw new Error('remove() no implementado');
 
     } catch (error) {
       next(error);
