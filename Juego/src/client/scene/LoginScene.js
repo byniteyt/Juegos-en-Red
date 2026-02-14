@@ -6,12 +6,10 @@ export class LoginScene extends Phaser.Scene
     {
         this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
         this.load.html('nameform', 'Assets/Login/loginform.html');
-        this.load.image('pic', 'assets/pics/turkey-1985086.jpg');
     }
 
     create ()
     {
-
         const text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
 
         const element = this.add.dom(400, 600).createFromCache('nameform');
@@ -22,7 +20,6 @@ export class LoginScene extends Phaser.Scene
 
         element.on('click', function (event)
         {
-
             if (event.target.name === 'loginButton')
             {
                 const inputUsername = this.getChildByName('username');
@@ -54,7 +51,6 @@ export class LoginScene extends Phaser.Scene
                     this.scene.tweens.add({ targets: text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
                 }
             }
-
         });
 
         this.tweens.add({
