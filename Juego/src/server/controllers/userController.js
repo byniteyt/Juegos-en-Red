@@ -43,8 +43,13 @@ export function createUserController(userService) {
     try {
       // TODO: Implementar
       // 1. Llamar a userService.getAllUsers()
+      const users = userService.getAllUsers();
+
       // 2. Retornar 200 con el array de usuarios
-      throw new Error('getAll() no implementado');
+      res.status(200).json(users);
+      
+      //throw new Error('getAll() no implementado');
+      
     } catch (error) {
       next(error);
     }
