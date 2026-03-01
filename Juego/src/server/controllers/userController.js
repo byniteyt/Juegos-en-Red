@@ -84,6 +84,8 @@ export function createUserController(userService) {
       // 1. Extraer el id de req.params
       // 2. Extraer los campos a actualizar del body
       // 3. Llamar a userService.updateUser()
+      const user = userService.updateUser(id,{ email, name, avatar, level } );
+
       // 4. Si no existe, retornar 404
       // 5. Si existe, retornar 200 con el usuario actualizado
       throw new Error('update() no implementado');
@@ -100,6 +102,8 @@ export function createUserController(userService) {
       // TODO: Implementar
       // 1. Extraer el id de req.params
       // 2. Llamar a userService.deleteUser()
+      const user = userService.deleteUser(id);
+
       // 3. Si no existía, retornar 404
       // 4. Si se eliminó, retornar 204 (No Content)
       throw new Error('remove() no implementado');
