@@ -20,6 +20,9 @@ const config = {
     width: 1200,
     height: 700,
     parent: 'game-container',
+    dom: {
+        createContainer: true
+    },
     physics: {
         default: 'arcade',
         arcade: {
@@ -27,7 +30,8 @@ const config = {
             debug: false
         } 
     },
-    scene: [LoginScene, MenuScene,LobbyScene, GameScene,MultiplayerGameScene, SelectCatScene, PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
+    scene: [LoginScene, MenuScene, LobbyScene, GameScene,MultiplayerGameScene, SelectCatScene, 
+        PauseScene, ResultsScene, CreditsScene, SettingsScene,ControlsScene, ConnectionLostScene],
     //backgroundColor: '#360246ff'
     backgroundColor: '#ffffff'
 }

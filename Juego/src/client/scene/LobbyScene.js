@@ -4,7 +4,7 @@
 import Phaser from 'phaser';
 export class LobbyScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'LobbyScene' });
+    super('LobbyScene');
     this.ws = null;
   }
 
