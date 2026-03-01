@@ -32,7 +32,8 @@ export class LoginScene extends Phaser.Scene
                 const inputPassword = this.getChildByName('password');
 
                 //  Have they entered anything?
-                if (inputUsername.value !== '' && inputPassword.value !== '')
+                if (inputUsername.value !== '' && inputPassword.value !== ''        //Si no valores en al menos un campo nos salimos 
+                    &&scene.text.text != 'Servidor: Desconectado')                  //Si no hay conexion al server nos salimos 
                 {
                     //  Turn off the click events
                     this.removeListener('click');
