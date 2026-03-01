@@ -2,19 +2,22 @@ import Phaser from "phaser";
 
 export class LoginScene extends Phaser.Scene 
 {
+    constructor() {
+    super('LoginScene');
+  }
+
     preload ()
     {
-        this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
         this.load.html('nameform', 'Assets/Login/loginform.html');
+        this.load.image('credits', 'Assets/Credits/Fondo_pantallas.png');
     }
 
     create ()
     {
-        const text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
+        this.add.image(600, 350, 'credits');
+        const text = this.add.text(600, 80, 'Please login to play', { color: 'black', fontFamily: 'Arial', fontSize: '32px '});
 
-        const element = this.add.dom(400, 600).createFromCache('nameform');
-
-        element.setPerspective(800);
+        const element = this.add.dom(600, 350).createFromCache('nameform');
 
         element.addListener('click');
 
@@ -43,7 +46,7 @@ export class LoginScene extends Phaser.Scene
                     });
 
                     //  Populate the text with whatever they typed in as the username!
-                    text.setText(`Welcome ${inputUsername.value}`);
+                    text.setText(`Welcome ${inputUsername.value}\n Starting the game...`);
                 }
                 else
                 {
