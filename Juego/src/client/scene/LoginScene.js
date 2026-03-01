@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { connectionManager } from '../services/ConnectionManager';
 
 export class LoginScene extends Phaser.Scene 
 {
@@ -11,11 +12,13 @@ export class LoginScene extends Phaser.Scene
         this.load.html('nameform', 'Assets/Login/loginform.html');
         this.load.image('credits', 'Assets/Credits/Fondo_pantallas.png');
     }
-
     create ()
     {
+        const scene = this;
         this.add.image(600, 350, 'credits');
-        const text = this.add.text(600, 80, 'Please login to play', { color: 'black', fontFamily: 'Arial', fontSize: '32px '});
+        this.text = this.add.text(600, 80, 'Please login to play', 
+            { color: 'black', fontFamily: 'Arial', fontSize: '32px '})
+            .setOrigin(0.5);
 
         const element = this.add.dom(600, 350).createFromCache('nameform');
 
@@ -42,16 +45,18 @@ export class LoginScene extends Phaser.Scene
                         onComplete: function ()
                         {
                             element.setVisible(false);
+                            scene.scene.start('MenuScene');
                         }
                     });
 
                     //  Populate the text with whatever they typed in as the username!
-                    text.setText(`Welcome ${inputUsername.value}\n Starting the game...`);
+                    scene.text.setText(`Welcome ${inputUsername.value}\n Starting the game...`);
+
                 }
                 else
                 {
                     //  Flash the prompt
-                    this.scene.tweens.add({ targets: text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
+                    this.scene.tweens.add({ targets: scene.text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
                 }
             }
         });
@@ -62,51 +67,83 @@ export class LoginScene extends Phaser.Scene
             duration: 3000,
             ease: 'Power3'
         });
+        this.connectionListener = (data) => {
+                    this.updateConnectionDisplay(data);
+                };
+                connectionManager.addListener(this.connectionListener);
     }
-
-    /* Esto es la parte que tratamos de hacer por nuestra cuenta
-    constructor() {
-        super('LoginScene')
-    }
-
-    preload() {
-        this.load.image('login', 'Assets/Credits/Fondo_pantallas.png');
-    }
-
-    create() {
-        this.add.image(600, 350, 'login');
-    }
-
-    loginInput() {
-        let text = "";
-        let inputText = this.add.text(800, 290, '', {
-            fontFamily: 'MiFuente',    
-            fontSize: '24px',
-            color: '#000000ff'
-        }).setOrigin(0.3);;
-
-        this.input.keyboard.on('keydown',(event)=>{
-            // Borrar
-            if(event.keyCode === 8 && text.length > 0) {
-                text = text.slice(0, -1);
-                updateText();
-            }
-            // Enter / finalizar
-            else if(event.keyCode === 13 && text.trim().length > 0) {
-                this.input.keyboard.off('keydown');
-            }
-            // Texto del input del usuario
-            else if(event.keyCode === 1 && text.trim().length < 12) {
-                // No permitir caracteres que no sean números o letras
-                if(/[a-zA-Z0-9 _-]/.test(event.key)) {
-                    text += event.key;
-                }
-            }
-        });
-
-        const updateText = () => {
-            inputText.setText(text);
-            const textWidth = inputText.width;
+    updateConnectionDisplay(data) {
+        // Solo actualizar si el texto existe (la escena está creada)
+        if (!this.text || !this.scene || !this.scene.isActive('LoginScene')) {
+            return;
         }
-    }*/
+
+        try {
+            if (data.connected) {
+                if(this.text.text == 'Servidor: Desconectado')      // Actualizamos solamente si el server estaba caido
+                this.text.setText('Please login to play');
+                this.text.setColor('rgb(18, 16, 16)');
+            } else {
+                this.text.setText('Servidor: Desconectado');
+                this.text.setColor('#d63838ff');
+            }
+        } catch (error) {
+            console.error('[MenuScene] Error updating connection display:', error);
+        }
+    }
+
+    connectToServer() {
+    try {
+      // Connect to WebSocket server (same host as web server)
+        const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+        const wsUrl = `${protocol}://${location.host}`;
+        this.ws = new WebSocket(wsUrl);
+        console.log("Conectado al servidor: "+wsUrl);
+
+        this.ws.onopen = () => {
+            console.log('Connected to WebSocket server');
+            console.log("Conectado al servidor: "+wsUrl);
+
+            // Join matchmaking queue
+            this.ws.send(JSON.stringify({ type: 'joinQueue' }));
+        };
+
+      this.ws.onmessage = (event) => {
+            try {
+            const data = JSON.parse(event.data);
+            this.handleServerMessage(data);
+            } catch (error) {
+            console.error('Error parsing server message:', error);
+            }
+        };
+
+      this.ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        //this.statusText.setText('Connection error!');
+        //this.statusText.setColor('#ff0000');
+      };
+
+      this.ws.onclose = () => {
+        console.log('WebSocket connection closed');
+        if (this.scene.isActive('LobbyScene')) {
+            
+          //this.statusText.setText('Connection lost!');
+          //this.statusText.setColor('#ff0000');
+        }
+      };
+    } catch (error) {
+      console.error('Error connecting to server:', error);
+      //this.statusText.setText('Failed to connect!');
+      //this.statusText.setColor('#ff0000');
+    }
+  }
+  handleServerMessage(data) {
+    switch (data.type) {
+      case 'queueStatus':
+        break;
+
+      default:
+        console.log('Unknown message type:', data.type);
+    }
+  }
 }
