@@ -24,7 +24,7 @@ export class LoginScene extends Phaser.Scene
 
         element.addListener('click');
 
-        element.on('click', function (event)
+        element.on('click', async function (event)
         {
             if (event.target.name === 'loginButton')
             {
@@ -35,24 +35,57 @@ export class LoginScene extends Phaser.Scene
                 if (inputUsername.value !== '' && inputPassword.value !== ''        //Si no valores en al menos un campo nos salimos 
                     &&scene.text.text != 'Servidor: Desconectado')                  //Si no hay conexion al server nos salimos 
                 {
-                    //  Turn off the click events
-                    this.removeListener('click');
+                    try {
+                            const response = await fetch(`/api/users/${inputUsername.value}`,{
+                                method: 'GET'}
+                            );
 
-                    //  Tween the login form out
-                    this.scene.tweens.add({ targets: element.rotate3d, x: 1, w: 90, duration: 3000, ease: 'Power3' });
+                            if (!response.ok) {
+                                if (response.status === 404) {
+                                    throw new Error('Usuario no encontrado');
+                                }
+                                throw new Error('Error en la petición');
+                            }
 
-                    this.scene.tweens.add({
-                        targets: element, scaleX: 2, scaleY: 2, y: 700, duration: 3000, ease: 'Power3',
-                        onComplete: function ()
-                        {
-                            element.setVisible(false);
+                            const user = await response.json();
+                            console.log(user);
+
+                            // Usuario creado correctamente
+                            scene.text.setText(`Welcome ${user.name}\nStarting the game...`);
+
                             scene.scene.start('MenuScene');
+
+                        }catch (error){
+                        try {
+                            const response = await fetch('/api/users', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    password: inputPassword.value,
+                                    name: inputUsername.value,
+                                    avatar: 'default.png',
+                                    level: 1
+                                })
+                            });
+
+                            const data = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(data.error || 'Error creando usuario');
+                            }
+
+                            // Usuario creado correctamente
+                            scene.text.setText(`Welcome ${data.name}\nStarting the game...`);
+
+                            scene.scene.start('MenuScene');
+
+                        } catch (error) {
+                            scene.text.setText(error.message);
+                            scene.text.setColor('#ff0000');
                         }
-                    });
-
-                    //  Populate the text with whatever they typed in as the username!
-                    scene.text.setText(`Welcome ${inputUsername.value}\n Starting the game...`);
-
+                    }
                 }
                 else
                 {
@@ -68,6 +101,7 @@ export class LoginScene extends Phaser.Scene
             duration: 3000,
             ease: 'Power3'
         });
+        
         this.connectionListener = (data) => {
                     this.updateConnectionDisplay(data);
                 };
