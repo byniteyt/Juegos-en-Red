@@ -109,7 +109,7 @@ export function createUserService() {
   function deleteUser(id) {
     // TODO: Implementar
     // 1. Buscar el índice del usuario
-    let findUser = users.find(u => u.id === 'Player_'+id);
+    let findUser = users.find(u => u.id === 'Player_'+id||u.id === id);
     if(!findUser) return false;
     let userIndex = users.indexOf(findUser);
     // 2. Si existe, eliminarlo del array

@@ -63,9 +63,9 @@ export class LoginScene extends Phaser.Scene
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({
-                                    password: inputPassword.value,
                                     name: inputUsername.value,
-                                    avatar: 'default.png',
+                                    password: inputPassword.value,
+                                    avatar: '',
                                     level: 1
                                 })
                             });

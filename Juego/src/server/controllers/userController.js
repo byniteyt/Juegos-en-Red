@@ -13,17 +13,17 @@ export function createUserController(userService) {
   async function create(req, res, next) {
     try {
       // 1. Extraer datos del body: email, name, avatar, level
-      const { email, name, avatar, level } = req.body;
+      const { name, password, avatar, level } = req.body;
 
       // 2. Validar que los campos requeridos estén presentes (email, name)
-      if (!email || !name) {
+      if (!password || !name) {
         return res.status(400).json({
           error: 'Los campos email y name son obligatorios'
         });
       }
 
       // 3. Llamar a userService.createUser()
-      const newUser = userService.createUser({ email, name, avatar, level });
+      const newUser = userService.createUser({ name, password, avatar, level });
 
       // 4. Retornar 201 con el usuario creado
       res.status(201).json(newUser);
@@ -86,10 +86,10 @@ export function createUserController(userService) {
       const { id } = req.params;
 
       // 2. Extraer los campos a actualizar del body
-      const { email, name, avatar, level } = req.body;
+      const { name, password, avatar, level } = req.body;
 
       // 3. Llamar a userService.updateUser()
-      const user = userService.updateUser(id);
+      const user = userService.updateUser(id,{ name, password, avatar, level });
 
       // 4. Si no existe, retornar 404
       if (!user) {
@@ -115,7 +115,7 @@ export function createUserController(userService) {
       const { id } = req.params;
 
       // 2. Llamar a userService.deleteUser()
-      const user = userService.deleteUser();
+      const user = userService.deleteUser(id);
 
       // 3. Si no existía, retornar 404
       if (!user) {
