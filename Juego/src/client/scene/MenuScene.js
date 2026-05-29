@@ -194,6 +194,8 @@ export class MenuScene extends Phaser.Scene {
             this.updateConnectionDisplay(data);
         };
         connectionManager.addListener(this.connectionListener);
+        this.events.on('shutdown', this.shutdown, this);
+        this.events.on('destroy', this.shutdown, this);
     }
     
     updateConnectionDisplay(data) {
@@ -214,11 +216,10 @@ export class MenuScene extends Phaser.Scene {
             console.error('[MenuScene] Error updating connection display:', error);
         }
     }
-
     shutdown() {
         // Remover el listener
         if (this.connectionListener) {
             connectionManager.removeListener(this.connectionListener);
         }
-    }
+    }/**/
 }

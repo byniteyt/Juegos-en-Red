@@ -36,28 +36,8 @@ export class LoginScene extends Phaser.Scene
                     &&scene.text.text != 'Servidor: Desconectado')                  //Si no hay conexion al server nos salimos 
                 {
                     try {
-                            const response = await fetch(`/api/users/${inputUsername.value}`,{
-                                method: 'GET'}
-                            );
-
-                            if (!response.ok) {
-                                if (response.status === 404) {
-                                    throw new Error('Usuario no encontrado');
-                                }
-                                throw new Error('Error en la petición');
-                            }
-
-                            const user = await response.json();
-                            console.log(user);
-
-                            // Usuario creado correctamente
-                            scene.text.setText(`Welcome ${user.name}\nStarting the game...`);
-
-                            scene.scene.start('MenuScene');
-
-                        }catch (error){
-                        try {
-                            const response = await fetch('/api/users', {
+                            
+                            var response = await fetch('/api/users', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -70,22 +50,37 @@ export class LoginScene extends Phaser.Scene
                                 })
                             });
 
-                            const data = await response.json();
-
                             if (!response.ok) {
-                                throw new Error(data.error || 'Error creando usuario');
+                                response = await fetch(`/api/users/${inputUsername.value}`,{
+                                method: 'GET'});
+
+                                const data = await response.json();
+
+                                if (!response.ok) {
+                                    throw new Error(data.error || 'Error creando usuario');
+                                }
+                                if(data.password != inputPassword.value){
+                                    throw new Error('La contraseña no es correcta');
+                                }
+
+                                // Usuario cargado correctamente
+                                scene.text.setText(`Welcome ${data.name}\nStarting the game...`);
+
+                                scene.scene.start('MenuScene');
                             }
 
+                            const user = await response.json();
+                            console.log(user);
+
                             // Usuario creado correctamente
-                            scene.text.setText(`Welcome ${data.name}\nStarting the game...`);
+                            scene.text.setText(`Welcome ${user.name}\nStarting the game...`);
 
                             scene.scene.start('MenuScene');
 
-                        } catch (error) {
+                        }catch(error) {
                             scene.text.setText(error.message);
                             scene.text.setColor('#ff0000');
                         }
-                    }
                 }
                 else
                 {
@@ -105,7 +100,7 @@ export class LoginScene extends Phaser.Scene
         this.connectionListener = (data) => {
                     this.updateConnectionDisplay(data);
                 };
-                connectionManager.addListener(this.connectionListener);
+        connectionManager.addListener(this.connectionListener);
     }
     updateConnectionDisplay(data) {
         // Solo actualizar si el texto existe (la escena está creada)

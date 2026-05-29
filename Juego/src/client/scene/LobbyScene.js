@@ -59,13 +59,13 @@ export class LobbyScene extends Phaser.Scene {
     try {
       // Connect to WebSocket server (same host as web server)
       const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-const wsUrl = `${protocol}://${location.host}`;
-this.ws = new WebSocket(wsUrl);
+      const wsUrl = `${protocol}://${location.host}`;
+      this.ws = new WebSocket(wsUrl);
       console.log("Conectado al servidor: "+wsUrl);
 
       this.ws.onopen = () => {
         console.log('Connected to WebSocket server');
-      console.log("Conectado al servidor: "+wsUrl);
+        console.log("Conectado al servidor: "+wsUrl);
         this.statusText.setText('Waiting for opponent...');
 
         // Join matchmaking queue

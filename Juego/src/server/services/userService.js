@@ -12,21 +12,21 @@ export function createUserService() {
 
   /**
    * Crea un nuevo usuario
-   * @param {object} userData - {email, name, avatar, level}
+   * @param {object} userData - {name, password, avatar, level}
    * @returns {object} Usuario creado
    */
   function createUser(userData) {
-    // 1. Validar que el email no exista ya
-    const existingUser = users.find(u => u.email === userData.email);
+    // 1. Validar que el jugador no exista ya
+    const existingUser = users.find(u => u.name === userData.name);
     if (existingUser) {
-      throw new Error('El email ya está registrado');
+      throw new Error('El usuario ya está registrado');
     }
     
     console.log("Se ha creado un nuevo user de id Player_"+String(nextId));
     // 2. Crear objeto usuario con id único y createdAt
     const newUser = {
       id: 'Player_'+String(nextId),
-      email: userData.email,
+      password: userData.password,
       name: userData.name,
       avatar: userData.avatar || '',
       level: userData.level || 1,
@@ -65,17 +65,17 @@ export function createUserService() {
 
   /**
    * Busca un usuario por email
-   * @param {string} email - Email del usuario
+   * @param {string} name - nombre del usuario
    * @returns {object|null} Usuario encontrado o null
    */
-  function getUserByEmail(email) {
+  function getUserByName(name) {
     // TODO: Implementar
     // Buscar y retornar el usuario por email, o null si no existe
     // IMPORTANTE: Esta función será usada por el chat para verificar emails
-    let findUser = users.find(u => u.email === email);
+    let findUser = users.find(u => u.name === name);
     if(findUser) return findUser;
     else{
-      console.log("No existe usuario con el correo "+email);
+      console.log("No existe usuario con el nombre "+name);
       return null;
     } 
   }
@@ -123,7 +123,7 @@ export function createUserService() {
     createUser,
     getAllUsers,
     getUserById,
-    getUserByEmail,
+    getUserByName,
     updateUser,
     deleteUser
   };

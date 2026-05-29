@@ -18,7 +18,7 @@ export function createUserController(userService) {
       // 2. Validar que los campos requeridos estén presentes (email, name)
       if (!password || !name) {
         return res.status(400).json({
-          error: 'Los campos email y name son obligatorios'
+          error: 'Los campos name y password son obligatorios'
         });
       }
 
@@ -29,7 +29,7 @@ export function createUserController(userService) {
       res.status(201).json(newUser);
     } catch (error) {
       // 5. Si hay error (ej: email duplicado), retornar 400
-      if (error.message === 'El email ya está registrado') {
+      if (error.message === 'El user ya está registrado') {
         return res.status(400).json({ error: error.message });
       }
       next(error);
@@ -61,7 +61,7 @@ export function createUserController(userService) {
       const { id } = req.params;
 
       // 2. Llamar a userService.getUserById()
-      const user = userService.getUserById(id);
+      const user = userService.getUserByName(id);
 
       // 3. Si no existe, retornar 404
       if (!user) {
