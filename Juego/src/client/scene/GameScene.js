@@ -299,7 +299,7 @@ export class GameScene extends Phaser.Scene{
         this.boundRight.setVisible(false);
     }
 
-    endGame(){
+    async endGame(){
         this.players.forEach(paddle=> {
 
           paddle.effect.stop();
@@ -312,6 +312,22 @@ export class GameScene extends Phaser.Scene{
     const winnerText    = p1IsWinner ? 'JUGADOR 1' : 'JUGADOR 2';
     const winnerGatoKey = p1IsWinner ? this.traspaso.pj1 : this.traspaso.pj2;
 
+    var response = await fetch(`/api/users/${this.traspaso.playerName}`,{ method: 'GET'});
+    if(!response.ok) console.log("No funcionó el coger");
+    const data = await response.json();
+
+    response = await fetch(`/api/users/${data.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+
+            level:data.level + 1
+        })
+    });
+    if(!response.ok) console.log("No funcionó el actualizar");
+/**/ 
     this.scene.start('ResultsScene', {
         gato:    winnerGatoKey,  // 'gatoTipo1', 'gatoTipo2', ...
         winText: winnerText

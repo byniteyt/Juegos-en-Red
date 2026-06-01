@@ -32,7 +32,9 @@ export class ResultsScene extends Phaser.Scene {
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => mainMenuBtn.setStyle({ fontFamily: 'MiFuente',fill: '#ebc6e9ff'}))
         .on('pointerout', () => mainMenuBtn.setStyle({ fontFamily: 'MiFuente',fill: '#e05fdaff'}))
-        .on('pointerdown', () => { this.scene.start('MenuScene');
+        .on('pointerdown', () => { this.scene.start('MenuScene', {
+                                    playerName: traspaso.playerName
+                                });
         });
     }
 }

@@ -9,7 +9,7 @@ export class ControlsScene extends Phaser.Scene {
         this.load.image('controls', 'Assets/Credits/Fondo_pantallas.png');
     }
 
-    create() {
+    create(traspaso) {
         this.add.image(600, 350, 'controls');
 
         this.add.text(540,95, '¿CÓMO SE JUEGA?', {
@@ -65,7 +65,9 @@ export class ControlsScene extends Phaser.Scene {
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#dfaadcff'}))
         .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#e05fdaff'}))
-        .on('pointerdown', () => { this.scene.start('SelectCatScene');
+        .on('pointerdown', () => { this.scene.start('SelectCatScene',{
+                    playerName: traspaso.playerName
+                });
         });
     }
 }

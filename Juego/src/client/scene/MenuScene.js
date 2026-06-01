@@ -146,7 +146,9 @@ export class MenuScene extends Phaser.Scene {
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             music.stop();
-            this.scene.start('ControlsScene');
+            this.scene.start('ControlsScene',{
+                    playerName: data.playerName
+                });
         });
 
         const playShadow = this.add.image(1095, 630, 'Play_Shadow')

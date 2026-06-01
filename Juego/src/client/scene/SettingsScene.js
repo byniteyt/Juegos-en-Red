@@ -10,7 +10,7 @@ export class SettingsScene extends Phaser.Scene {
         this.load.image('fondo', 'Assets/Credits/Fondo_pantallas.png');
     }
 
-    create() {
+    create(traspaso) {
         this.add.image(600, 350, 'fondo');
 
         this.add.text(600, 125, 'AJUSTES', { 
@@ -28,7 +28,9 @@ export class SettingsScene extends Phaser.Scene {
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => mainMenuBtn.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
         .on('pointerout', () => mainMenuBtn.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
-        .on('pointerdown', () => this.scene.start('MenuScene'));
+        .on('pointerdown', () => this.scene.start('MenuScene'),{
+                    playerName: traspaso.playerName
+                });
 
         // Obtener música global
         const music = this.game.registry.get('bgMusic');

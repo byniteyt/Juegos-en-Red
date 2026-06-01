@@ -27,11 +27,10 @@ export class RankingScene extends Phaser.Scene {
 
             const users = await response.json();
 
-            // Opcional: ordenar por nivel descendente
+            // Ordenamos por nivel descendente
             users.sort((a, b) => b.level - a.level);
 
             // Cabeceras
-
             this.add.text(
                 350,
                 130,
@@ -78,7 +77,7 @@ export class RankingScene extends Phaser.Scene {
                     }
                 );
 
-                y += 45;
+                y += 25;
             });
 
             const returnButton = this.add.text(100, 625, 'Return', {
