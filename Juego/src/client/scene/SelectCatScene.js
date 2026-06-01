@@ -192,5 +192,4 @@ export class SelectCatScene extends Phaser.Scene{
          pj2:     this.catPJ2   // Para las animaciones
          });
     }
-
 }

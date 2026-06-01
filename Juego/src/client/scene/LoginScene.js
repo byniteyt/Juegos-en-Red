@@ -72,7 +72,6 @@ export class LoginScene extends Phaser.Scene
                             }
 
                             const user = await response.json();
-                            console.log(user);
 
                             // Usuario creado correctamente
                             scene.text.setText(`Welcome ${user.name}\nStarting the game...`);
