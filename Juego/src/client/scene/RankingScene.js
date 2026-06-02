@@ -6,7 +6,13 @@ export class RankingScene extends Phaser.Scene {
         super('RankingScene');
     }
 
+    preload() {
+        this.load.image('ranking', 'Assets/Credits/Fondo_pantallas.png');
+    }
+
     async create(data) {
+        this.add.image(600, 350, 'ranking');
+
         this.add.text(
             600,
             60,
@@ -38,7 +44,7 @@ export class RankingScene extends Phaser.Scene {
                 {
                     fontSize: '28px',
                     fontStyle: 'bold',
-                    color: '#ffff00'
+                    color: '#e05fdaff'
                 }
             );
 
@@ -49,7 +55,7 @@ export class RankingScene extends Phaser.Scene {
                 {
                     fontSize: '28px',
                     fontStyle: 'bold',
-                    color: '#ffff00'
+                    color: '#e05fdaff'
                 }
             );
 
