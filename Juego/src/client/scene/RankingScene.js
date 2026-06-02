@@ -80,20 +80,18 @@ export class RankingScene extends Phaser.Scene {
                 y += 25;
             });
 
-            const returnButton = this.add.text(100, 625, 'Return', {
-            fontSize: '24px',
-            color: '#d0f12b',
-            backgroundColor: '#1e94d8'
+            const returnButton = this.add.text(113, 640, '  Volver al \n menú inicial', {
+            fontFamily: 'MiFuente',
+            fontSize: '40px',
+            color: '#276d21ff'
             })
-            .setDepth(1)
             .setOrigin(0.5)
-            .setScale(1)
-            .setInteractive({useHandCursor: true})
-            .on('pointerdown', () =>{
-                this.scene.start('MenuScene',{
+            .setInteractive({ useHandCursor: true })
+            .on('pointerover', () => returnButton.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
+            .on('pointerout', () => returnButton.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
+            .on('pointerdown', () => this.scene.start('MenuScene',{
                     playerName: data.playerName
-                });
-            });
+                }));
 
         } catch (error) {
 
