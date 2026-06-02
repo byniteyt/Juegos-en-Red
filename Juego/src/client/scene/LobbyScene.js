@@ -8,30 +8,40 @@ export class LobbyScene extends Phaser.Scene {
     this.ws = null;
   }
 
+  preload() {
+        this.load.image('lobby', 'Assets/Credits/Fondo_pantallas.png');
+    }
+
   create() {
+    this.add.image(600, 350, 'lobby');
+
     const width = this.cameras.main.width;
     const height = this.cameras.main.height;
 
     // Title
     this.add.text(width / 2, 100, 'Online Multiplayer', {
+      fontFamily: 'MiFuente',
       fontSize: '48px',
-      color: '#ffffff'
+      color: '#000000'
     }).setOrigin(0.5);
 
     // Status text
-    this.statusText = this.add.text(width / 2, height / 2 - 50, 'Connecting to server...', {
-      fontSize: '24px',
-      color: '#ffff00'
+    this.statusText = this.add.text(width / 2, height / 2 - 100, 'Connecting to server...', {
+      fontFamily: 'MiFuente',
+      fontSize: '32px',
+      color: '#838c0ab8'
     }).setOrigin(0.5);
 
     // Player count text
-    this.playerCountText = this.add.text(width / 2, height / 2 + 20, '', {
-      fontSize: '20px',
-      color: '#00ff00'
+    this.playerCountText = this.add.text(width / 2, height / 2 - 25, '', {
+      fontFamily: 'MiFuente',
+      fontSize: '32px',
+      color: '#307430ff'
     }).setOrigin(0.5);
 
     // Cancel button
-    const cancelButton = this.add.text(width / 2, height - 100, 'Cancel', {
+    const cancelButton = this.add.text(width / 2, height - 290, 'Cancel', {
+      fontFamily: 'MiFuente',
       fontSize: '24px',
       color: '#ff6666',
       backgroundColor: '#333333',
