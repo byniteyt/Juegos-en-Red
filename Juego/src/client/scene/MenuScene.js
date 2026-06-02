@@ -202,7 +202,8 @@ export class MenuScene extends Phaser.Scene {
         this.events.on('destroy', this.shutdown, this);
         if(data!= null){
             var texto = 'Usuario activo: ' + data.playerName;
-            const activePlayer = this.add.text(500, 30, texto, {
+            const activePlayer = this.add.text(600, 30, texto, {
+            fontFamily: 'MiFuente',
             fontSize: '24px',
             color: '#838c0ab8',
         }).setOrigin(0.5);
