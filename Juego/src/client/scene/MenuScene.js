@@ -208,7 +208,7 @@ export class MenuScene extends Phaser.Scene {
             color: '#838c0ab8',
         }).setOrigin(0.5);
         }
-        const ranking = this.add.text(100, 325, 'Podio', {
+        const ranking = this.add.text(100, 75, 'Podio', {
             fontSize: '24px',
             color: '#f17d2b',
             backgroundColor: '#8910ae'
