@@ -17,7 +17,7 @@ export class LoginScene extends Phaser.Scene
         const scene = this;
         this.add.image(600, 350, 'credits');
         this.text = this.add.text(600, 80, 'Please login to play', 
-            { color: 'black', fontFamily: 'Arial', fontSize: '32px '})
+            { color: 'black', fontFamily: 'MiFuente', fontSize: '32px '})
             .setOrigin(0.5);
 
         const element = this.add.dom(600, 350).createFromCache('nameform');
