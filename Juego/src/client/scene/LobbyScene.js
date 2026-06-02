@@ -46,7 +46,7 @@ export class LobbyScene extends Phaser.Scene {
       color: '#ff6666',
       backgroundColor: '#333333',
       padding: { x: 20, y: 10 }
-    }).setOrigin(0.5).setInteractive();
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
     cancelButton.on('pointerover', () => {
       cancelButton.setColor('#ff0000');
