@@ -51,7 +51,7 @@ export class RankingScene extends Phaser.Scene {
             this.add.text(
                 750,
                 130,
-                'Nivel',
+                'Victorias',
                 {
                     fontSize: '28px',
                     fontStyle: 'bold',
