@@ -180,13 +180,15 @@ export class MenuScene extends Phaser.Scene {
             fontSize: '24px',
             color: '#dfb912ff'
         }).setOrigin(0.5);
-        const onlineBtn = this.add.text(400, 390, 'Online Multiplayer', {
-            fontSize: '24px',
-            color: '#00ff00',
+        const onlineBtn = this.add.text(600, 470, 'Online Multiplayer', {
+            fontFamily: 'MiFuente',
+            fontSize: '32px',
+            color: '#124f12',
+            backgroundColor: '#81c98e'
         }).setOrigin(0.5)
         .setInteractive({useHandCursor: true})
-        .on('pointerover', () => onlineBtn.setColor('#00ff88'))
-        .on('pointerout', () => onlineBtn.setColor('#00ff00'))
+        .on('pointerover', () => onlineBtn.setColor('#d8e8d8'))
+        .on('pointerout', () => onlineBtn.setColor('#124f12'))
         .on('pointerdown', () => {
             music.stop();
             this.scene.start('LobbyScene');
