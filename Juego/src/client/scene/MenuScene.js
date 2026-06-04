@@ -15,6 +15,8 @@ export class MenuScene extends Phaser.Scene {
         this.load.image('Conf_Shadow', 'Assets/MainMenu/Final/Conf_Shadow.png');
         this.load.image('Play_Button', 'Assets/MainMenu/Final/Play_Button.png');
         this.load.image('Play_Shadow', 'Assets/MainMenu/Final/Play_Shadow.png');
+        this.load.image('Podium_Button', 'Assets/MainMenu/Final/Podium_Button.png');
+        this.load.image('Podium_Shadow', 'Assets/MainMenu/Final/Podium_Shadow.png');
 
         this.load.image('Title', 'Assets/MainMenu/Sketch/Title.png');
         this.load.image('Decoration', 'Assets/MainMenu/Sketch/Decoration.png');
@@ -156,8 +158,25 @@ export class MenuScene extends Phaser.Scene {
         .setOrigin(0.5)
         .setScale(0.35);
 
+        const podiumButton = this.add.image(100, 75, 'Podium_Button')
+        .setDepth(1)
+        .setOrigin(0.5)
+        .setScale(0.5)
+        .setInteractive({useHandCursor: true})
+        .on('pointerdown', () =>{
+            this.scene.start('RankingScene', {
+                    playerName: data.playerName
+                });
+        });
+
+        const podiumShadow = this.add.image(95, 80, 'Podium_Shadow')
+        .setDepth(0)
+        .setOrigin(0.5)
+        .setScale(0.5);
+
+
         this.tweens.add({
-            targets: [confButton, playButton, credButton],
+            targets: [confButton, playButton, credButton, podiumButton],
             y: '-=15',
             duration: 1000,
             yoyo: true,
@@ -166,7 +185,7 @@ export class MenuScene extends Phaser.Scene {
         });
 
         this.tweens.add({
-            targets: [confShadow, playShadow, credShadow],
+            targets: [confShadow, playShadow, credShadow, podiumShadow],
             y: '-=15',
             duration: 1000,
             yoyo: true,
@@ -208,7 +227,7 @@ export class MenuScene extends Phaser.Scene {
             color: '#838c0ab8',
         }).setOrigin(0.5);
         }
-        const ranking = this.add.text(100, 75, 'Podio', {
+        /*const ranking = this.add.text(100, 75, 'Podio', {
             fontSize: '24px',
             color: '#f17d2b',
             backgroundColor: '#8910ae'
@@ -221,7 +240,7 @@ export class MenuScene extends Phaser.Scene {
                 this.scene.start('RankingScene',{
                     playerName: data.playerName
                 });
-            });
+            });*/
     }
     
     updateConnectionDisplay(data) {
