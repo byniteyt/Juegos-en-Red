@@ -227,20 +227,6 @@ export class MenuScene extends Phaser.Scene {
             color: '#838c0ab8',
         }).setOrigin(0.5);
         }
-        /*const ranking = this.add.text(100, 75, 'Podio', {
-            fontSize: '24px',
-            color: '#f17d2b',
-            backgroundColor: '#8910ae'
-            })
-            .setDepth(1)
-            .setOrigin(0.5)
-            .setScale(1)
-            .setInteractive({useHandCursor: true})
-            .on('pointerdown', () =>{
-                this.scene.start('RankingScene',{
-                    playerName: data.playerName
-                });
-            });*/
     }
     
     updateConnectionDisplay(data) {
