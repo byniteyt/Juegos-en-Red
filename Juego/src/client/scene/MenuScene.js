@@ -15,8 +15,6 @@ export class MenuScene extends Phaser.Scene {
         this.load.image('Conf_Shadow', 'Assets/MainMenu/Final/Conf_Shadow.png');
         this.load.image('Play_Button', 'Assets/MainMenu/Final/Play_Button.png');
         this.load.image('Play_Shadow', 'Assets/MainMenu/Final/Play_Shadow.png');
-        this.load.image('Podium_Button', 'Assets/MainMenu/Final/Podium_Button.png');
-        this.load.image('Podium_Shadow', 'Assets/MainMenu/Final/Podium_Shadow.png');
 
         this.load.image('Title', 'Assets/MainMenu/Sketch/Title.png');
         this.load.image('Decoration', 'Assets/MainMenu/Sketch/Decoration.png');
@@ -28,7 +26,7 @@ export class MenuScene extends Phaser.Scene {
         }
     }
    
-    create(data) {
+    create() {
 
         if (!this.game.registry.has('bgMusic')) {
 
@@ -148,9 +146,7 @@ export class MenuScene extends Phaser.Scene {
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             music.stop();
-            this.scene.start('ControlsScene',{
-                    playerName: data.playerName
-                });
+            this.scene.start('ControlsScene');
         });
 
         const playShadow = this.add.image(1095, 630, 'Play_Shadow')
@@ -158,25 +154,8 @@ export class MenuScene extends Phaser.Scene {
         .setOrigin(0.5)
         .setScale(0.35);
 
-        const podiumButton = this.add.image(100, 75, 'Podium_Button')
-        .setDepth(1)
-        .setOrigin(0.5)
-        .setScale(0.5)
-        .setInteractive({useHandCursor: true})
-        .on('pointerdown', () =>{
-            this.scene.start('RankingScene', {
-                    playerName: data.playerName
-                });
-        });
-
-        const podiumShadow = this.add.image(95, 80, 'Podium_Shadow')
-        .setDepth(0)
-        .setOrigin(0.5)
-        .setScale(0.5);
-
-
         this.tweens.add({
-            targets: [confButton, playButton, credButton, podiumButton],
+            targets: [confButton, playButton, credButton],
             y: '-=15',
             duration: 1000,
             yoyo: true,
@@ -185,7 +164,7 @@ export class MenuScene extends Phaser.Scene {
         });
 
         this.tweens.add({
-            targets: [confShadow, playShadow, credShadow, podiumShadow],
+            targets: [confShadow, playShadow, credShadow],
             y: '-=15',
             duration: 1000,
             yoyo: true,
@@ -199,34 +178,21 @@ export class MenuScene extends Phaser.Scene {
             fontSize: '24px',
             color: '#dfb912ff'
         }).setOrigin(0.5);
-        const onlineBtn = this.add.text(600, 470, 'Online Multiplayer', {
-            fontFamily: 'MiFuente',
-            fontSize: '32px',
-            color: '#124f12',
-            backgroundColor: '#81c98e'
-        }).setOrigin(0.5)
+        const onlineRect = this.add.rectangle(600,500,280,50,0xbb9809)
         .setInteractive({useHandCursor: true})
-        .on('pointerover', () => onlineBtn.setColor('#d8e8d8'))
-        .on('pointerout', () => onlineBtn.setColor('#124f12'))
         .on('pointerdown', () => {
             music.stop();
             this.scene.start('LobbyScene');
         });
+        const onlineBtn = this.add.text(600, 500, 'Online Multiplayer', {
+            fontSize: '24px',
+            color: '#00ff00',
+        }).setOrigin(0.5);
         // Listener para cambios de conexión
         this.connectionListener = (data) => {
             this.updateConnectionDisplay(data);
         };
         connectionManager.addListener(this.connectionListener);
-        this.events.on('shutdown', this.shutdown, this);
-        this.events.on('destroy', this.shutdown, this);
-        if(data!= null){
-            var texto = 'Usuario activo: ' + data.playerName;
-            const activePlayer = this.add.text(600, 30, texto, {
-            fontFamily: 'MiFuente',
-            fontSize: '24px',
-            color: '#838c0ab8',
-        }).setOrigin(0.5);
-        }
     }
     
     updateConnectionDisplay(data) {
@@ -247,10 +213,11 @@ export class MenuScene extends Phaser.Scene {
             console.error('[MenuScene] Error updating connection display:', error);
         }
     }
+
     shutdown() {
         // Remover el listener
         if (this.connectionListener) {
             connectionManager.removeListener(this.connectionListener);
         }
-    }/**/
+    }
 }
