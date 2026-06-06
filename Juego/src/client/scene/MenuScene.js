@@ -133,7 +133,9 @@ export class MenuScene extends Phaser.Scene {
         .setScale(0.35)
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
-            this.scene.start('CreditsScene');
+            this.scene.start('CreditsScene', {
+                    player: data.player
+                });
         });
 
         const credShadow = this.add.image(1105, 80, 'Cred_Shadow')
@@ -149,7 +151,7 @@ export class MenuScene extends Phaser.Scene {
         .on('pointerdown', () =>{
             music.stop();
             this.scene.start('ControlsScene',{
-                    playerName: data.playerName
+                    player: data.player
                 });
         });
 
@@ -165,7 +167,7 @@ export class MenuScene extends Phaser.Scene {
         .setInteractive({useHandCursor: true})
         .on('pointerdown', () =>{
             this.scene.start('RankingScene', {
-                    playerName: data.playerName
+                    player: data.player
                 });
         });
 
@@ -220,7 +222,7 @@ export class MenuScene extends Phaser.Scene {
         this.events.on('shutdown', this.shutdown, this);
         this.events.on('destroy', this.shutdown, this);
         if(data!= null){
-            var texto = 'Usuario activo: ' + data.playerName;
+            var texto = 'Usuario activo: ' + data.player.name;
             const activePlayer = this.add.text(600, 30, texto, {
             fontFamily: 'MiFuente',
             fontSize: '24px',

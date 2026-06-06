@@ -12,7 +12,7 @@ export class RankingScene extends Phaser.Scene {
 
     async create(data) {
         this.add.image(600, 350, 'ranking');
-
+        this.activeuser = data.player;
         this.add.text(
             600,
             60,
@@ -38,7 +38,7 @@ export class RankingScene extends Phaser.Scene {
 
             // Cabeceras
             this.add.text(
-                350,
+                750,
                 130,
                 'Jugador',
                 {
@@ -49,7 +49,7 @@ export class RankingScene extends Phaser.Scene {
             );
 
             this.add.text(
-                750,
+                950,
                 130,
                 'Victorias',
                 {
@@ -64,7 +64,7 @@ export class RankingScene extends Phaser.Scene {
             users.forEach((user) => {
 
                 this.add.text(
-                    350,
+                    750,
                     y,
                     user.name,
                     {
@@ -74,7 +74,7 @@ export class RankingScene extends Phaser.Scene {
                 );
 
                 this.add.text(
-                    750,
+                    950,
                     y,
                     String(user.level),
                     {
@@ -96,20 +96,131 @@ export class RankingScene extends Phaser.Scene {
             .on('pointerover', () => returnButton.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
             .on('pointerout', () => returnButton.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
             .on('pointerdown', () => this.scene.start('MenuScene',{
-                    playerName: data.playerName
+                    player: this.activeuser
                 }));
 
         } catch (error) {
 
-            this.add.text(
-                600,
-                350,
-                error.message,
-                {
-                    fontSize: '24px',
-                    color: '#ff0000'
-                }
-            ).setOrigin(0.5);
+        this.add.text(
+            600,
+            350,
+            error.message,
+            {
+                fontSize: '24px',
+                color: '#ff0000'
+            }
+        ).setOrigin(0.5);
         }
+
+        const activePlayerText = this.add.text(
+            350,
+            250,
+            `Usuario activo: ${this.activeuser.name}`,
+            {
+                fontSize: '24px',
+                color: '#0e1e67'
+            }
+        ).setOrigin(0.5);
+        //////////  CAMBIAR USUARIO ///////////
+
+        const changeUser = this.add.text(150, 320, 'Cambiar usuario', {
+            fontSize: '24px',
+            color: '#000'
+        }).setOrigin(0.5);
+
+        // Usuario actual
+        const UserInput = this.add.dom(150, 370, 'input', {
+            width: '180px',
+            height: '30px'
+        });
+
+        UserInput.node.placeholder = 'Usuario';
+
+        // Nuevo usuario
+        const UserPasswordInput = this.add.dom(150, 420, 'input', {
+            width: '180px',
+            height: '30px'
+        });
+
+        UserPasswordInput.node.placeholder = 'Contraseña';
+
+        // Botón
+        const updateButton = this.add.text(150, 470, 'Cambiar', {
+            fontSize: '22px',
+            backgroundColor: '#0066cc',
+            color: '#ffffff',
+            padding: { x: 10, y: 5 }
+        })
+        .setOrigin(0.5)
+        .setInteractive();
+
+        updateButton.on('pointerdown', async () => {
+
+            const user = UserInput.node.value;
+            const password = UserPasswordInput.node.value;
+
+            try {
+                const changed = await fetch(`/api/users/${user}`,{
+                                method: 'GET'});
+
+                const data = await changed.json();
+
+                if (!changed.ok) {
+                    throw new Error(data.error || 'Error obteniendo usuario');
+                }
+                if(data.password != password){
+                    throw new Error('La contraseña no es correcta');
+                }
+                activePlayerText.text = `Usuario activo: ${data.name}`;
+                this.activeuser = data;
+
+            } catch (err) {
+                console.error(err);
+            }
+
+        });
+        ////////// ELIMINAR USUARIO ///////////        
+        
+        const deleteUser = this.add.text(350, 320, 'Eliminar usuario', {
+            fontSize: '24px',
+            color: '#000'
+        }).setOrigin(0.5);
+
+        // Input para la contraseña
+        const deleteInput = this.add.dom(350, 400, 'input', {
+            width: '180px',
+            height: '30px'
+        });
+
+        const deleteButton = this.add.text(350, 450, 'Eliminar', {
+            fontSize: '22px',
+            backgroundColor: '#cc0000',
+            color: '#ffffff',
+            padding: { x: 10, y: 5 }
+        })
+        .setOrigin(0.5)
+        .setInteractive();
+
+        deleteButton.on('pointerdown', async () => {
+
+            const password = deleteInput.node.value;
+
+            try {
+
+                const response = await fetch(`/api/users/${data.player.id}`, {
+                    method: 'DELETE'
+                });
+                if(response.ok){
+                    this.scene.start('RankingScene', {
+                        player: this.activeuser
+                    });
+                }
+                
+                deleteUser.text = 'Error al eliminar usuario';
+            } catch (err) {
+                console.error(err);
+            }
+
+        });
     }
 }

@@ -329,7 +329,7 @@ export class GameScene extends Phaser.Scene{
     if(!response.ok) console.log("No funcionó el actualizar");
 /**/ 
     this.scene.start('ResultsScene', {
-        playerName: data.name,
+        player: data.player,
         gato:    winnerGatoKey,  // 'gatoTipo1', 'gatoTipo2', ...
         winText: winnerText
     });

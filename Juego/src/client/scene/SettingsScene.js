@@ -29,7 +29,7 @@ export class SettingsScene extends Phaser.Scene {
         .on('pointerover', () => mainMenuBtn.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
         .on('pointerout', () => mainMenuBtn.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
         .on('pointerdown', () => this.scene.start('MenuScene'),{
-                    playerName: traspaso.playerName
+                    player: traspaso.player
                 });
 
         // Obtener música global

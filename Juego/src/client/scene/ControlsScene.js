@@ -66,7 +66,7 @@ export class ControlsScene extends Phaser.Scene {
         .on('pointerover', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#dfaadcff'}))
         .on('pointerout', () => startBtn.setStyle({fontFamily: 'MiFuente', fill: '#e05fdaff'}))
         .on('pointerdown', () => { this.scene.start('SelectCatScene',{
-                    playerName: traspaso.playerName
+                    player: traspaso.player
                 });
         });
     }

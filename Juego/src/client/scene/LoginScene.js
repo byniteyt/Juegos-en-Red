@@ -67,7 +67,7 @@ export class LoginScene extends Phaser.Scene
                                 scene.text.setText(`Welcome ${data.name}\nStarting the game...`);
 
                                 scene.scene.start('MenuScene', {
-                                    playerName: data.name
+                                    player: data
                                 });
                             }
 
@@ -77,7 +77,7 @@ export class LoginScene extends Phaser.Scene
                             scene.text.setText(`Welcome ${user.name}\nStarting the game...`);
 
                             scene.scene.start('MenuScene', {
-                                    playerName: user.name
+                                    player: user
                                 });
 
                         }catch(error) {
