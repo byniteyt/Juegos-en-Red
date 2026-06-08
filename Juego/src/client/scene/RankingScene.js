@@ -115,7 +115,7 @@ export class RankingScene extends Phaser.Scene {
         }
 
         const activePlayerText = this.add.text(
-            350,
+            100,
             250,
             `Usuario activo: ${this.activeuser.name}`,
             {
@@ -198,7 +198,7 @@ export class RankingScene extends Phaser.Scene {
             height: '30px'
         });
 
-        const deleteButton = this.add.text(350, 450, 'Eliminar', {
+        const deleteButton = this.add.text(350, 470, 'Eliminar', {
             fontFamily: 'MiFuente',
             fontSize: '22px',
             backgroundColor: '#cc0000',
