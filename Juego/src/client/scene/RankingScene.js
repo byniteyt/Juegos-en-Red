@@ -18,6 +18,7 @@ export class RankingScene extends Phaser.Scene {
             60,
             'Ranking de Jugadores',
             {
+                fontFamily: 'MiFuente',
                 fontSize: '32px',
                 color: '#000000'
             }
@@ -42,7 +43,7 @@ export class RankingScene extends Phaser.Scene {
                 130,
                 'Jugador',
                 {
-                    fontSize: '28px',
+                    fontFamily: 'MiFuente',fontSize: '28px',
                     fontStyle: 'bold',
                     color: '#e05fdaff'
                 }
@@ -53,7 +54,7 @@ export class RankingScene extends Phaser.Scene {
                 130,
                 'Victorias',
                 {
-                    fontSize: '28px',
+                    fontFamily: 'MiFuente',fontSize: '28px',
                     fontStyle: 'bold',
                     color: '#e05fdaff'
                 }
@@ -106,6 +107,7 @@ export class RankingScene extends Phaser.Scene {
             350,
             error.message,
             {
+                fontFamily: 'MiFuente',
                 fontSize: '24px',
                 color: '#ff0000'
             }
@@ -117,6 +119,7 @@ export class RankingScene extends Phaser.Scene {
             250,
             `Usuario activo: ${this.activeuser.name}`,
             {
+                fontFamily: 'MiFuente',
                 fontSize: '24px',
                 color: '#0e1e67'
             }
@@ -124,6 +127,7 @@ export class RankingScene extends Phaser.Scene {
         //////////  CAMBIAR USUARIO ///////////
 
         const changeUser = this.add.text(150, 320, 'Cambiar usuario', {
+            fontFamily: 'MiFuente',
             fontSize: '24px',
             color: '#000'
         }).setOrigin(0.5);
@@ -146,6 +150,7 @@ export class RankingScene extends Phaser.Scene {
 
         // Botón
         const updateButton = this.add.text(150, 470, 'Cambiar', {
+            fontFamily: 'MiFuente',
             fontSize: '22px',
             backgroundColor: '#0066cc',
             color: '#ffffff',
@@ -182,6 +187,7 @@ export class RankingScene extends Phaser.Scene {
         ////////// ELIMINAR USUARIO ///////////        
         
         const deleteUser = this.add.text(350, 320, 'Eliminar usuario', {
+            fontFamily: 'MiFuente',
             fontSize: '24px',
             color: '#000'
         }).setOrigin(0.5);
@@ -193,6 +199,7 @@ export class RankingScene extends Phaser.Scene {
         });
 
         const deleteButton = this.add.text(350, 450, 'Eliminar', {
+            fontFamily: 'MiFuente',
             fontSize: '22px',
             backgroundColor: '#cc0000',
             color: '#ffffff',
