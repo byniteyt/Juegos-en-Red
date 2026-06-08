@@ -115,7 +115,7 @@ export class RankingScene extends Phaser.Scene {
         }
 
         const activePlayerText = this.add.text(
-            100,
+            245,
             250,
             `Usuario activo: ${this.activeuser.name}`,
             {
