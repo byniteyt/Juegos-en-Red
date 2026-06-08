@@ -46,7 +46,7 @@ export class LoginScene extends Phaser.Scene
                                     name: inputUsername.value,
                                     password: inputPassword.value,
                                     avatar: '',
-                                    level: 1
+                                    level: 0
                                 })
                             });
 
