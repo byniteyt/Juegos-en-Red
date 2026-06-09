@@ -83,7 +83,7 @@ export class RankingScene extends Phaser.Scene {
                     {
                         fontFamily: 'MiFuente',
                         fontSize: '24px',
-                        color: 'rgb(133, 129, 17)'
+                        color: '#000000'
                     }
                 );
 
@@ -160,7 +160,9 @@ export class RankingScene extends Phaser.Scene {
             padding: { x: 10, y: 5 }
         })
         .setOrigin(0.5)
-        .setInteractive();
+        .setInteractive({ useHandCursor: true })
+        .on('pointerover', () => updateButton.setColor('#d8e8d8'))
+        .on('pointerout', () => updateButton.setColor('#ffffff'));
 
         updateButton.on('pointerdown', async () => {
 
@@ -209,7 +211,9 @@ export class RankingScene extends Phaser.Scene {
             padding: { x: 10, y: 5 }
         })
         .setOrigin(0.5)
-        .setInteractive();
+        .setInteractive({ useHandCursor: true })
+        .on('pointerover', () => deleteButton.setColor('#d8e8d8'))
+        .on('pointerout', () => deleteButton.setColor('#ffffff'));;
 
         deleteButton.on('pointerdown', async () => {
 
