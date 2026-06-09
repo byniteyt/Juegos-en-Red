@@ -29,7 +29,7 @@ export function createUserService() {
       password: userData.password,
       name: userData.name,
       avatar: userData.avatar || '',
-      level: userData.level || 1,
+      level: userData.level || 0,
       createdAt: new Date().toISOString()
     };
 

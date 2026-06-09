@@ -99,9 +99,10 @@ export class RankingScene extends Phaser.Scene {
             .setInteractive({ useHandCursor: true })
             .on('pointerover', () => returnButton.setStyle({ fontFamily: 'MiFuente',fill: 'rgba(113, 165, 108, 1)'}))
             .on('pointerout', () => returnButton.setStyle({fontFamily: 'MiFuente', fill: '#276d21ff'}))
-            .on('pointerdown', () => this.scene.start('MenuScene',{
-                    player: this.activeuser
-                }));
+            .on('pointerdown', () => {
+                if(this.activeuser === undefined) return;
+                this.scene.start('MenuScene',{player: this.activeuser})
+            });
 
         } catch (error) {
 
@@ -120,7 +121,9 @@ export class RankingScene extends Phaser.Scene {
         const activePlayerText = this.add.text(
             150,
             230,
-            `Usuario activo: ${this.activeuser.name}`,
+            this.activeuser !== undefined
+                ? `Usuario activo: ${this.activeuser.name}`
+                : 'Inicie sesión antes de salir',
             {
                 fontFamily: 'MiFuente',
                 fontSize: '24px',
@@ -135,7 +138,7 @@ export class RankingScene extends Phaser.Scene {
             color: '#000'
         }).setOrigin(0.5);
 
-        // Usuario actual
+        // NOMBRE USUARIO A CAMBIAR
         const UserInput = this.add.dom(150, 340, 'input', {
             width: '180px',
             height: '30px'
@@ -143,7 +146,7 @@ export class RankingScene extends Phaser.Scene {
 
         UserInput.node.placeholder = 'Usuario';
 
-        // Nuevo usuario
+        // CONTRASEÑA USER
         const UserPasswordInput = this.add.dom(150, 390, 'input', {
             width: '180px',
             height: '30px'
@@ -218,23 +221,28 @@ export class RankingScene extends Phaser.Scene {
         deleteButton.on('pointerdown', async () => {
 
             const password = deleteInput.node.value;
-
-            try {
-
-                const response = await fetch(`/api/users/${data.player.id}`, {
-                    method: 'DELETE'
-                });
-                if(response.ok){
-                    this.scene.start('RankingScene', {
-                        player: this.activeuser
-                    });
-                }
-                
-                deleteUser.text = 'Error al eliminar usuario';
-            } catch (err) {
-                console.error(err);
+            if(password === ''){
+                deleteUser.text = 'Introduzca la contraseña';
+                return;
             }
-
+            if(password === this.activeuser.password)
+                {
+                   try {
+                        const response = await fetch(`/api/users/${data.player.id}`, {
+                            method: 'DELETE'
+                        });
+                        if(response.ok){
+                            this.scene.start('RankingScene', {
+                                player: undefined
+                            });
+                        }
+                        
+                        deleteUser.text = 'Error al eliminar usuario';
+                    } catch (err) {
+                        console.error(err);
+                    } 
+            }
+            deleteUser.text = 'Contraseña incorrecta';
         });
     }
 }
