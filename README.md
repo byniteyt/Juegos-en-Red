@@ -75,6 +75,9 @@ En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño 
 ### Versión 3.0
 En la tercera versión del juego se ha añadido: Implementación de comunicación asíncrona WebSocket como la sincronización de movimiento de los jugadores en tiempo real y de eventos en el mapa, el manejo de inputs del teclado, detección de victoria y derrota.<br> En esta versión jugadores desde distintos dispositivos pueden jugar de forma on-line al juego (anteriormente solo se podía jugar desde un dispositivo).
 
+### Versión 4.0
+En la cuarta versión del juego se ha añadido: Todas las funciones de API Rest que manejan la arquitectura cliente-servidor como GET, POST, PUT y DELETE. Un sistema de login para distintos usuarios, además del ranking de partidas según los usuarios conectados en cada sesión por individual.<br> Se ha implementado también una mejora visual de las interfaces del juego, haciéndola más accesible e intuitiva para el usuario que la juegue.
+
 ## Bocetos 
 
 ### Interfaces:
