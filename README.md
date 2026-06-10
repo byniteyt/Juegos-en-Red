@@ -76,7 +76,7 @@ En la segunda versión del juego se ha añadido: Mejora de interfaces y diseño 
 En la tercera versión del juego se ha añadido: Implementación de comunicación asíncrona WebSocket como la sincronización de movimiento de los jugadores en tiempo real y de eventos en el mapa, el manejo de inputs del teclado, detección de victoria y derrota.<br> En esta versión jugadores desde distintos dispositivos pueden jugar de forma on-line al juego (anteriormente solo se podía jugar desde un dispositivo).
 
 ### Versión 4.0
-En la cuarta versión del juego se ha añadido: Sistema de gestión de la aquitectura de cliente-servidor al completo, incluyendo las instrucciones GET, POST, PUT, DELETE, además de un sistema de login para los usuarios que se conecten a la partida.<br> Se ha añadido también un ranking de las puntuaciones que han obtenido los usuarios en cada partida. Estos datos se guardan únicamente por sesión del usuario.<br> Por último se ha realizado una mejora visual y de funcionalidad y diseño de la interfaz del juego, haciéndola más accesible e intuitiva para el jugador.
+En la cuarta versión del juego se ha añadido: Sistema de gestión de la aquitectura de cliente-servidor al completo, incluyendo las instrucciones GET, POST, PUT, DELETE, además de un sistema de login para los usuarios que se conecten a la partida.<br> Se ha añadido también un ranking de las puntuaciones que han obtenido los usuarios en cada partida. Estos datos se guardan únicamente por sesión del usuario.<br> Por último se ha realizado una mejora visual de la interfaz del juego, haciéndola más agradable e intuitiva para el jugador.
 
 
 ## Bocetos 
