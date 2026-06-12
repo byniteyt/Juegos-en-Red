@@ -200,8 +200,14 @@ export class RankingScene extends Phaser.Scene {
             color: '#000'
         }).setOrigin(0.5);
 
+        const deleteUserExplanation = this.add.text(350, 340, 'Para eliminar el usuario activo, \n   introduce su contraseña', {
+            fontFamily: 'MiFuente',
+            fontSize: '16px',
+            color: '#000'
+        }).setOrigin(0.5);
+
         // Input para la contraseña
-        const deleteInput = this.add.dom(350, 370, 'input', {
+        const deleteInput = this.add.dom(350, 390, 'input', {
             width: '180px',
             height: '30px'
         });
