@@ -9,7 +9,7 @@ export class ResultsScene extends Phaser.Scene {
         this.load.image('results', 'Assets/Results/Pantalla_de_Resultado.png');
         this.load.image('gato1', 'Assets/Game/Adaptados/gato1.png');
         this.load.image('gato2', 'Assets/Game/Adaptados/gatoPasota.png');
-        this.load.image('gato3', 'Assets/Game/Adaptados/gatoGordo.png');
+        this.load.image('gato3', 'Assets/Game/Adaptados/gatoBola.png');
         this.load.image('gato4', 'Assets/Game/Adaptados/gatoPeludo.png');
         this.load.image('gato5', 'Assets/Game/Adaptados/gatoNegro.png');
         this.load.image('gato6', 'Assets/Game/Adaptados/gatoAlegre.png');

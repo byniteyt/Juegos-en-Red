@@ -139,7 +139,7 @@ export class RankingScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // NOMBRE USUARIO A CAMBIAR
-        /*const UserInput = this.add.dom(150, 340, 'input', {
+        const UserInput = this.add.dom(150, 340, 'input', {
             width: '180px',
             height: '30px'
         });
@@ -152,7 +152,7 @@ export class RankingScene extends Phaser.Scene {
             height: '30px'
         });
 
-        UserPasswordInput.node.placeholder = 'Contraseña';*/
+        UserPasswordInput.node.placeholder = 'Contraseña';
 
         // Botón
         const updateButton = this.add.text(150, 440, 'Cambiar', {
@@ -165,10 +165,10 @@ export class RankingScene extends Phaser.Scene {
         .setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => updateButton.setColor('#d8e8d8'))
-        .on('pointerout', () => updateButton.setColor('#ffffff'))
-        .on('pointerdown', () => this.scene.start('LoginScene'));
+        .on('pointerout', () => updateButton.setColor('#ffffff'));
+        //.on('pointerdown', () => this.scene.start('LoginScene'));
 
-        /*updateButton.on('pointerdown', async () => {
+        /**/updateButton.on('pointerdown', async () => {
 
             const user = UserInput.node.value;
             const password = UserPasswordInput.node.value;
@@ -180,7 +180,31 @@ export class RankingScene extends Phaser.Scene {
                 const data = await changed.json();
 
                 if (!changed.ok) {
-                    throw new Error(data.error || 'Error obteniendo usuario');
+                    try{
+                        var response = await fetch('/api/users', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    name: user,
+                                    password: password,
+                                    avatar: '',
+                                    level: 0
+                                })
+                            });
+                            const data = await response.json();
+
+                            activePlayerText.text = `Usuario activo: ${data.name}`;
+                            this.activeuser = data;
+                            this.scene.start('RankingScene', {
+                                player: this.activeuser
+                            });
+
+                    }
+                    catch{
+                        throw new Error(data.error || 'Error obteniendo usuario');
+                    }
                 }
                 if(data.password != password){
                     throw new Error('La contraseña no es correcta');
@@ -192,7 +216,7 @@ export class RankingScene extends Phaser.Scene {
                 console.error(err);
             }
 
-        });*/
+        });/**/
         ////////// ELIMINAR USUARIO ///////////        
         
         const deleteUser = this.add.text(350, 290, 'Eliminar usuario', {
