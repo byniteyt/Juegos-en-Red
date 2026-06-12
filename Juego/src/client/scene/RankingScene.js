@@ -139,7 +139,7 @@ export class RankingScene extends Phaser.Scene {
         }).setOrigin(0.5);
 
         // NOMBRE USUARIO A CAMBIAR
-        const UserInput = this.add.dom(150, 340, 'input', {
+        /*const UserInput = this.add.dom(150, 340, 'input', {
             width: '180px',
             height: '30px'
         });
@@ -152,7 +152,7 @@ export class RankingScene extends Phaser.Scene {
             height: '30px'
         });
 
-        UserPasswordInput.node.placeholder = 'Contraseña';
+        UserPasswordInput.node.placeholder = 'Contraseña';*/
 
         // Botón
         const updateButton = this.add.text(150, 440, 'Cambiar', {
@@ -165,9 +165,10 @@ export class RankingScene extends Phaser.Scene {
         .setOrigin(0.5)
         .setInteractive({ useHandCursor: true })
         .on('pointerover', () => updateButton.setColor('#d8e8d8'))
-        .on('pointerout', () => updateButton.setColor('#ffffff'));
+        .on('pointerout', () => updateButton.setColor('#ffffff'))
+        .on('pointerdown', () => this.scene.start('LoginScene'));
 
-        updateButton.on('pointerdown', async () => {
+        /*updateButton.on('pointerdown', async () => {
 
             const user = UserInput.node.value;
             const password = UserPasswordInput.node.value;
@@ -191,7 +192,7 @@ export class RankingScene extends Phaser.Scene {
                 console.error(err);
             }
 
-        });
+        });*/
         ////////// ELIMINAR USUARIO ///////////        
         
         const deleteUser = this.add.text(350, 290, 'Eliminar usuario', {
